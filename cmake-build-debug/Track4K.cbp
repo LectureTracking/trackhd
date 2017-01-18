@@ -5,41 +5,41 @@
 		<Option title="Track4K"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\usr\local\share\;CMake Files\..\..\..\..\..\usr\local\share\OpenCV\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\share\;CMake Files\..\..\..\..\usr\local\share\OpenCV\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/charles/Desktop/Final 4k/track4k/cmake-build-debug"/>
+				<Option working_dir="/home/charles/Desktop/track4k/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/charles/Desktop/Final 4k/track4k/cmake-build-debug"/>
+				<Option working_dir="/home/charles/Desktop/track4k/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/charles/Desktop/Final 4k/track4k/cmake-build-debug"/>
+				<Option working_dir="/home/charles/Desktop/track4k/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Track4K">
-				<Option output="/home/charles/Desktop/Final 4k/track4k/cmake-build-debug/Track4K" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/charles/Desktop/Final 4k/track4k/cmake-build-debug"/>
+				<Option output="/home/charles/Desktop/track4k/cmake-build-debug/Track4K" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/charles/Desktop/track4k/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -55,15 +55,15 @@
 					<Add directory="/usr/include/c++/6/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 Track4K"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 Track4K"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Track4K/fast">
-				<Option output="/home/charles/Desktop/Final 4k/track4k/cmake-build-debug/Track4K" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/charles/Desktop/Final 4k/track4k/cmake-build-debug"/>
+				<Option output="/home/charles/Desktop/track4k/cmake-build-debug/Track4K" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/charles/Desktop/track4k/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -79,138 +79,138 @@
 					<Add directory="/usr/include/c++/6/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 Track4K/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/Final\ 4k/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 Track4K/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/BoardDetection.h">
+		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/BoardDetection.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/BoardSegmentationTesting.h">
+		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/BoardSegmentationTesting.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/IlluminationCorrection.h">
+		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/IlluminationCorrection.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/MotionDetection.h">
+		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/MotionDetection.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/Track4KPreProcess.h">
+		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/Track4KPreProcess.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Board Segmentation/source/BoardDetection.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/BoardDetection.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Board Segmentation/source/BoardSegmentationTesting.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/BoardSegmentationTesting.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Board Segmentation/source/IlluminationCorrection.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/IlluminationCorrection.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Board Segmentation/source/MotionDetection.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/MotionDetection.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Board Segmentation/source/Track4KPreProcess.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/Track4KPreProcess.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/CodeTimer.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/CodeTimer.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/CodeTimer.h">
+		<Unit filename="/home/charles/Desktop/track4k/CodeTimer.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/FileReader.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/FileReader.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/FileReader.h">
+		<Unit filename="/home/charles/Desktop/track4k/FileReader.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/MetaFrame.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/MetaFrame.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/MetaFrame.h">
+		<Unit filename="/home/charles/Desktop/track4k/MetaFrame.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Panning/headers/FrameCropper.h">
+		<Unit filename="/home/charles/Desktop/track4k/Panning/headers/FrameCropper.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Panning/headers/PanLogic.h">
+		<Unit filename="/home/charles/Desktop/track4k/Panning/headers/PanLogic.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Panning/headers/PresenterMotion.h">
+		<Unit filename="/home/charles/Desktop/track4k/Panning/headers/PresenterMotion.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Panning/headers/VideoOutput.h">
+		<Unit filename="/home/charles/Desktop/track4k/Panning/headers/VideoOutput.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Panning/headers/VirtualCinematographer.h">
+		<Unit filename="/home/charles/Desktop/track4k/Panning/headers/VirtualCinematographer.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Panning/source/FrameCropper.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/Panning/source/FrameCropper.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Panning/source/PanLogic.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/Panning/source/PanLogic.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Panning/source/PresenterMotion.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/Panning/source/PresenterMotion.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Panning/source/VideoOutput.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/Panning/source/VideoOutput.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Panning/source/VirtualCinematographer.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/Panning/source/VirtualCinematographer.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/PersistentData.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/PersistentData.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/PersistentData.h">
+		<Unit filename="/home/charles/Desktop/track4k/PersistentData.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/PointPlotter.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/PointPlotter.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/PointPlotter.h">
+		<Unit filename="/home/charles/Desktop/track4k/PointPlotter.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Tracking/headers/Ghost.h">
+		<Unit filename="/home/charles/Desktop/track4k/Tracking/headers/Ghost.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Tracking/headers/MovementDetection.h">
+		<Unit filename="/home/charles/Desktop/track4k/Tracking/headers/MovementDetection.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Tracking/headers/RecognitionDriver.h">
+		<Unit filename="/home/charles/Desktop/track4k/Tracking/headers/RecognitionDriver.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Tracking/source/Ghost.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/Tracking/source/Ghost.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Tracking/source/MovementDetection.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/Tracking/source/MovementDetection.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/Tracking/source/RecognitionDriver.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/Tracking/source/RecognitionDriver.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/mainDriver.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/mainDriver.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/CMakeLists.txt">
+		<Unit filename="/home/charles/Desktop/track4k/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/../../../../../usr/local/share/OpenCV/OpenCVConfig-version.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\share\OpenCV\"/>
+		<Unit filename="/home/charles/Desktop/track4k/../../../../usr/local/share/OpenCV/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/../../../../../usr/local/share/OpenCV/OpenCVConfig.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\share\OpenCV\"/>
+		<Unit filename="/home/charles/Desktop/track4k/../../../../usr/local/share/OpenCV/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/../../../../../usr/local/share/OpenCV/OpenCVModules.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\share\OpenCV\"/>
+		<Unit filename="/home/charles/Desktop/track4k/../../../../usr/local/share/OpenCV/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/Final 4k/track4k/../../../../../usr/local/share/OpenCV/OpenCVModules-release.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\share\OpenCV\"/>
+		<Unit filename="/home/charles/Desktop/track4k/../../../../usr/local/share/OpenCV/OpenCVModules-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

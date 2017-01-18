@@ -1,4 +1,4 @@
-/opt/clion-2016.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/home/charles/Desktop/Final 4k/track4k"
+/opt/clion-2016.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/charles/Desktop/track4k
 -- The C compiler identification is GNU 6.2.1
 -- The CXX compiler identification is GNU 6.2.1
 -- Check for working C compiler: /usr/bin/cc
@@ -15,4 +15,4 @@
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/charles/Desktop/Final 4k/track4k/cmake-build-debug
+-- Build files have been written to: /home/charles/Desktop/track4k/cmake-build-debug

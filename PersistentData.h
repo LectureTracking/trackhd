@@ -30,50 +30,6 @@ public:
     std::string saveFileExtension = "flv";
     std::string inputFileName = "Videos/PanningTest40s.mp4";
 
-
-    //Charles Testing
-
-    //std::string inputFileName = "Videos/BUD_1.mp4";
-    //std::string inputFileName = "Videos/BUD_2.mp4";
-    //std::string inputFileName = "Videos/BUD_3.mp4";
-    //std::string inputFileName = "Videos/BUD_4.mp4";
-    //std::string inputFileName = "Videos/BUD_5.mp4";
-    //std::string inputFileName = "Videos/BUD_6.mp4";
-
-    //std::string inputFileName = "Videos/BD_1.mp4";
-    //std::string inputFileName = "Videos/BD_2.mp4";
-    //std::string inputFileName = "Videos/BD_3.mp4";
-    //std::string inputFileName = "Videos/BD_4.mp4";
-
-
-    //std::string inputFileName = "Videos/cs203-presenters-4K.mp4";
-    //std::string inputFileName = "Videos/test1.avi";
-    //std::string inputFileName = "Videos/presenter-MAM1000W-20160811.mp4";
-
-    //50min long video
-    //std::string inputFileName = "Videos/presenter-MAM1000W-201608112.mp4";
-
-
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_1_NORM_LECT.mp4";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_2_LECT_WAVE.mp4";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_3_LECT_PACE.mp4";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_4_LIGHTS.mp4";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_5_MOVE_BOARDS.mp4";
-    //std::string inputFileName = "Videos/cs203-presenters-4K_SHORT_CLIP.flv";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_6_MOVE_SCREEN.mp4";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_7_MOVE_SCREEN_2.mp4";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_8_OFF_ON.mp4";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_9_LECT_CROSS.mp4";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_10_BOTH_MOVE.mp4";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_11_BOTH_MOVE_2.mp4";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_12_RUNNING.mp4";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_13_THROWING.mp4";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_14_MULTI_STUDENT.mp4";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_15_MOVE_3.mp4";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_16_MOVE_CHAIRS.mp4";
-    //std::string inputFileName = "Videos/Test Cases Input/CLIP_17_NO_MOVE.mp4";    std::string blackboardSaveFileName = "bb.flv";
-    //std::string blackboardSaveFileName = "bb.flv";
-
     cv::Size panOutputVideoSize = cv::Size(1280, 720);
     std::string panOutputVideoSaveFileName = "finalPanOutput.flv";
 

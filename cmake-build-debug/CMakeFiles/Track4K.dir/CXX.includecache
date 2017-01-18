@@ -6,17 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/BoardDetection.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/BoardDetection.h
 ../../MetaFrame.h
-/home/charles/Desktop/Final 4k/track4k/MetaFrame.h
+/home/charles/Desktop/track4k/MetaFrame.h
 ../../FileReader.h
-/home/charles/Desktop/Final 4k/track4k/FileReader.h
+/home/charles/Desktop/track4k/FileReader.h
 opencv2/imgcodecs.hpp
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/opencv2/imgcodecs.hpp
+/home/charles/Desktop/track4k/Board Segmentation/headers/opencv2/imgcodecs.hpp
 opencv2/imgproc.hpp
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/opencv2/imgproc.hpp
+/home/charles/Desktop/track4k/Board Segmentation/headers/opencv2/imgproc.hpp
 opencv2/videoio.hpp
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/opencv2/videoio.hpp
+/home/charles/Desktop/track4k/Board Segmentation/headers/opencv2/videoio.hpp
 opencv2/highgui.hpp
 -
 opencv2/video.hpp
@@ -24,45 +24,45 @@ opencv2/video.hpp
 vector
 -
 ../../Panning/headers/VideoOutput.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/VideoOutput.h
+/home/charles/Desktop/track4k/Panning/headers/VideoOutput.h
 ../../Panning/headers/FrameCropper.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/FrameCropper.h
+/home/charles/Desktop/track4k/Panning/headers/FrameCropper.h
 opencv2/core.hpp
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/opencv2/core.hpp
+/home/charles/Desktop/track4k/Board Segmentation/headers/opencv2/core.hpp
 opencv2/features2d.hpp
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/opencv2/features2d.hpp
+/home/charles/Desktop/track4k/Board Segmentation/headers/opencv2/features2d.hpp
 opencv2/xfeatures2d.hpp
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/opencv2/xfeatures2d.hpp
+/home/charles/Desktop/track4k/Board Segmentation/headers/opencv2/xfeatures2d.hpp
 IlluminationCorrection.h
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/IlluminationCorrection.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/IlluminationCorrection.h
 
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/BoardSegmentationTesting.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/BoardSegmentationTesting.h
 string
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/string
+/home/charles/Desktop/track4k/Board Segmentation/headers/string
 
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/IlluminationCorrection.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/IlluminationCorrection.h
 opencv2/core/core.hpp
 -
 vector
 -
 ../../MetaFrame.h
-/home/charles/Desktop/Final 4k/track4k/MetaFrame.h
+/home/charles/Desktop/track4k/MetaFrame.h
 
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/MotionDetection.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/MotionDetection.h
 opencv2/imgcodecs.hpp
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/opencv2/imgcodecs.hpp
+/home/charles/Desktop/track4k/Board Segmentation/headers/opencv2/imgcodecs.hpp
 opencv2/imgproc.hpp
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/opencv2/imgproc.hpp
+/home/charles/Desktop/track4k/Board Segmentation/headers/opencv2/imgproc.hpp
 opencv2/videoio.hpp
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/opencv2/videoio.hpp
+/home/charles/Desktop/track4k/Board Segmentation/headers/opencv2/videoio.hpp
 opencv2/highgui.hpp
 -
 opencv2/video.hpp
 -
 ../../FileReader.h
-/home/charles/Desktop/Final 4k/track4k/FileReader.h
+/home/charles/Desktop/track4k/FileReader.h
 ../../MetaFrame.h
-/home/charles/Desktop/Final 4k/track4k/MetaFrame.h
+/home/charles/Desktop/track4k/MetaFrame.h
 stdio.h
 -
 iostream
@@ -70,27 +70,27 @@ iostream
 sstream
 -
 
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/Track4KPreProcess.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/Track4KPreProcess.h
 ../../FileReader.h
-/home/charles/Desktop/Final 4k/track4k/FileReader.h
+/home/charles/Desktop/track4k/FileReader.h
 ../../MetaFrame.h
-/home/charles/Desktop/Final 4k/track4k/MetaFrame.h
+/home/charles/Desktop/track4k/MetaFrame.h
 BoardDetection.h
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/BoardDetection.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/BoardDetection.h
 ../../PersistentData.h
-/home/charles/Desktop/Final 4k/track4k/PersistentData.h
+/home/charles/Desktop/track4k/PersistentData.h
 
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/source/BoardDetection.cpp
+/home/charles/Desktop/track4k/Board Segmentation/source/BoardDetection.cpp
 ../headers/BoardDetection.h
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/BoardDetection.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/BoardDetection.h
 opencv2/photo.hpp
 -
 
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/source/BoardSegmentationTesting.cpp
+/home/charles/Desktop/track4k/Board Segmentation/source/BoardSegmentationTesting.cpp
 ../headers/BoardSegmentationTesting.h
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/BoardSegmentationTesting.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/BoardSegmentationTesting.h
 ../headers/IlluminationCorrection.h
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/IlluminationCorrection.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/IlluminationCorrection.h
 cv.h
 -
 cxcore.h
@@ -102,17 +102,17 @@ iostream
 math.h
 -
 
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/source/IlluminationCorrection.cpp
+/home/charles/Desktop/track4k/Board Segmentation/source/IlluminationCorrection.cpp
 ../headers/IlluminationCorrection.h
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/IlluminationCorrection.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/IlluminationCorrection.h
 opencv2/opencv.hpp
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/source/opencv2/opencv.hpp
+/home/charles/Desktop/track4k/Board Segmentation/source/opencv2/opencv.hpp
 vector
 -
 
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/source/MotionDetection.cpp
+/home/charles/Desktop/track4k/Board Segmentation/source/MotionDetection.cpp
 ../headers/MotionDetection.h
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/MotionDetection.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/MotionDetection.h
 iostream
 -
 opencv2/features2d/features2d.hpp
@@ -122,29 +122,29 @@ iostream
 fstream
 -
 
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/source/Track4KPreProcess.cpp
+/home/charles/Desktop/track4k/Board Segmentation/source/Track4KPreProcess.cpp
 ../../CodeTimer.h
-/home/charles/Desktop/Final 4k/track4k/CodeTimer.h
+/home/charles/Desktop/track4k/CodeTimer.h
 ../headers/IlluminationCorrection.h
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/IlluminationCorrection.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/IlluminationCorrection.h
 ../headers/MotionDetection.h
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/MotionDetection.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/MotionDetection.h
 ../headers/Track4KPreProcess.h
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/Track4KPreProcess.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/Track4KPreProcess.h
 opencv2/opencv.hpp
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/source/opencv2/opencv.hpp
+/home/charles/Desktop/track4k/Board Segmentation/source/opencv2/opencv.hpp
 ../../Panning/headers/VideoOutput.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/VideoOutput.h
+/home/charles/Desktop/track4k/Panning/headers/VideoOutput.h
 iostream
 -
 fstream
 -
 
-/home/charles/Desktop/Final 4k/track4k/CodeTimer.cpp
+/home/charles/Desktop/track4k/CodeTimer.cpp
 CodeTimer.h
-/home/charles/Desktop/Final 4k/track4k/CodeTimer.h
+/home/charles/Desktop/track4k/CodeTimer.h
 
-/home/charles/Desktop/Final 4k/track4k/CodeTimer.h
+/home/charles/Desktop/track4k/CodeTimer.h
 string
 -
 iostream
@@ -152,31 +152,31 @@ iostream
 time.h
 -
 
-/home/charles/Desktop/Final 4k/track4k/FileReader.cpp
+/home/charles/Desktop/track4k/FileReader.cpp
 FileReader.h
-/home/charles/Desktop/Final 4k/track4k/FileReader.h
+/home/charles/Desktop/track4k/FileReader.h
 opencv2/opencv.hpp
-/home/charles/Desktop/Final 4k/track4k/opencv2/opencv.hpp
+/home/charles/Desktop/track4k/opencv2/opencv.hpp
 
-/home/charles/Desktop/Final 4k/track4k/FileReader.h
+/home/charles/Desktop/track4k/FileReader.h
 MetaFrame.h
-/home/charles/Desktop/Final 4k/track4k/MetaFrame.h
+/home/charles/Desktop/track4k/MetaFrame.h
 opencv2/opencv.hpp
-/home/charles/Desktop/Final 4k/track4k/opencv2/opencv.hpp
+/home/charles/Desktop/track4k/opencv2/opencv.hpp
 PersistentData.h
-/home/charles/Desktop/Final 4k/track4k/PersistentData.h
+/home/charles/Desktop/track4k/PersistentData.h
 
-/home/charles/Desktop/Final 4k/track4k/MetaFrame.cpp
+/home/charles/Desktop/track4k/MetaFrame.cpp
 MetaFrame.h
-/home/charles/Desktop/Final 4k/track4k/MetaFrame.h
+/home/charles/Desktop/track4k/MetaFrame.h
 
-/home/charles/Desktop/Final 4k/track4k/MetaFrame.h
+/home/charles/Desktop/track4k/MetaFrame.h
 vector
 -
 opencv2/opencv.hpp
-/home/charles/Desktop/Final 4k/track4k/opencv2/opencv.hpp
+/home/charles/Desktop/track4k/opencv2/opencv.hpp
 
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/FrameCropper.h
+/home/charles/Desktop/track4k/Panning/headers/FrameCropper.h
 opencv2/core/mat.hpp
 -
 opencv2/opencv.hpp
@@ -184,75 +184,75 @@ opencv2/opencv.hpp
 highgui.h
 -
 ../../MetaFrame.h
-/home/charles/Desktop/Final 4k/track4k/MetaFrame.h
+/home/charles/Desktop/track4k/MetaFrame.h
 
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/PanLogic.h
+/home/charles/Desktop/track4k/Panning/headers/PanLogic.h
 math.h
 -
 opencv2/opencv.hpp
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/opencv2/opencv.hpp
+/home/charles/Desktop/track4k/Panning/headers/opencv2/opencv.hpp
 PresenterMotion.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/PresenterMotion.h
+/home/charles/Desktop/track4k/Panning/headers/PresenterMotion.h
 
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/PresenterMotion.h
+/home/charles/Desktop/track4k/Panning/headers/PresenterMotion.h
 opencv2/opencv.hpp
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/opencv2/opencv.hpp
+/home/charles/Desktop/track4k/Panning/headers/opencv2/opencv.hpp
 ../../MetaFrame.h
-/home/charles/Desktop/Final 4k/track4k/MetaFrame.h
+/home/charles/Desktop/track4k/MetaFrame.h
 ../../PersistentData.h
-/home/charles/Desktop/Final 4k/track4k/PersistentData.h
+/home/charles/Desktop/track4k/PersistentData.h
 vector
 -
 stdlib.h
 -
 
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/VideoOutput.h
+/home/charles/Desktop/track4k/Panning/headers/VideoOutput.h
 VideoOutput.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/VideoOutput.h
+/home/charles/Desktop/track4k/Panning/headers/VideoOutput.h
 opencv2/core/mat.hpp
 -
 opencv2/opencv.hpp
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/opencv2/opencv.hpp
+/home/charles/Desktop/track4k/Panning/headers/opencv2/opencv.hpp
 ../../MetaFrame.h
-/home/charles/Desktop/Final 4k/track4k/MetaFrame.h
+/home/charles/Desktop/track4k/MetaFrame.h
 
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/VirtualCinematographer.h
+/home/charles/Desktop/track4k/Panning/headers/VirtualCinematographer.h
 VideoOutput.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/VideoOutput.h
+/home/charles/Desktop/track4k/Panning/headers/VideoOutput.h
 FrameCropper.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/FrameCropper.h
+/home/charles/Desktop/track4k/Panning/headers/FrameCropper.h
 opencv2/opencv.hpp
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/opencv2/opencv.hpp
+/home/charles/Desktop/track4k/Panning/headers/opencv2/opencv.hpp
 PresenterMotion.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/PresenterMotion.h
+/home/charles/Desktop/track4k/Panning/headers/PresenterMotion.h
 PanLogic.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/PanLogic.h
+/home/charles/Desktop/track4k/Panning/headers/PanLogic.h
 
-/home/charles/Desktop/Final 4k/track4k/Panning/source/FrameCropper.cpp
+/home/charles/Desktop/track4k/Panning/source/FrameCropper.cpp
 ../headers/FrameCropper.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/FrameCropper.h
+/home/charles/Desktop/track4k/Panning/headers/FrameCropper.h
 
-/home/charles/Desktop/Final 4k/track4k/Panning/source/PanLogic.cpp
+/home/charles/Desktop/track4k/Panning/source/PanLogic.cpp
 ../headers/PanLogic.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/PanLogic.h
+/home/charles/Desktop/track4k/Panning/headers/PanLogic.h
 
-/home/charles/Desktop/Final 4k/track4k/Panning/source/PresenterMotion.cpp
+/home/charles/Desktop/track4k/Panning/source/PresenterMotion.cpp
 ../headers/PresenterMotion.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/PresenterMotion.h
+/home/charles/Desktop/track4k/Panning/headers/PresenterMotion.h
 ../../PersistentData.h
-/home/charles/Desktop/Final 4k/track4k/PersistentData.h
+/home/charles/Desktop/track4k/PersistentData.h
 
-/home/charles/Desktop/Final 4k/track4k/Panning/source/VideoOutput.cpp
+/home/charles/Desktop/track4k/Panning/source/VideoOutput.cpp
 ../headers/VideoOutput.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/VideoOutput.h
+/home/charles/Desktop/track4k/Panning/headers/VideoOutput.h
 
-/home/charles/Desktop/Final 4k/track4k/Panning/source/VirtualCinematographer.cpp
+/home/charles/Desktop/track4k/Panning/source/VirtualCinematographer.cpp
 ../../Board Segmentation/headers/Track4KPreProcess.h
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/Track4KPreProcess.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/Track4KPreProcess.h
 ../headers/VirtualCinematographer.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/VirtualCinematographer.h
+/home/charles/Desktop/track4k/Panning/headers/VirtualCinematographer.h
 ../headers/VideoOutput.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/VideoOutput.h
+/home/charles/Desktop/track4k/Panning/headers/VideoOutput.h
 math.h
 -
 iostream
@@ -260,55 +260,55 @@ iostream
 fstream
 -
 ../headers/PresenterMotion.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/PresenterMotion.h
+/home/charles/Desktop/track4k/Panning/headers/PresenterMotion.h
 ../../Tracking/headers/Ghost.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/Ghost.h
+/home/charles/Desktop/track4k/Tracking/headers/Ghost.h
 ../../CodeTimer.h
-/home/charles/Desktop/Final 4k/track4k/CodeTimer.h
+/home/charles/Desktop/track4k/CodeTimer.h
 
-/home/charles/Desktop/Final 4k/track4k/PersistentData.cpp
+/home/charles/Desktop/track4k/PersistentData.cpp
 PersistentData.h
-/home/charles/Desktop/Final 4k/track4k/PersistentData.h
+/home/charles/Desktop/track4k/PersistentData.h
 
-/home/charles/Desktop/Final 4k/track4k/PersistentData.h
+/home/charles/Desktop/track4k/PersistentData.h
 vector
 -
 opencv2/opencv.hpp
-/home/charles/Desktop/Final 4k/track4k/opencv2/opencv.hpp
+/home/charles/Desktop/track4k/opencv2/opencv.hpp
 MetaFrame.h
-/home/charles/Desktop/Final 4k/track4k/MetaFrame.h
+/home/charles/Desktop/track4k/MetaFrame.h
 PersistentData.h
-/home/charles/Desktop/Final 4k/track4k/PersistentData.h
+/home/charles/Desktop/track4k/PersistentData.h
 Tracking/headers/Ghost.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/Ghost.h
+/home/charles/Desktop/track4k/Tracking/headers/Ghost.h
 
-/home/charles/Desktop/Final 4k/track4k/PointPlotter.cpp
+/home/charles/Desktop/track4k/PointPlotter.cpp
 opencv2/opencv.hpp
-/home/charles/Desktop/Final 4k/track4k/opencv2/opencv.hpp
+/home/charles/Desktop/track4k/opencv2/opencv.hpp
 PointPlotter.h
-/home/charles/Desktop/Final 4k/track4k/PointPlotter.h
+/home/charles/Desktop/track4k/PointPlotter.h
 
-/home/charles/Desktop/Final 4k/track4k/PointPlotter.h
+/home/charles/Desktop/track4k/PointPlotter.h
 Panning/headers/VideoOutput.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/VideoOutput.h
+/home/charles/Desktop/track4k/Panning/headers/VideoOutput.h
 Panning/headers/FrameCropper.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/FrameCropper.h
+/home/charles/Desktop/track4k/Panning/headers/FrameCropper.h
 opencv2/opencv.hpp
-/home/charles/Desktop/Final 4k/track4k/opencv2/opencv.hpp
+/home/charles/Desktop/track4k/opencv2/opencv.hpp
 Panning/headers/PresenterMotion.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/PresenterMotion.h
+/home/charles/Desktop/track4k/Panning/headers/PresenterMotion.h
 Panning/headers/PanLogic.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/PanLogic.h
+/home/charles/Desktop/track4k/Panning/headers/PanLogic.h
 fstream
 -
 FileReader.h
-/home/charles/Desktop/Final 4k/track4k/FileReader.h
+/home/charles/Desktop/track4k/FileReader.h
 
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/Ghost.h
+/home/charles/Desktop/track4k/Tracking/headers/Ghost.h
 opencv/cv.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/opencv/cv.h
+/home/charles/Desktop/track4k/Tracking/headers/opencv/cv.h
 opencv/highgui.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/opencv/highgui.h
+/home/charles/Desktop/track4k/Tracking/headers/opencv/highgui.h
 stdio.h
 -
 stdlib.h
@@ -316,23 +316,23 @@ stdlib.h
 time.h
 -
 opencv2/imgcodecs.hpp
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/opencv2/imgcodecs.hpp
+/home/charles/Desktop/track4k/Tracking/headers/opencv2/imgcodecs.hpp
 opencv2/imgproc.hpp
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/opencv2/imgproc.hpp
+/home/charles/Desktop/track4k/Tracking/headers/opencv2/imgproc.hpp
 opencv2/videoio.hpp
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/opencv2/videoio.hpp
+/home/charles/Desktop/track4k/Tracking/headers/opencv2/videoio.hpp
 opencv2/video.hpp
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/opencv2/video.hpp
+/home/charles/Desktop/track4k/Tracking/headers/opencv2/video.hpp
 opencv2/highgui.hpp
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/opencv2/highgui.hpp
+/home/charles/Desktop/track4k/Tracking/headers/opencv2/highgui.hpp
 vector
 -
 
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/MovementDetection.h
+/home/charles/Desktop/track4k/Tracking/headers/MovementDetection.h
 opencv/cv.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/opencv/cv.h
+/home/charles/Desktop/track4k/Tracking/headers/opencv/cv.h
 opencv/highgui.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/opencv/highgui.h
+/home/charles/Desktop/track4k/Tracking/headers/opencv/highgui.h
 stdio.h
 -
 stdlib.h
@@ -340,29 +340,29 @@ stdlib.h
 time.h
 -
 opencv2/imgcodecs.hpp
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/opencv2/imgcodecs.hpp
+/home/charles/Desktop/track4k/Tracking/headers/opencv2/imgcodecs.hpp
 opencv2/imgproc.hpp
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/opencv2/imgproc.hpp
+/home/charles/Desktop/track4k/Tracking/headers/opencv2/imgproc.hpp
 opencv2/videoio.hpp
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/opencv2/videoio.hpp
+/home/charles/Desktop/track4k/Tracking/headers/opencv2/videoio.hpp
 opencv2/video.hpp
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/opencv2/video.hpp
+/home/charles/Desktop/track4k/Tracking/headers/opencv2/video.hpp
 opencv2/highgui.hpp
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/opencv2/highgui.hpp
+/home/charles/Desktop/track4k/Tracking/headers/opencv2/highgui.hpp
 vector
 -
 Ghost.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/Ghost.h
+/home/charles/Desktop/track4k/Tracking/headers/Ghost.h
 
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/RecognitionDriver.h
+/home/charles/Desktop/track4k/Tracking/headers/RecognitionDriver.h
 
-/home/charles/Desktop/Final 4k/track4k/Tracking/source/Ghost.cpp
+/home/charles/Desktop/track4k/Tracking/source/Ghost.cpp
 iostream
 -
 opencv/cv.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/source/opencv/cv.h
+/home/charles/Desktop/track4k/Tracking/source/opencv/cv.h
 opencv/highgui.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/source/opencv/highgui.h
+/home/charles/Desktop/track4k/Tracking/source/opencv/highgui.h
 stdio.h
 -
 stdlib.h
@@ -370,57 +370,57 @@ stdlib.h
 time.h
 -
 opencv2/imgcodecs.hpp
-/home/charles/Desktop/Final 4k/track4k/Tracking/source/opencv2/imgcodecs.hpp
+/home/charles/Desktop/track4k/Tracking/source/opencv2/imgcodecs.hpp
 opencv2/imgproc.hpp
-/home/charles/Desktop/Final 4k/track4k/Tracking/source/opencv2/imgproc.hpp
+/home/charles/Desktop/track4k/Tracking/source/opencv2/imgproc.hpp
 opencv2/videoio.hpp
-/home/charles/Desktop/Final 4k/track4k/Tracking/source/opencv2/videoio.hpp
+/home/charles/Desktop/track4k/Tracking/source/opencv2/videoio.hpp
 opencv2/video.hpp
-/home/charles/Desktop/Final 4k/track4k/Tracking/source/opencv2/video.hpp
+/home/charles/Desktop/track4k/Tracking/source/opencv2/video.hpp
 opencv2/highgui.hpp
-/home/charles/Desktop/Final 4k/track4k/Tracking/source/opencv2/highgui.hpp
+/home/charles/Desktop/track4k/Tracking/source/opencv2/highgui.hpp
 vector
 -
 ../headers/Ghost.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/Ghost.h
+/home/charles/Desktop/track4k/Tracking/headers/Ghost.h
 
-/home/charles/Desktop/Final 4k/track4k/Tracking/source/MovementDetection.cpp
+/home/charles/Desktop/track4k/Tracking/source/MovementDetection.cpp
 ../headers/MovementDetection.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/MovementDetection.h
+/home/charles/Desktop/track4k/Tracking/headers/MovementDetection.h
 iostream
 -
 opencv/cv.hpp
 -
 
-/home/charles/Desktop/Final 4k/track4k/Tracking/source/RecognitionDriver.cpp
+/home/charles/Desktop/track4k/Tracking/source/RecognitionDriver.cpp
 ../headers/MovementDetection.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/MovementDetection.h
+/home/charles/Desktop/track4k/Tracking/headers/MovementDetection.h
 ../headers/RecognitionDriver.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/RecognitionDriver.h
+/home/charles/Desktop/track4k/Tracking/headers/RecognitionDriver.h
 iostream
 -
 vector
 -
 ../headers/Ghost.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/Ghost.h
+/home/charles/Desktop/track4k/Tracking/headers/Ghost.h
 
-/home/charles/Desktop/Final 4k/track4k/mainDriver.cpp
+/home/charles/Desktop/track4k/mainDriver.cpp
 Board Segmentation/headers/Track4KPreProcess.h
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/Track4KPreProcess.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/Track4KPreProcess.h
 PersistentData.h
-/home/charles/Desktop/Final 4k/track4k/PersistentData.h
+/home/charles/Desktop/track4k/PersistentData.h
 Panning/headers/VirtualCinematographer.h
-/home/charles/Desktop/Final 4k/track4k/Panning/headers/VirtualCinematographer.h
+/home/charles/Desktop/track4k/Panning/headers/VirtualCinematographer.h
 PointPlotter.h
-/home/charles/Desktop/Final 4k/track4k/PointPlotter.h
+/home/charles/Desktop/track4k/PointPlotter.h
 Tracking/headers/MovementDetection.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/MovementDetection.h
+/home/charles/Desktop/track4k/Tracking/headers/MovementDetection.h
 Tracking/headers/MovementDetection.h
-/home/charles/Desktop/Final 4k/track4k/Tracking/headers/MovementDetection.h
+/home/charles/Desktop/track4k/Tracking/headers/MovementDetection.h
 Board Segmentation/headers/BoardSegmentationTesting.h
-/home/charles/Desktop/Final 4k/track4k/Board Segmentation/headers/BoardSegmentationTesting.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/BoardSegmentationTesting.h
 CodeTimer.h
-/home/charles/Desktop/Final 4k/track4k/CodeTimer.h
+/home/charles/Desktop/track4k/CodeTimer.h
 
 /usr/local/include/opencv/cv.h
 opencv2/core/core_c.h

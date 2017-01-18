@@ -10,7 +10,7 @@ find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 set(SOURCE_FILES FileReader.cpp FileReader.h MetaFrame.cpp MetaFrame.h "Board Segmentation/source/Track4KPreProcess.cpp" CodeTimer.cpp CodeTimer.h "Board Segmentation/source/IlluminationCorrection.cpp" "Board Segmentation/headers/IlluminationCorrection.h" "Board Segmentation/source/MotionDetection.cpp" "Board Segmentation/headers/MotionDetection.h" Panning/source/VirtualCinematographer.cpp Panning/headers/VirtualCinematographer.h Panning/source/VideoOutput.cpp Panning/headers/VideoOutput.h Panning/source/FrameCropper.cpp Panning/headers/FrameCropper.h "Board Segmentation/headers/Track4KPreProcess.h" "Board Segmentation/source/BoardDetection.cpp" "Board Segmentation/headers/BoardDetection.h" Panning/source/PresenterMotion.cpp Panning/headers/PresenterMotion.h Panning/source/PanLogic.cpp Panning/headers/PanLogic.h mainDriver.cpp PersistentData.h PersistentData.cpp PointPlotter.cpp PointPlotter.h Tracking/headers/RecognitionDriver.h Tracking/source/RecognitionDriver.cpp
-        Tracking/headers/MovementDetection.h Tracking/source/MovementDetection.cpp Tracking/source/Ghost.cpp Tracking/headers/Ghost.h "Board Segmentation/source/BoardSegmentationTesting.cpp" "Board Segmentation/headers/BoardSegmentationTesting.h")
+        Tracking/headers/MovementDetection.h Tracking/source/MovementDetection.cpp Tracking/source/Ghost.cpp Tracking/headers/Ghost.h)
 add_executable(Track4K ${SOURCE_FILES})
 
 

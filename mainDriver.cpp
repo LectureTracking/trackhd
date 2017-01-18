@@ -8,7 +8,6 @@
 #include "PointPlotter.h"
 #include "Tracking/headers/MovementDetection.h"
 #include "Tracking/headers/MovementDetection.h"
-#include "Board Segmentation/headers/BoardSegmentationTesting.h"
 #include "CodeTimer.h"
 
 int main()
