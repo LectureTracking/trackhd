@@ -150,32 +150,32 @@ Board_Segmentation/source/BoardDetection.cpp.s:
 	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/BoardDetection.cpp.s
 .PHONY : Board_Segmentation/source/BoardDetection.cpp.s
 
-Board_Segmentation/source/BoardSegmentationTesting.o: Board_Segmentation/source/BoardSegmentationTesting.cpp.o
+Board_Segmentation/source/HelperMethods.o: Board_Segmentation/source/HelperMethods.cpp.o
 
-.PHONY : Board_Segmentation/source/BoardSegmentationTesting.o
+.PHONY : Board_Segmentation/source/HelperMethods.o
 
 # target to build an object file
-Board_Segmentation/source/BoardSegmentationTesting.cpp.o:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/BoardSegmentationTesting.cpp.o
-.PHONY : Board_Segmentation/source/BoardSegmentationTesting.cpp.o
+Board_Segmentation/source/HelperMethods.cpp.o:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/HelperMethods.cpp.o
+.PHONY : Board_Segmentation/source/HelperMethods.cpp.o
 
-Board_Segmentation/source/BoardSegmentationTesting.i: Board_Segmentation/source/BoardSegmentationTesting.cpp.i
+Board_Segmentation/source/HelperMethods.i: Board_Segmentation/source/HelperMethods.cpp.i
 
-.PHONY : Board_Segmentation/source/BoardSegmentationTesting.i
+.PHONY : Board_Segmentation/source/HelperMethods.i
 
 # target to preprocess a source file
-Board_Segmentation/source/BoardSegmentationTesting.cpp.i:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/BoardSegmentationTesting.cpp.i
-.PHONY : Board_Segmentation/source/BoardSegmentationTesting.cpp.i
+Board_Segmentation/source/HelperMethods.cpp.i:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/HelperMethods.cpp.i
+.PHONY : Board_Segmentation/source/HelperMethods.cpp.i
 
-Board_Segmentation/source/BoardSegmentationTesting.s: Board_Segmentation/source/BoardSegmentationTesting.cpp.s
+Board_Segmentation/source/HelperMethods.s: Board_Segmentation/source/HelperMethods.cpp.s
 
-.PHONY : Board_Segmentation/source/BoardSegmentationTesting.s
+.PHONY : Board_Segmentation/source/HelperMethods.s
 
 # target to generate assembly for a file
-Board_Segmentation/source/BoardSegmentationTesting.cpp.s:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/BoardSegmentationTesting.cpp.s
-.PHONY : Board_Segmentation/source/BoardSegmentationTesting.cpp.s
+Board_Segmentation/source/HelperMethods.cpp.s:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/HelperMethods.cpp.s
+.PHONY : Board_Segmentation/source/HelperMethods.cpp.s
 
 Board_Segmentation/source/IlluminationCorrection.o: Board_Segmentation/source/IlluminationCorrection.cpp.o
 
@@ -648,9 +648,9 @@ help:
 	@echo "... Board_Segmentation/source/BoardDetection.o"
 	@echo "... Board_Segmentation/source/BoardDetection.i"
 	@echo "... Board_Segmentation/source/BoardDetection.s"
-	@echo "... Board_Segmentation/source/BoardSegmentationTesting.o"
-	@echo "... Board_Segmentation/source/BoardSegmentationTesting.i"
-	@echo "... Board_Segmentation/source/BoardSegmentationTesting.s"
+	@echo "... Board_Segmentation/source/HelperMethods.o"
+	@echo "... Board_Segmentation/source/HelperMethods.i"
+	@echo "... Board_Segmentation/source/HelperMethods.s"
 	@echo "... Board_Segmentation/source/IlluminationCorrection.o"
 	@echo "... Board_Segmentation/source/IlluminationCorrection.i"
 	@echo "... Board_Segmentation/source/IlluminationCorrection.s"

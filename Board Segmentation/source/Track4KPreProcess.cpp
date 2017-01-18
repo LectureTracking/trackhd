@@ -1,5 +1,5 @@
 //
-// Created by charles on 2016/07/19.
+// Created by Charles Fitzhenry on 2016/07/19.
 //
 
 #include "../../CodeTimer.h"
@@ -7,73 +7,35 @@
 
 #include "../headers/MotionDetection.h"
 #include "../headers/Track4KPreProcess.h"
-#include "opencv2/opencv.hpp"
-#include "../../Panning/headers/VideoOutput.h"
-#include <iostream>
-#include <fstream>
 
 using namespace std;
 using namespace cv;
 
-void Track4KPreProcess::preProcessDriver(PersistentData &pD)
-{
+void Track4KPreProcess::preProcessDriver(PersistentData &persistentData) {
 
-    //Create a timer object to measure method execution times
-    CodeTimer timer;
-    CodeTimer timer2;
     vector<Mat> frameMats;
 
-
-    //read in video file
+    //Read in video file
     FileReader fileReader;
-    fileReader.readFile(pD.inputFileName, pD);
+    fileReader.readFile(persistentData.inputFileName, persistentData);
 
-    IlluminationCorrection i;
-    MotionDetection m;
-    BoardDetection bD;
+    //Create objects
+    MotionDetection motionDetection; //Detects and segments overall merged motion over a given number of frames
+    BoardDetection boardDetection; //Detects boards
 
-    float fileDetectionTime = 0;
-    float motionDetectionTime = 0;
-    float boardDetectionTimer = 0;
+    //Keep reading in frames from the video file until the end is reached.
+    //Number of frames to read on each iteration is defined in the PersistentData class
+    while (!fileReader.isEndOfFile()) {
+        //Read in frames
+        fileReader.getNextSegment(persistentData.areasOfMotionOverNumberOfFrames, frameMats);
 
+        //Detect areas of motion
+        motionDetection.subtract(frameMats, persistentData);
 
-    while (!fileReader.isEndOfFile())
-    {
-
-        timer.start();
-        fileReader.getNextSegment(pD.areasOfMotionOverNumberOfFrames, frameMats);
-        fileDetectionTime += timer.stop(1);
-
-        timer.start();
-        //m.subtract(frameMats, pD);
-        motionDetectionTime += timer.stop(1);
-
-        timer.start();
-        bD.extractBoards(frameMats, pD);
-        boardDetectionTimer += timer.stop(1);
+        //Detect the boards
+        boardDetection.extractBoards(frameMats, persistentData);
 
     }
 
-
     fileReader.getInputVideo().release();
-
-/*
-    ofstream t;
-    t.open("time.txt");
-
-
-    t << "File read time: " << fileDetectionTime << endl;
-    t << "Motion detection time: " << motionDetectionTime << endl;
-    t << "Board detection time: " << boardDetectionTimer << endl;
-
-    cout << "File read time: " << fileDetectionTime << endl;
-    cout << "Motion detection time: " << motionDetectionTime << endl;
-    cout << "Board detection time: " << boardDetectionTimer << endl;
-
-    t.close();
-*/
-    //--------------------//
-    // Write output video //
-    //--------------------//
-
 }

@@ -18,7 +18,7 @@ private:
 public:
     //Store the areas of motion. Each vector stores x frames worth of motion
     int areasOfMotionOverNumberOfFrames = 290;
-    std::vector<std::vector<cv::Rect>> areasOfMotion;
+    std::vector<Rect> areasOfMotion;
     std::vector<MetaFrame> metaFrameVector;
 
     int fps; //Frame Rate

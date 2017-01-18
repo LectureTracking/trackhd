@@ -89,7 +89,7 @@
 		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/BoardDetection.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/BoardSegmentationTesting.h">
+		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/HelperMethods.h">
 			<Option target="Track4K"/>
 		</Unit>
 		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/IlluminationCorrection.h">
@@ -104,7 +104,7 @@
 		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/BoardDetection.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/BoardSegmentationTesting.cpp">
+		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/HelperMethods.cpp">
 			<Option target="Track4K"/>
 		</Unit>
 		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/IlluminationCorrection.cpp">

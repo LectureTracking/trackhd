@@ -36,9 +36,9 @@ opencv2/xfeatures2d.hpp
 IlluminationCorrection.h
 /home/charles/Desktop/track4k/Board Segmentation/headers/IlluminationCorrection.h
 
-/home/charles/Desktop/track4k/Board Segmentation/headers/BoardSegmentationTesting.h
-string
-/home/charles/Desktop/track4k/Board Segmentation/headers/string
+/home/charles/Desktop/track4k/Board Segmentation/headers/HelperMethods.h
+opencv2/core/types.hpp
+-
 
 /home/charles/Desktop/track4k/Board Segmentation/headers/IlluminationCorrection.h
 opencv2/core/core.hpp
@@ -86,21 +86,9 @@ BoardDetection.h
 opencv2/photo.hpp
 -
 
-/home/charles/Desktop/track4k/Board Segmentation/source/BoardSegmentationTesting.cpp
-../headers/BoardSegmentationTesting.h
-/home/charles/Desktop/track4k/Board Segmentation/headers/BoardSegmentationTesting.h
-../headers/IlluminationCorrection.h
-/home/charles/Desktop/track4k/Board Segmentation/headers/IlluminationCorrection.h
-cv.h
--
-cxcore.h
--
-highgui.h
--
-iostream
--
-math.h
--
+/home/charles/Desktop/track4k/Board Segmentation/source/HelperMethods.cpp
+../headers/HelperMethods.h
+/home/charles/Desktop/track4k/Board Segmentation/headers/HelperMethods.h
 
 /home/charles/Desktop/track4k/Board Segmentation/source/IlluminationCorrection.cpp
 ../headers/IlluminationCorrection.h
@@ -131,14 +119,6 @@ fstream
 /home/charles/Desktop/track4k/Board Segmentation/headers/MotionDetection.h
 ../headers/Track4KPreProcess.h
 /home/charles/Desktop/track4k/Board Segmentation/headers/Track4KPreProcess.h
-opencv2/opencv.hpp
-/home/charles/Desktop/track4k/Board Segmentation/source/opencv2/opencv.hpp
-../../Panning/headers/VideoOutput.h
-/home/charles/Desktop/track4k/Panning/headers/VideoOutput.h
-iostream
--
-fstream
--
 
 /home/charles/Desktop/track4k/CodeTimer.cpp
 CodeTimer.h
@@ -417,8 +397,6 @@ Tracking/headers/MovementDetection.h
 /home/charles/Desktop/track4k/Tracking/headers/MovementDetection.h
 Tracking/headers/MovementDetection.h
 /home/charles/Desktop/track4k/Tracking/headers/MovementDetection.h
-Board Segmentation/headers/BoardSegmentationTesting.h
-/home/charles/Desktop/track4k/Board Segmentation/headers/BoardSegmentationTesting.h
 CodeTimer.h
 /home/charles/Desktop/track4k/CodeTimer.h
 

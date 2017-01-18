@@ -5,7 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/charles/Desktop/track4k/Board Segmentation/source/BoardDetection.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Board_Segmentation/source/BoardDetection.cpp.o"
-  "/home/charles/Desktop/track4k/Board Segmentation/source/BoardSegmentationTesting.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Board_Segmentation/source/BoardSegmentationTesting.cpp.o"
+  "/home/charles/Desktop/track4k/Board Segmentation/source/HelperMethods.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Board_Segmentation/source/HelperMethods.cpp.o"
   "/home/charles/Desktop/track4k/Board Segmentation/source/IlluminationCorrection.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Board_Segmentation/source/IlluminationCorrection.cpp.o"
   "/home/charles/Desktop/track4k/Board Segmentation/source/MotionDetection.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Board_Segmentation/source/MotionDetection.cpp.o"
   "/home/charles/Desktop/track4k/Board Segmentation/source/Track4KPreProcess.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Board_Segmentation/source/Track4KPreProcess.cpp.o"

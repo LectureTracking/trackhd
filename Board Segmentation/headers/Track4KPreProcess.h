@@ -1,5 +1,5 @@
 //
-// Created by Charles on 2016/08/09.
+// Created by Charles Fitzhenry on 2016/08/09.
 //
 
 #ifndef TRACK4K_TRACK4KPREPROCESS_H
@@ -11,13 +11,12 @@
 #include "../../PersistentData.h"
 
 
-class Track4KPreProcess{
+class Track4KPreProcess {
 
 public:
 
-    void preProcessDriver(PersistentData &pD);
+    void preProcessDriver(PersistentData &persistentData);
 };
-
 
 
 #endif //TRACK4K_TRACK4KPREPROCESS_H

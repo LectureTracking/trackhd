@@ -17,7 +17,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Track4K.dir/Tracking/source/RecognitionDriver.cpp.o"
   "CMakeFiles/Track4K.dir/Tracking/source/MovementDetection.cpp.o"
   "CMakeFiles/Track4K.dir/Tracking/source/Ghost.cpp.o"
-  "CMakeFiles/Track4K.dir/Board_Segmentation/source/BoardSegmentationTesting.cpp.o"
+  "CMakeFiles/Track4K.dir/Board_Segmentation/source/HelperMethods.cpp.o"
   "Track4K.pdb"
   "Track4K"
 )
