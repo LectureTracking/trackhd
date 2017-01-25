@@ -86,36 +86,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/BoardDetection.h">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/HelperMethods.h">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/IlluminationCorrection.h">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/MotionDetection.h">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/Track4KPreProcess.h">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/BoardDetection.cpp">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/HelperMethods.cpp">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/IlluminationCorrection.cpp">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/MotionDetection.cpp">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/Track4KPreProcess.cpp">
-			<Option target="Track4K"/>
-		</Unit>
 		<Unit filename="/home/charles/Desktop/track4k/CodeTimer.cpp">
 			<Option target="Track4K"/>
 		</Unit>
@@ -134,36 +104,6 @@
 		<Unit filename="/home/charles/Desktop/track4k/MetaFrame.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/headers/FrameCropper.h">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/headers/PanLogic.h">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/headers/PresenterMotion.h">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/headers/VideoOutput.h">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/headers/VirtualCinematographer.h">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/source/FrameCropper.cpp">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/source/PanLogic.cpp">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/source/PresenterMotion.cpp">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/source/VideoOutput.cpp">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/source/VirtualCinematographer.cpp">
-			<Option target="Track4K"/>
-		</Unit>
 		<Unit filename="/home/charles/Desktop/track4k/PersistentData.cpp">
 			<Option target="Track4K"/>
 		</Unit>
@@ -176,25 +116,85 @@
 		<Unit filename="/home/charles/Desktop/track4k/PointPlotter.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Tracking/headers/Ghost.h">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Tracking/headers/MovementDetection.h">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Tracking/headers/RecognitionDriver.h">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Tracking/source/Ghost.cpp">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Tracking/source/MovementDetection.cpp">
-			<Option target="Track4K"/>
-		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Tracking/source/RecognitionDriver.cpp">
-			<Option target="Track4K"/>
-		</Unit>
 		<Unit filename="/home/charles/Desktop/track4k/mainDriver.cpp">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/panning/FrameCropper.cpp">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/panning/FrameCropper.h">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/panning/PanLogic.cpp">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/panning/PanLogic.h">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/panning/PresenterMotion.cpp">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/panning/PresenterMotion.h">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/panning/VideoOutput.cpp">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/panning/VideoOutput.h">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/panning/VirtualCinematographer.cpp">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/panning/VirtualCinematographer.h">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/segmentation/BoardDetection.cpp">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/segmentation/BoardDetection.h">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/segmentation/HelperMethods.cpp">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/segmentation/HelperMethods.h">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/segmentation/IlluminationCorrection.cpp">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/segmentation/IlluminationCorrection.h">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/segmentation/MotionDetection.cpp">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/segmentation/MotionDetection.h">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/segmentation/Track4KPreProcess.cpp">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/segmentation/Track4KPreProcess.h">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/tracking/Ghost.cpp">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/tracking/Ghost.h">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/tracking/MovementDetection.cpp">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/tracking/MovementDetection.h">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/tracking/RecognitionDriver.cpp">
+			<Option target="Track4K"/>
+		</Unit>
+		<Unit filename="/home/charles/Desktop/track4k/tracking/RecognitionDriver.h">
 			<Option target="Track4K"/>
 		</Unit>
 		<Unit filename="/home/charles/Desktop/track4k/CMakeLists.txt">

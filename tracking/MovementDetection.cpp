@@ -2,7 +2,7 @@
 // Created by Fudge on 2016/09/05.
 //
 
-#include "../headers/MovementDetection.h"
+#include "MovementDetection.h"
 #include <iostream>
 #include <opencv/cv.hpp>
 

@@ -123,141 +123,6 @@ Track4K/fast:
 	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/build
 .PHONY : Track4K/fast
 
-Board_Segmentation/source/BoardDetection.o: Board_Segmentation/source/BoardDetection.cpp.o
-
-.PHONY : Board_Segmentation/source/BoardDetection.o
-
-# target to build an object file
-Board_Segmentation/source/BoardDetection.cpp.o:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/BoardDetection.cpp.o
-.PHONY : Board_Segmentation/source/BoardDetection.cpp.o
-
-Board_Segmentation/source/BoardDetection.i: Board_Segmentation/source/BoardDetection.cpp.i
-
-.PHONY : Board_Segmentation/source/BoardDetection.i
-
-# target to preprocess a source file
-Board_Segmentation/source/BoardDetection.cpp.i:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/BoardDetection.cpp.i
-.PHONY : Board_Segmentation/source/BoardDetection.cpp.i
-
-Board_Segmentation/source/BoardDetection.s: Board_Segmentation/source/BoardDetection.cpp.s
-
-.PHONY : Board_Segmentation/source/BoardDetection.s
-
-# target to generate assembly for a file
-Board_Segmentation/source/BoardDetection.cpp.s:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/BoardDetection.cpp.s
-.PHONY : Board_Segmentation/source/BoardDetection.cpp.s
-
-Board_Segmentation/source/HelperMethods.o: Board_Segmentation/source/HelperMethods.cpp.o
-
-.PHONY : Board_Segmentation/source/HelperMethods.o
-
-# target to build an object file
-Board_Segmentation/source/HelperMethods.cpp.o:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/HelperMethods.cpp.o
-.PHONY : Board_Segmentation/source/HelperMethods.cpp.o
-
-Board_Segmentation/source/HelperMethods.i: Board_Segmentation/source/HelperMethods.cpp.i
-
-.PHONY : Board_Segmentation/source/HelperMethods.i
-
-# target to preprocess a source file
-Board_Segmentation/source/HelperMethods.cpp.i:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/HelperMethods.cpp.i
-.PHONY : Board_Segmentation/source/HelperMethods.cpp.i
-
-Board_Segmentation/source/HelperMethods.s: Board_Segmentation/source/HelperMethods.cpp.s
-
-.PHONY : Board_Segmentation/source/HelperMethods.s
-
-# target to generate assembly for a file
-Board_Segmentation/source/HelperMethods.cpp.s:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/HelperMethods.cpp.s
-.PHONY : Board_Segmentation/source/HelperMethods.cpp.s
-
-Board_Segmentation/source/IlluminationCorrection.o: Board_Segmentation/source/IlluminationCorrection.cpp.o
-
-.PHONY : Board_Segmentation/source/IlluminationCorrection.o
-
-# target to build an object file
-Board_Segmentation/source/IlluminationCorrection.cpp.o:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/IlluminationCorrection.cpp.o
-.PHONY : Board_Segmentation/source/IlluminationCorrection.cpp.o
-
-Board_Segmentation/source/IlluminationCorrection.i: Board_Segmentation/source/IlluminationCorrection.cpp.i
-
-.PHONY : Board_Segmentation/source/IlluminationCorrection.i
-
-# target to preprocess a source file
-Board_Segmentation/source/IlluminationCorrection.cpp.i:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/IlluminationCorrection.cpp.i
-.PHONY : Board_Segmentation/source/IlluminationCorrection.cpp.i
-
-Board_Segmentation/source/IlluminationCorrection.s: Board_Segmentation/source/IlluminationCorrection.cpp.s
-
-.PHONY : Board_Segmentation/source/IlluminationCorrection.s
-
-# target to generate assembly for a file
-Board_Segmentation/source/IlluminationCorrection.cpp.s:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/IlluminationCorrection.cpp.s
-.PHONY : Board_Segmentation/source/IlluminationCorrection.cpp.s
-
-Board_Segmentation/source/MotionDetection.o: Board_Segmentation/source/MotionDetection.cpp.o
-
-.PHONY : Board_Segmentation/source/MotionDetection.o
-
-# target to build an object file
-Board_Segmentation/source/MotionDetection.cpp.o:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/MotionDetection.cpp.o
-.PHONY : Board_Segmentation/source/MotionDetection.cpp.o
-
-Board_Segmentation/source/MotionDetection.i: Board_Segmentation/source/MotionDetection.cpp.i
-
-.PHONY : Board_Segmentation/source/MotionDetection.i
-
-# target to preprocess a source file
-Board_Segmentation/source/MotionDetection.cpp.i:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/MotionDetection.cpp.i
-.PHONY : Board_Segmentation/source/MotionDetection.cpp.i
-
-Board_Segmentation/source/MotionDetection.s: Board_Segmentation/source/MotionDetection.cpp.s
-
-.PHONY : Board_Segmentation/source/MotionDetection.s
-
-# target to generate assembly for a file
-Board_Segmentation/source/MotionDetection.cpp.s:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/MotionDetection.cpp.s
-.PHONY : Board_Segmentation/source/MotionDetection.cpp.s
-
-Board_Segmentation/source/Track4KPreProcess.o: Board_Segmentation/source/Track4KPreProcess.cpp.o
-
-.PHONY : Board_Segmentation/source/Track4KPreProcess.o
-
-# target to build an object file
-Board_Segmentation/source/Track4KPreProcess.cpp.o:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/Track4KPreProcess.cpp.o
-.PHONY : Board_Segmentation/source/Track4KPreProcess.cpp.o
-
-Board_Segmentation/source/Track4KPreProcess.i: Board_Segmentation/source/Track4KPreProcess.cpp.i
-
-.PHONY : Board_Segmentation/source/Track4KPreProcess.i
-
-# target to preprocess a source file
-Board_Segmentation/source/Track4KPreProcess.cpp.i:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/Track4KPreProcess.cpp.i
-.PHONY : Board_Segmentation/source/Track4KPreProcess.cpp.i
-
-Board_Segmentation/source/Track4KPreProcess.s: Board_Segmentation/source/Track4KPreProcess.cpp.s
-
-.PHONY : Board_Segmentation/source/Track4KPreProcess.s
-
-# target to generate assembly for a file
-Board_Segmentation/source/Track4KPreProcess.cpp.s:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Board_Segmentation/source/Track4KPreProcess.cpp.s
-.PHONY : Board_Segmentation/source/Track4KPreProcess.cpp.s
-
 CodeTimer.o: CodeTimer.cpp.o
 
 .PHONY : CodeTimer.o
@@ -339,141 +204,6 @@ MetaFrame.cpp.s:
 	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/MetaFrame.cpp.s
 .PHONY : MetaFrame.cpp.s
 
-Panning/source/FrameCropper.o: Panning/source/FrameCropper.cpp.o
-
-.PHONY : Panning/source/FrameCropper.o
-
-# target to build an object file
-Panning/source/FrameCropper.cpp.o:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Panning/source/FrameCropper.cpp.o
-.PHONY : Panning/source/FrameCropper.cpp.o
-
-Panning/source/FrameCropper.i: Panning/source/FrameCropper.cpp.i
-
-.PHONY : Panning/source/FrameCropper.i
-
-# target to preprocess a source file
-Panning/source/FrameCropper.cpp.i:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Panning/source/FrameCropper.cpp.i
-.PHONY : Panning/source/FrameCropper.cpp.i
-
-Panning/source/FrameCropper.s: Panning/source/FrameCropper.cpp.s
-
-.PHONY : Panning/source/FrameCropper.s
-
-# target to generate assembly for a file
-Panning/source/FrameCropper.cpp.s:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Panning/source/FrameCropper.cpp.s
-.PHONY : Panning/source/FrameCropper.cpp.s
-
-Panning/source/PanLogic.o: Panning/source/PanLogic.cpp.o
-
-.PHONY : Panning/source/PanLogic.o
-
-# target to build an object file
-Panning/source/PanLogic.cpp.o:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Panning/source/PanLogic.cpp.o
-.PHONY : Panning/source/PanLogic.cpp.o
-
-Panning/source/PanLogic.i: Panning/source/PanLogic.cpp.i
-
-.PHONY : Panning/source/PanLogic.i
-
-# target to preprocess a source file
-Panning/source/PanLogic.cpp.i:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Panning/source/PanLogic.cpp.i
-.PHONY : Panning/source/PanLogic.cpp.i
-
-Panning/source/PanLogic.s: Panning/source/PanLogic.cpp.s
-
-.PHONY : Panning/source/PanLogic.s
-
-# target to generate assembly for a file
-Panning/source/PanLogic.cpp.s:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Panning/source/PanLogic.cpp.s
-.PHONY : Panning/source/PanLogic.cpp.s
-
-Panning/source/PresenterMotion.o: Panning/source/PresenterMotion.cpp.o
-
-.PHONY : Panning/source/PresenterMotion.o
-
-# target to build an object file
-Panning/source/PresenterMotion.cpp.o:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Panning/source/PresenterMotion.cpp.o
-.PHONY : Panning/source/PresenterMotion.cpp.o
-
-Panning/source/PresenterMotion.i: Panning/source/PresenterMotion.cpp.i
-
-.PHONY : Panning/source/PresenterMotion.i
-
-# target to preprocess a source file
-Panning/source/PresenterMotion.cpp.i:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Panning/source/PresenterMotion.cpp.i
-.PHONY : Panning/source/PresenterMotion.cpp.i
-
-Panning/source/PresenterMotion.s: Panning/source/PresenterMotion.cpp.s
-
-.PHONY : Panning/source/PresenterMotion.s
-
-# target to generate assembly for a file
-Panning/source/PresenterMotion.cpp.s:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Panning/source/PresenterMotion.cpp.s
-.PHONY : Panning/source/PresenterMotion.cpp.s
-
-Panning/source/VideoOutput.o: Panning/source/VideoOutput.cpp.o
-
-.PHONY : Panning/source/VideoOutput.o
-
-# target to build an object file
-Panning/source/VideoOutput.cpp.o:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Panning/source/VideoOutput.cpp.o
-.PHONY : Panning/source/VideoOutput.cpp.o
-
-Panning/source/VideoOutput.i: Panning/source/VideoOutput.cpp.i
-
-.PHONY : Panning/source/VideoOutput.i
-
-# target to preprocess a source file
-Panning/source/VideoOutput.cpp.i:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Panning/source/VideoOutput.cpp.i
-.PHONY : Panning/source/VideoOutput.cpp.i
-
-Panning/source/VideoOutput.s: Panning/source/VideoOutput.cpp.s
-
-.PHONY : Panning/source/VideoOutput.s
-
-# target to generate assembly for a file
-Panning/source/VideoOutput.cpp.s:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Panning/source/VideoOutput.cpp.s
-.PHONY : Panning/source/VideoOutput.cpp.s
-
-Panning/source/VirtualCinematographer.o: Panning/source/VirtualCinematographer.cpp.o
-
-.PHONY : Panning/source/VirtualCinematographer.o
-
-# target to build an object file
-Panning/source/VirtualCinematographer.cpp.o:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Panning/source/VirtualCinematographer.cpp.o
-.PHONY : Panning/source/VirtualCinematographer.cpp.o
-
-Panning/source/VirtualCinematographer.i: Panning/source/VirtualCinematographer.cpp.i
-
-.PHONY : Panning/source/VirtualCinematographer.i
-
-# target to preprocess a source file
-Panning/source/VirtualCinematographer.cpp.i:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Panning/source/VirtualCinematographer.cpp.i
-.PHONY : Panning/source/VirtualCinematographer.cpp.i
-
-Panning/source/VirtualCinematographer.s: Panning/source/VirtualCinematographer.cpp.s
-
-.PHONY : Panning/source/VirtualCinematographer.s
-
-# target to generate assembly for a file
-Panning/source/VirtualCinematographer.cpp.s:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Panning/source/VirtualCinematographer.cpp.s
-.PHONY : Panning/source/VirtualCinematographer.cpp.s
-
 PersistentData.o: PersistentData.cpp.o
 
 .PHONY : PersistentData.o
@@ -528,87 +258,6 @@ PointPlotter.cpp.s:
 	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/PointPlotter.cpp.s
 .PHONY : PointPlotter.cpp.s
 
-Tracking/source/Ghost.o: Tracking/source/Ghost.cpp.o
-
-.PHONY : Tracking/source/Ghost.o
-
-# target to build an object file
-Tracking/source/Ghost.cpp.o:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Tracking/source/Ghost.cpp.o
-.PHONY : Tracking/source/Ghost.cpp.o
-
-Tracking/source/Ghost.i: Tracking/source/Ghost.cpp.i
-
-.PHONY : Tracking/source/Ghost.i
-
-# target to preprocess a source file
-Tracking/source/Ghost.cpp.i:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Tracking/source/Ghost.cpp.i
-.PHONY : Tracking/source/Ghost.cpp.i
-
-Tracking/source/Ghost.s: Tracking/source/Ghost.cpp.s
-
-.PHONY : Tracking/source/Ghost.s
-
-# target to generate assembly for a file
-Tracking/source/Ghost.cpp.s:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Tracking/source/Ghost.cpp.s
-.PHONY : Tracking/source/Ghost.cpp.s
-
-Tracking/source/MovementDetection.o: Tracking/source/MovementDetection.cpp.o
-
-.PHONY : Tracking/source/MovementDetection.o
-
-# target to build an object file
-Tracking/source/MovementDetection.cpp.o:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Tracking/source/MovementDetection.cpp.o
-.PHONY : Tracking/source/MovementDetection.cpp.o
-
-Tracking/source/MovementDetection.i: Tracking/source/MovementDetection.cpp.i
-
-.PHONY : Tracking/source/MovementDetection.i
-
-# target to preprocess a source file
-Tracking/source/MovementDetection.cpp.i:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Tracking/source/MovementDetection.cpp.i
-.PHONY : Tracking/source/MovementDetection.cpp.i
-
-Tracking/source/MovementDetection.s: Tracking/source/MovementDetection.cpp.s
-
-.PHONY : Tracking/source/MovementDetection.s
-
-# target to generate assembly for a file
-Tracking/source/MovementDetection.cpp.s:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Tracking/source/MovementDetection.cpp.s
-.PHONY : Tracking/source/MovementDetection.cpp.s
-
-Tracking/source/RecognitionDriver.o: Tracking/source/RecognitionDriver.cpp.o
-
-.PHONY : Tracking/source/RecognitionDriver.o
-
-# target to build an object file
-Tracking/source/RecognitionDriver.cpp.o:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Tracking/source/RecognitionDriver.cpp.o
-.PHONY : Tracking/source/RecognitionDriver.cpp.o
-
-Tracking/source/RecognitionDriver.i: Tracking/source/RecognitionDriver.cpp.i
-
-.PHONY : Tracking/source/RecognitionDriver.i
-
-# target to preprocess a source file
-Tracking/source/RecognitionDriver.cpp.i:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Tracking/source/RecognitionDriver.cpp.i
-.PHONY : Tracking/source/RecognitionDriver.cpp.i
-
-Tracking/source/RecognitionDriver.s: Tracking/source/RecognitionDriver.cpp.s
-
-.PHONY : Tracking/source/RecognitionDriver.s
-
-# target to generate assembly for a file
-Tracking/source/RecognitionDriver.cpp.s:
-	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/Tracking/source/RecognitionDriver.cpp.s
-.PHONY : Tracking/source/RecognitionDriver.cpp.s
-
 mainDriver.o: mainDriver.cpp.o
 
 .PHONY : mainDriver.o
@@ -636,6 +285,357 @@ mainDriver.cpp.s:
 	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/mainDriver.cpp.s
 .PHONY : mainDriver.cpp.s
 
+panning/FrameCropper.o: panning/FrameCropper.cpp.o
+
+.PHONY : panning/FrameCropper.o
+
+# target to build an object file
+panning/FrameCropper.cpp.o:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/panning/FrameCropper.cpp.o
+.PHONY : panning/FrameCropper.cpp.o
+
+panning/FrameCropper.i: panning/FrameCropper.cpp.i
+
+.PHONY : panning/FrameCropper.i
+
+# target to preprocess a source file
+panning/FrameCropper.cpp.i:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/panning/FrameCropper.cpp.i
+.PHONY : panning/FrameCropper.cpp.i
+
+panning/FrameCropper.s: panning/FrameCropper.cpp.s
+
+.PHONY : panning/FrameCropper.s
+
+# target to generate assembly for a file
+panning/FrameCropper.cpp.s:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/panning/FrameCropper.cpp.s
+.PHONY : panning/FrameCropper.cpp.s
+
+panning/PanLogic.o: panning/PanLogic.cpp.o
+
+.PHONY : panning/PanLogic.o
+
+# target to build an object file
+panning/PanLogic.cpp.o:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/panning/PanLogic.cpp.o
+.PHONY : panning/PanLogic.cpp.o
+
+panning/PanLogic.i: panning/PanLogic.cpp.i
+
+.PHONY : panning/PanLogic.i
+
+# target to preprocess a source file
+panning/PanLogic.cpp.i:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/panning/PanLogic.cpp.i
+.PHONY : panning/PanLogic.cpp.i
+
+panning/PanLogic.s: panning/PanLogic.cpp.s
+
+.PHONY : panning/PanLogic.s
+
+# target to generate assembly for a file
+panning/PanLogic.cpp.s:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/panning/PanLogic.cpp.s
+.PHONY : panning/PanLogic.cpp.s
+
+panning/PresenterMotion.o: panning/PresenterMotion.cpp.o
+
+.PHONY : panning/PresenterMotion.o
+
+# target to build an object file
+panning/PresenterMotion.cpp.o:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/panning/PresenterMotion.cpp.o
+.PHONY : panning/PresenterMotion.cpp.o
+
+panning/PresenterMotion.i: panning/PresenterMotion.cpp.i
+
+.PHONY : panning/PresenterMotion.i
+
+# target to preprocess a source file
+panning/PresenterMotion.cpp.i:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/panning/PresenterMotion.cpp.i
+.PHONY : panning/PresenterMotion.cpp.i
+
+panning/PresenterMotion.s: panning/PresenterMotion.cpp.s
+
+.PHONY : panning/PresenterMotion.s
+
+# target to generate assembly for a file
+panning/PresenterMotion.cpp.s:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/panning/PresenterMotion.cpp.s
+.PHONY : panning/PresenterMotion.cpp.s
+
+panning/VideoOutput.o: panning/VideoOutput.cpp.o
+
+.PHONY : panning/VideoOutput.o
+
+# target to build an object file
+panning/VideoOutput.cpp.o:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/panning/VideoOutput.cpp.o
+.PHONY : panning/VideoOutput.cpp.o
+
+panning/VideoOutput.i: panning/VideoOutput.cpp.i
+
+.PHONY : panning/VideoOutput.i
+
+# target to preprocess a source file
+panning/VideoOutput.cpp.i:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/panning/VideoOutput.cpp.i
+.PHONY : panning/VideoOutput.cpp.i
+
+panning/VideoOutput.s: panning/VideoOutput.cpp.s
+
+.PHONY : panning/VideoOutput.s
+
+# target to generate assembly for a file
+panning/VideoOutput.cpp.s:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/panning/VideoOutput.cpp.s
+.PHONY : panning/VideoOutput.cpp.s
+
+panning/VirtualCinematographer.o: panning/VirtualCinematographer.cpp.o
+
+.PHONY : panning/VirtualCinematographer.o
+
+# target to build an object file
+panning/VirtualCinematographer.cpp.o:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/panning/VirtualCinematographer.cpp.o
+.PHONY : panning/VirtualCinematographer.cpp.o
+
+panning/VirtualCinematographer.i: panning/VirtualCinematographer.cpp.i
+
+.PHONY : panning/VirtualCinematographer.i
+
+# target to preprocess a source file
+panning/VirtualCinematographer.cpp.i:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/panning/VirtualCinematographer.cpp.i
+.PHONY : panning/VirtualCinematographer.cpp.i
+
+panning/VirtualCinematographer.s: panning/VirtualCinematographer.cpp.s
+
+.PHONY : panning/VirtualCinematographer.s
+
+# target to generate assembly for a file
+panning/VirtualCinematographer.cpp.s:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/panning/VirtualCinematographer.cpp.s
+.PHONY : panning/VirtualCinematographer.cpp.s
+
+segmentation/BoardDetection.o: segmentation/BoardDetection.cpp.o
+
+.PHONY : segmentation/BoardDetection.o
+
+# target to build an object file
+segmentation/BoardDetection.cpp.o:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/segmentation/BoardDetection.cpp.o
+.PHONY : segmentation/BoardDetection.cpp.o
+
+segmentation/BoardDetection.i: segmentation/BoardDetection.cpp.i
+
+.PHONY : segmentation/BoardDetection.i
+
+# target to preprocess a source file
+segmentation/BoardDetection.cpp.i:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/segmentation/BoardDetection.cpp.i
+.PHONY : segmentation/BoardDetection.cpp.i
+
+segmentation/BoardDetection.s: segmentation/BoardDetection.cpp.s
+
+.PHONY : segmentation/BoardDetection.s
+
+# target to generate assembly for a file
+segmentation/BoardDetection.cpp.s:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/segmentation/BoardDetection.cpp.s
+.PHONY : segmentation/BoardDetection.cpp.s
+
+segmentation/HelperMethods.o: segmentation/HelperMethods.cpp.o
+
+.PHONY : segmentation/HelperMethods.o
+
+# target to build an object file
+segmentation/HelperMethods.cpp.o:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/segmentation/HelperMethods.cpp.o
+.PHONY : segmentation/HelperMethods.cpp.o
+
+segmentation/HelperMethods.i: segmentation/HelperMethods.cpp.i
+
+.PHONY : segmentation/HelperMethods.i
+
+# target to preprocess a source file
+segmentation/HelperMethods.cpp.i:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/segmentation/HelperMethods.cpp.i
+.PHONY : segmentation/HelperMethods.cpp.i
+
+segmentation/HelperMethods.s: segmentation/HelperMethods.cpp.s
+
+.PHONY : segmentation/HelperMethods.s
+
+# target to generate assembly for a file
+segmentation/HelperMethods.cpp.s:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/segmentation/HelperMethods.cpp.s
+.PHONY : segmentation/HelperMethods.cpp.s
+
+segmentation/IlluminationCorrection.o: segmentation/IlluminationCorrection.cpp.o
+
+.PHONY : segmentation/IlluminationCorrection.o
+
+# target to build an object file
+segmentation/IlluminationCorrection.cpp.o:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/segmentation/IlluminationCorrection.cpp.o
+.PHONY : segmentation/IlluminationCorrection.cpp.o
+
+segmentation/IlluminationCorrection.i: segmentation/IlluminationCorrection.cpp.i
+
+.PHONY : segmentation/IlluminationCorrection.i
+
+# target to preprocess a source file
+segmentation/IlluminationCorrection.cpp.i:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/segmentation/IlluminationCorrection.cpp.i
+.PHONY : segmentation/IlluminationCorrection.cpp.i
+
+segmentation/IlluminationCorrection.s: segmentation/IlluminationCorrection.cpp.s
+
+.PHONY : segmentation/IlluminationCorrection.s
+
+# target to generate assembly for a file
+segmentation/IlluminationCorrection.cpp.s:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/segmentation/IlluminationCorrection.cpp.s
+.PHONY : segmentation/IlluminationCorrection.cpp.s
+
+segmentation/MotionDetection.o: segmentation/MotionDetection.cpp.o
+
+.PHONY : segmentation/MotionDetection.o
+
+# target to build an object file
+segmentation/MotionDetection.cpp.o:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/segmentation/MotionDetection.cpp.o
+.PHONY : segmentation/MotionDetection.cpp.o
+
+segmentation/MotionDetection.i: segmentation/MotionDetection.cpp.i
+
+.PHONY : segmentation/MotionDetection.i
+
+# target to preprocess a source file
+segmentation/MotionDetection.cpp.i:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/segmentation/MotionDetection.cpp.i
+.PHONY : segmentation/MotionDetection.cpp.i
+
+segmentation/MotionDetection.s: segmentation/MotionDetection.cpp.s
+
+.PHONY : segmentation/MotionDetection.s
+
+# target to generate assembly for a file
+segmentation/MotionDetection.cpp.s:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/segmentation/MotionDetection.cpp.s
+.PHONY : segmentation/MotionDetection.cpp.s
+
+segmentation/Track4KPreProcess.o: segmentation/Track4KPreProcess.cpp.o
+
+.PHONY : segmentation/Track4KPreProcess.o
+
+# target to build an object file
+segmentation/Track4KPreProcess.cpp.o:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/segmentation/Track4KPreProcess.cpp.o
+.PHONY : segmentation/Track4KPreProcess.cpp.o
+
+segmentation/Track4KPreProcess.i: segmentation/Track4KPreProcess.cpp.i
+
+.PHONY : segmentation/Track4KPreProcess.i
+
+# target to preprocess a source file
+segmentation/Track4KPreProcess.cpp.i:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/segmentation/Track4KPreProcess.cpp.i
+.PHONY : segmentation/Track4KPreProcess.cpp.i
+
+segmentation/Track4KPreProcess.s: segmentation/Track4KPreProcess.cpp.s
+
+.PHONY : segmentation/Track4KPreProcess.s
+
+# target to generate assembly for a file
+segmentation/Track4KPreProcess.cpp.s:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/segmentation/Track4KPreProcess.cpp.s
+.PHONY : segmentation/Track4KPreProcess.cpp.s
+
+tracking/Ghost.o: tracking/Ghost.cpp.o
+
+.PHONY : tracking/Ghost.o
+
+# target to build an object file
+tracking/Ghost.cpp.o:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/tracking/Ghost.cpp.o
+.PHONY : tracking/Ghost.cpp.o
+
+tracking/Ghost.i: tracking/Ghost.cpp.i
+
+.PHONY : tracking/Ghost.i
+
+# target to preprocess a source file
+tracking/Ghost.cpp.i:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/tracking/Ghost.cpp.i
+.PHONY : tracking/Ghost.cpp.i
+
+tracking/Ghost.s: tracking/Ghost.cpp.s
+
+.PHONY : tracking/Ghost.s
+
+# target to generate assembly for a file
+tracking/Ghost.cpp.s:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/tracking/Ghost.cpp.s
+.PHONY : tracking/Ghost.cpp.s
+
+tracking/MovementDetection.o: tracking/MovementDetection.cpp.o
+
+.PHONY : tracking/MovementDetection.o
+
+# target to build an object file
+tracking/MovementDetection.cpp.o:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/tracking/MovementDetection.cpp.o
+.PHONY : tracking/MovementDetection.cpp.o
+
+tracking/MovementDetection.i: tracking/MovementDetection.cpp.i
+
+.PHONY : tracking/MovementDetection.i
+
+# target to preprocess a source file
+tracking/MovementDetection.cpp.i:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/tracking/MovementDetection.cpp.i
+.PHONY : tracking/MovementDetection.cpp.i
+
+tracking/MovementDetection.s: tracking/MovementDetection.cpp.s
+
+.PHONY : tracking/MovementDetection.s
+
+# target to generate assembly for a file
+tracking/MovementDetection.cpp.s:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/tracking/MovementDetection.cpp.s
+.PHONY : tracking/MovementDetection.cpp.s
+
+tracking/RecognitionDriver.o: tracking/RecognitionDriver.cpp.o
+
+.PHONY : tracking/RecognitionDriver.o
+
+# target to build an object file
+tracking/RecognitionDriver.cpp.o:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/tracking/RecognitionDriver.cpp.o
+.PHONY : tracking/RecognitionDriver.cpp.o
+
+tracking/RecognitionDriver.i: tracking/RecognitionDriver.cpp.i
+
+.PHONY : tracking/RecognitionDriver.i
+
+# target to preprocess a source file
+tracking/RecognitionDriver.cpp.i:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/tracking/RecognitionDriver.cpp.i
+.PHONY : tracking/RecognitionDriver.cpp.i
+
+tracking/RecognitionDriver.s: tracking/RecognitionDriver.cpp.s
+
+.PHONY : tracking/RecognitionDriver.s
+
+# target to generate assembly for a file
+tracking/RecognitionDriver.cpp.s:
+	$(MAKE) -f CMakeFiles/Track4K.dir/build.make CMakeFiles/Track4K.dir/tracking/RecognitionDriver.cpp.s
+.PHONY : tracking/RecognitionDriver.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -645,21 +645,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Track4K"
-	@echo "... Board_Segmentation/source/BoardDetection.o"
-	@echo "... Board_Segmentation/source/BoardDetection.i"
-	@echo "... Board_Segmentation/source/BoardDetection.s"
-	@echo "... Board_Segmentation/source/HelperMethods.o"
-	@echo "... Board_Segmentation/source/HelperMethods.i"
-	@echo "... Board_Segmentation/source/HelperMethods.s"
-	@echo "... Board_Segmentation/source/IlluminationCorrection.o"
-	@echo "... Board_Segmentation/source/IlluminationCorrection.i"
-	@echo "... Board_Segmentation/source/IlluminationCorrection.s"
-	@echo "... Board_Segmentation/source/MotionDetection.o"
-	@echo "... Board_Segmentation/source/MotionDetection.i"
-	@echo "... Board_Segmentation/source/MotionDetection.s"
-	@echo "... Board_Segmentation/source/Track4KPreProcess.o"
-	@echo "... Board_Segmentation/source/Track4KPreProcess.i"
-	@echo "... Board_Segmentation/source/Track4KPreProcess.s"
 	@echo "... CodeTimer.o"
 	@echo "... CodeTimer.i"
 	@echo "... CodeTimer.s"
@@ -669,39 +654,54 @@ help:
 	@echo "... MetaFrame.o"
 	@echo "... MetaFrame.i"
 	@echo "... MetaFrame.s"
-	@echo "... Panning/source/FrameCropper.o"
-	@echo "... Panning/source/FrameCropper.i"
-	@echo "... Panning/source/FrameCropper.s"
-	@echo "... Panning/source/PanLogic.o"
-	@echo "... Panning/source/PanLogic.i"
-	@echo "... Panning/source/PanLogic.s"
-	@echo "... Panning/source/PresenterMotion.o"
-	@echo "... Panning/source/PresenterMotion.i"
-	@echo "... Panning/source/PresenterMotion.s"
-	@echo "... Panning/source/VideoOutput.o"
-	@echo "... Panning/source/VideoOutput.i"
-	@echo "... Panning/source/VideoOutput.s"
-	@echo "... Panning/source/VirtualCinematographer.o"
-	@echo "... Panning/source/VirtualCinematographer.i"
-	@echo "... Panning/source/VirtualCinematographer.s"
 	@echo "... PersistentData.o"
 	@echo "... PersistentData.i"
 	@echo "... PersistentData.s"
 	@echo "... PointPlotter.o"
 	@echo "... PointPlotter.i"
 	@echo "... PointPlotter.s"
-	@echo "... Tracking/source/Ghost.o"
-	@echo "... Tracking/source/Ghost.i"
-	@echo "... Tracking/source/Ghost.s"
-	@echo "... Tracking/source/MovementDetection.o"
-	@echo "... Tracking/source/MovementDetection.i"
-	@echo "... Tracking/source/MovementDetection.s"
-	@echo "... Tracking/source/RecognitionDriver.o"
-	@echo "... Tracking/source/RecognitionDriver.i"
-	@echo "... Tracking/source/RecognitionDriver.s"
 	@echo "... mainDriver.o"
 	@echo "... mainDriver.i"
 	@echo "... mainDriver.s"
+	@echo "... panning/FrameCropper.o"
+	@echo "... panning/FrameCropper.i"
+	@echo "... panning/FrameCropper.s"
+	@echo "... panning/PanLogic.o"
+	@echo "... panning/PanLogic.i"
+	@echo "... panning/PanLogic.s"
+	@echo "... panning/PresenterMotion.o"
+	@echo "... panning/PresenterMotion.i"
+	@echo "... panning/PresenterMotion.s"
+	@echo "... panning/VideoOutput.o"
+	@echo "... panning/VideoOutput.i"
+	@echo "... panning/VideoOutput.s"
+	@echo "... panning/VirtualCinematographer.o"
+	@echo "... panning/VirtualCinematographer.i"
+	@echo "... panning/VirtualCinematographer.s"
+	@echo "... segmentation/BoardDetection.o"
+	@echo "... segmentation/BoardDetection.i"
+	@echo "... segmentation/BoardDetection.s"
+	@echo "... segmentation/HelperMethods.o"
+	@echo "... segmentation/HelperMethods.i"
+	@echo "... segmentation/HelperMethods.s"
+	@echo "... segmentation/IlluminationCorrection.o"
+	@echo "... segmentation/IlluminationCorrection.i"
+	@echo "... segmentation/IlluminationCorrection.s"
+	@echo "... segmentation/MotionDetection.o"
+	@echo "... segmentation/MotionDetection.i"
+	@echo "... segmentation/MotionDetection.s"
+	@echo "... segmentation/Track4KPreProcess.o"
+	@echo "... segmentation/Track4KPreProcess.i"
+	@echo "... segmentation/Track4KPreProcess.s"
+	@echo "... tracking/Ghost.o"
+	@echo "... tracking/Ghost.i"
+	@echo "... tracking/Ghost.s"
+	@echo "... tracking/MovementDetection.o"
+	@echo "... tracking/MovementDetection.i"
+	@echo "... tracking/MovementDetection.s"
+	@echo "... tracking/RecognitionDriver.o"
+	@echo "... tracking/RecognitionDriver.i"
+	@echo "... tracking/RecognitionDriver.s"
 .PHONY : help
 
 

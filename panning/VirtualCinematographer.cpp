@@ -1,15 +1,15 @@
 //
 // Created by Tanweer Khatieb on 2016/07/21.
 //
-#include "../../Board Segmentation/headers/Track4KPreProcess.h"
-#include "../headers/VirtualCinematographer.h"
-#include "../headers/VideoOutput.h"
+#include "../segmentation/Track4KPreProcess.h"
+#include "VirtualCinematographer.h"
+#include "VideoOutput.h"
 #include <math.h>
 #include <iostream>
 #include <fstream>
-#include "../headers/PresenterMotion.h"
-#include "../../Tracking/headers/Ghost.h"
-#include "../../CodeTimer.h"
+#include "PresenterMotion.h"
+#include "../tracking/Ghost.h"
+#include "../CodeTimer.h"
 
 using namespace cv;
 using namespace std;

@@ -14,7 +14,7 @@
 #include "opencv2/video.hpp"
 #include "opencv2/highgui.hpp"
 #include <vector>
-#include "../headers/Ghost.h"
+#include "Ghost.h"
 
 using namespace cv;
 using namespace std;

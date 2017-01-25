@@ -6,8 +6,8 @@
 #define TRACK4K_PRESENTERMOTION_H
 
 #include "opencv2/opencv.hpp"
-#include "../../MetaFrame.h"
-#include "../../PersistentData.h"
+#include "../MetaFrame.h"
+#include "../PersistentData.h"
 #include <vector>
 #include <stdlib.h>
 

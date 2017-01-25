@@ -11,9 +11,9 @@
 #include "opencv2/videoio.hpp"
 #include <opencv2/highgui.hpp>
 #include <opencv2/video.hpp>
-#include "../../FileReader.h"
+#include "../FileReader.h"
 
-#include "../../MetaFrame.h"
+#include "../MetaFrame.h"
 
 //C
 #include <stdio.h>

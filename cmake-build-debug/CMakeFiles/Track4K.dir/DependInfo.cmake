@@ -4,25 +4,25 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/charles/Desktop/track4k/Board Segmentation/source/BoardDetection.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Board_Segmentation/source/BoardDetection.cpp.o"
-  "/home/charles/Desktop/track4k/Board Segmentation/source/HelperMethods.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Board_Segmentation/source/HelperMethods.cpp.o"
-  "/home/charles/Desktop/track4k/Board Segmentation/source/IlluminationCorrection.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Board_Segmentation/source/IlluminationCorrection.cpp.o"
-  "/home/charles/Desktop/track4k/Board Segmentation/source/MotionDetection.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Board_Segmentation/source/MotionDetection.cpp.o"
-  "/home/charles/Desktop/track4k/Board Segmentation/source/Track4KPreProcess.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Board_Segmentation/source/Track4KPreProcess.cpp.o"
   "/home/charles/Desktop/track4k/CodeTimer.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/CodeTimer.cpp.o"
   "/home/charles/Desktop/track4k/FileReader.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/FileReader.cpp.o"
   "/home/charles/Desktop/track4k/MetaFrame.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/MetaFrame.cpp.o"
-  "/home/charles/Desktop/track4k/Panning/source/FrameCropper.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Panning/source/FrameCropper.cpp.o"
-  "/home/charles/Desktop/track4k/Panning/source/PanLogic.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Panning/source/PanLogic.cpp.o"
-  "/home/charles/Desktop/track4k/Panning/source/PresenterMotion.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Panning/source/PresenterMotion.cpp.o"
-  "/home/charles/Desktop/track4k/Panning/source/VideoOutput.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Panning/source/VideoOutput.cpp.o"
-  "/home/charles/Desktop/track4k/Panning/source/VirtualCinematographer.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Panning/source/VirtualCinematographer.cpp.o"
   "/home/charles/Desktop/track4k/PersistentData.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/PersistentData.cpp.o"
   "/home/charles/Desktop/track4k/PointPlotter.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/PointPlotter.cpp.o"
-  "/home/charles/Desktop/track4k/Tracking/source/Ghost.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Tracking/source/Ghost.cpp.o"
-  "/home/charles/Desktop/track4k/Tracking/source/MovementDetection.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Tracking/source/MovementDetection.cpp.o"
-  "/home/charles/Desktop/track4k/Tracking/source/RecognitionDriver.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/Tracking/source/RecognitionDriver.cpp.o"
   "/home/charles/Desktop/track4k/mainDriver.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/mainDriver.cpp.o"
+  "/home/charles/Desktop/track4k/panning/FrameCropper.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/panning/FrameCropper.cpp.o"
+  "/home/charles/Desktop/track4k/panning/PanLogic.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/panning/PanLogic.cpp.o"
+  "/home/charles/Desktop/track4k/panning/PresenterMotion.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/panning/PresenterMotion.cpp.o"
+  "/home/charles/Desktop/track4k/panning/VideoOutput.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/panning/VideoOutput.cpp.o"
+  "/home/charles/Desktop/track4k/panning/VirtualCinematographer.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/panning/VirtualCinematographer.cpp.o"
+  "/home/charles/Desktop/track4k/segmentation/BoardDetection.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/segmentation/BoardDetection.cpp.o"
+  "/home/charles/Desktop/track4k/segmentation/HelperMethods.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/segmentation/HelperMethods.cpp.o"
+  "/home/charles/Desktop/track4k/segmentation/IlluminationCorrection.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/segmentation/IlluminationCorrection.cpp.o"
+  "/home/charles/Desktop/track4k/segmentation/MotionDetection.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/segmentation/MotionDetection.cpp.o"
+  "/home/charles/Desktop/track4k/segmentation/Track4KPreProcess.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/segmentation/Track4KPreProcess.cpp.o"
+  "/home/charles/Desktop/track4k/tracking/Ghost.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/tracking/Ghost.cpp.o"
+  "/home/charles/Desktop/track4k/tracking/MovementDetection.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/tracking/MovementDetection.cpp.o"
+  "/home/charles/Desktop/track4k/tracking/RecognitionDriver.cpp" "/home/charles/Desktop/track4k/cmake-build-debug/CMakeFiles/Track4K.dir/tracking/RecognitionDriver.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -5,16 +5,16 @@
 #ifndef TRACK4K_BOARDDETECTION_H
 #define TRACK4K_BOARDDETECTION_H
 
-#include "../../MetaFrame.h"
-#include "../../FileReader.h"
+#include "../MetaFrame.h"
+#include "../FileReader.h"
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/imgproc.hpp"
 #include "opencv2/videoio.hpp"
 #include <opencv2/highgui.hpp>
 #include <opencv2/video.hpp>
 #include <vector>
-#include "../../Panning/headers/VideoOutput.h"
-#include "../../Panning/headers/FrameCropper.h"
+#include "../panning/VideoOutput.h"
+#include "../panning/FrameCropper.h"
 #include "opencv2/core.hpp"
 #include "opencv2/features2d.hpp"
 #include "opencv2/xfeatures2d.hpp"
@@ -74,8 +74,6 @@ public:
      bool isDark(cv::Rect &r);
 
     bool isContained(cv::Rect r1, cv::Rect r2);
-
-
 
 
 };

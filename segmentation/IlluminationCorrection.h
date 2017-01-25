@@ -7,7 +7,7 @@
 
 #include <opencv2/core/core.hpp>
 #include <vector>
-#include "../../MetaFrame.h"
+#include "../MetaFrame.h"
 
 class IlluminationCorrection {
 public:

@@ -2,7 +2,7 @@
 // Created by charles on 2016/07/20.
 //
 
-#include "../headers/IlluminationCorrection.h"
+#include "IlluminationCorrection.h"
 
 #include "opencv2/opencv.hpp"
 #include <vector>

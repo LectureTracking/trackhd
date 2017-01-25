@@ -2,7 +2,7 @@
 // Created by Tanweer Khatieb on 2016/09/19.
 //
 
-#include "../headers/PanLogic.h"
+#include "PanLogic.h"
 
 using namespace std;
 using namespace cv;
@@ -121,18 +121,18 @@ void PanLogic::doPan(std::vector<PresenterMotion::Movement> &motionLines, std::v
                 //True should be board used
                 if (!motionLines.at(i).rightBoardUsed)
                 {
-                    cout << "Left Board Usage Activated in Panning Logic" << endl;
+                    cout << "Left Board Usage Activated in panning Logic" << endl;
                     smoothMove(sP, m.end.x, m.numFrames, m.right, LEFT, croppingRectangles);
 
                 } else
                 {
-                    cout << "Right Board Usage Activated in Panning Logic" << endl;
+                    cout << "Right Board Usage Activated in panning Logic" << endl;
                     smoothMove(sP, m.end.x, m.numFrames, m.right, RIGHT, croppingRectangles);
                 }
 
             } else
             {
-                cout << "Center or No Board Usage Activated in Panning Logic" << endl;
+                cout << "Center or No Board Usage Activated in panning Logic" << endl;
                 smoothMove(sP, m.end.x, m.numFrames, m.right, CENTER, croppingRectangles);
             }
 

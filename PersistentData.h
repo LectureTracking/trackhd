@@ -9,7 +9,7 @@
 #include "opencv2/opencv.hpp"
 #include "MetaFrame.h"
 #include "PersistentData.h"
-#include "Tracking/headers/Ghost.h"
+#include "tracking/Ghost.h"
 
 class PersistentData
 {

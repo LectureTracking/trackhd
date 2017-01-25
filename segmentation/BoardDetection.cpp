@@ -2,7 +2,7 @@
 // Created by Charles on 2016/09/05.
 //
 
-#include "../headers/BoardDetection.h"
+#include "BoardDetection.h"
 
 using namespace cv;
 using namespace std;

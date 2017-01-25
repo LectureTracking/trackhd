@@ -2,7 +2,7 @@
 // Created by Tanweer Khatieb on 2016/07/21.
 //
 
-#include "../headers/FrameCropper.h"
+#include "FrameCropper.h"
 
 using namespace std;
 using namespace cv;

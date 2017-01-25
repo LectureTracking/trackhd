@@ -8,7 +8,7 @@
 #include "VideoOutput.h"
 #include <opencv2/core/mat.hpp>
 #include "opencv2/opencv.hpp"
-#include "../../MetaFrame.h"
+#include "../MetaFrame.h"
 
 class VideoOutput
 {

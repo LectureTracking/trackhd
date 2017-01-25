@@ -2,11 +2,11 @@
 // Created by Fudge on 2016/09/05.
 //
 
-#include "../headers/MovementDetection.h"
-#include "../headers/RecognitionDriver.h"
+#include "MovementDetection.h"
+#include "RecognitionDriver.h"
 #include <iostream>
 #include <vector>
-#include "../headers/Ghost.h"
+#include "Ghost.h"
 
 using namespace std;
 

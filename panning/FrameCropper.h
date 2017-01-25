@@ -9,7 +9,7 @@
 #include <opencv2/core/mat.hpp>
 #include <opencv2/opencv.hpp>
 #include <highgui.h>
-#include "../../MetaFrame.h"
+#include "../MetaFrame.h"
 
 class FrameCropper
 {

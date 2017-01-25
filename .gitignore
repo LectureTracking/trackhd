@@ -3,3 +3,4 @@ images/
 .idea/
 build/
 *.flv
+cmake-build-debug/

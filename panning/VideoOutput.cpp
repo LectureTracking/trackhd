@@ -2,7 +2,7 @@
 // Created by Tanweer Khatieb on 2016/07/21.
 //
 
-#include "../headers/VideoOutput.h"
+#include "VideoOutput.h"
 
 using namespace std;
 using namespace cv;

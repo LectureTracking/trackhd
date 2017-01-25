@@ -6,7 +6,7 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 
-#include "../headers/ImageRecognition.h"
+#include "ImageRecognition.h"
 
 #include <iostream>
 #include <stdio.h>

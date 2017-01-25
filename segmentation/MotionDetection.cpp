@@ -2,7 +2,7 @@
 // Created by charles on 2016/07/20.
 //
 
-#include "../headers/MotionDetection.h"
+#include "MotionDetection.h"
 
 #include <iostream>
 #include <opencv2/features2d/features2d.hpp>

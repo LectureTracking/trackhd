@@ -2,7 +2,7 @@
 // Created by charles on 2017/01/18.
 //
 
-#include "../headers/HelperMethods.h"
+#include "HelperMethods.h"
 
 using namespace cv;
 

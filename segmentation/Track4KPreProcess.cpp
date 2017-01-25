@@ -2,11 +2,11 @@
 // Created by Charles Fitzhenry on 2016/07/19.
 //
 
-#include "../../CodeTimer.h"
-#include "../headers/IlluminationCorrection.h"
+#include "../CodeTimer.h"
+#include "IlluminationCorrection.h"
 
-#include "../headers/MotionDetection.h"
-#include "../headers/Track4KPreProcess.h"
+#include "MotionDetection.h"
+#include "Track4KPreProcess.h"
 
 using namespace std;
 using namespace cv;

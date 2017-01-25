@@ -2,8 +2,8 @@
 // Created by Tanweer Khatieb on 2016/09/16.
 //
 
-#include "../headers/PresenterMotion.h"
-#include "../../PersistentData.h"
+#include "PresenterMotion.h"
+#include "../PersistentData.h"
 
 
 using namespace std;

@@ -5,10 +5,10 @@
 #ifndef TRACK4K_TRACK4KPREPROCESS_H
 #define TRACK4K_TRACK4KPREPROCESS_H
 
-#include "../../FileReader.h"
-#include "../../MetaFrame.h"
+#include "../FileReader.h"
+#include "../MetaFrame.h"
 #include "BoardDetection.h"
-#include "../../PersistentData.h"
+#include "../PersistentData.h"
 
 
 class Track4KPreProcess {
