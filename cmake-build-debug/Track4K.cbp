@@ -5,212 +5,213 @@
 		<Option title="Track4K"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\share\;CMake Files\..\..\..\..\usr\local\share\OpenCV\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\opencv\;CMake Files\..\..\..\..\..\opencv\build\;CMake Files\..\..\..\..\..\opencv\build\install\;CMake Files\..\..\..\..\..\opencv\build\install\x64\;CMake Files\..\..\..\..\..\opencv\build\install\x64\mingw\;CMake Files\..\..\..\..\..\opencv\build\install\x64\mingw\lib\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/charles/Desktop/track4k/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/home/charles/Desktop/track4k/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="rebuild_cache">
-				<Option working_dir="/home/charles/Desktop/track4k/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Track4K">
-				<Option output="/home/charles/Desktop/track4k/cmake-build-debug/Track4K" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/charles/Desktop/track4k/cmake-build-debug"/>
+				<Option output="C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Track4K.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/local/include/opencv"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/6"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
-					<Add directory="/usr/include/c++/6/backward"/>
+					<Add directory="C:/opencv/build/install/include"/>
+					<Add directory="C:/opencv/build/install/include/opencv"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/include"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/include-fixed"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 Track4K"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 Track4K"/>
+					<CompileFile command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Track4K/fast">
-				<Option output="/home/charles/Desktop/track4k/cmake-build-debug/Track4K" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/charles/Desktop/track4k/cmake-build-debug"/>
+				<Option output="C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Track4K.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/local/include/opencv"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/6"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
-					<Add directory="/usr/include/c++/6/backward"/>
+					<Add directory="C:/opencv/build/install/include"/>
+					<Add directory="C:/opencv/build/install/include/opencv"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/include"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/include-fixed"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/MinGW64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 Track4K/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/charles/Desktop/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 Track4K/fast"/>
+					<CompileFile command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/BoardDetection.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Board Segmentation/headers/BoardDetection.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/HelperMethods.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Board Segmentation/headers/HelperMethods.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/IlluminationCorrection.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Board Segmentation/headers/IlluminationCorrection.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/MotionDetection.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Board Segmentation/headers/MotionDetection.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/headers/Track4KPreProcess.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Board Segmentation/headers/Track4KPreProcess.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/BoardDetection.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Board Segmentation/source/BoardDetection.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/HelperMethods.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Board Segmentation/source/HelperMethods.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/IlluminationCorrection.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Board Segmentation/source/IlluminationCorrection.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/MotionDetection.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Board Segmentation/source/MotionDetection.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Board Segmentation/source/Track4KPreProcess.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Board Segmentation/source/Track4KPreProcess.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/CodeTimer.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/CodeTimer.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/CodeTimer.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/CodeTimer.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/FileReader.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/FileReader.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/FileReader.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/FileReader.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/MetaFrame.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/MetaFrame.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/MetaFrame.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/MetaFrame.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/headers/FrameCropper.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Panning/headers/FrameCropper.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/headers/PanLogic.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Panning/headers/PanLogic.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/headers/PresenterMotion.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Panning/headers/PresenterMotion.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/headers/VideoOutput.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Panning/headers/VideoOutput.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/headers/VirtualCinematographer.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Panning/headers/VirtualCinematographer.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/source/FrameCropper.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Panning/source/FrameCropper.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/source/PanLogic.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Panning/source/PanLogic.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/source/PresenterMotion.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Panning/source/PresenterMotion.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/source/VideoOutput.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Panning/source/VideoOutput.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Panning/source/VirtualCinematographer.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Panning/source/VirtualCinematographer.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/PersistentData.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/PersistentData.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/PersistentData.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/PersistentData.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/PointPlotter.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/PointPlotter.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/PointPlotter.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/PointPlotter.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Tracking/headers/Ghost.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Tracking/headers/Ghost.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Tracking/headers/MovementDetection.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Tracking/headers/MovementDetection.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Tracking/headers/RecognitionDriver.h">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Tracking/headers/RecognitionDriver.h">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Tracking/source/Ghost.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Tracking/source/Ghost.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Tracking/source/MovementDetection.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Tracking/source/MovementDetection.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/Tracking/source/RecognitionDriver.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/Tracking/source/RecognitionDriver.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/mainDriver.cpp">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/mainDriver.cpp">
 			<Option target="Track4K"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/CMakeLists.txt">
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/../../../../usr/local/share/OpenCV/OpenCVConfig-version.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/../../../../../opencv/build/install/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opencv\build\install\"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/../../../../usr/local/share/OpenCV/OpenCVConfig.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/../../../../../opencv/build/install/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opencv\build\install\"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/../../../../usr/local/share/OpenCV/OpenCVModules.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/../../../../../opencv/build/install/x64/mingw/lib/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opencv\build\install\x64\mingw\lib\"/>
 		</Unit>
-		<Unit filename="/home/charles/Desktop/track4k/../../../../usr/local/share/OpenCV/OpenCVModules-release.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/../../../../../opencv/build/install/x64/mingw/lib/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opencv\build\install\x64\mingw\lib\"/>
+		</Unit>
+		<Unit filename="C:/Users/Charles/Desktop/CILT/track4k/../../../../../opencv/build/install/x64/mingw/lib/OpenCVModules-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opencv\build\install\x64\mingw\lib\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>
