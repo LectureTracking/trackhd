@@ -1,3 +1,0 @@
-"C:\Program Files (x86)\JetBrains\CLion 2016.3\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\Track4K.dir/objects.a
-C:\MinGW64\mingw64\bin\ar.exe cr CMakeFiles\Track4K.dir/objects.a @CMakeFiles\Track4K.dir\objects1.rsp
-C:\MinGW64\mingw64\bin\g++.exe   -std=c++14 -g   -Wl,--whole-archive CMakeFiles\Track4K.dir/objects.a -Wl,--no-whole-archive  -o Track4K.exe -Wl,--out-implib,libTrack4K.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Track4K.dir\linklibs.rsp

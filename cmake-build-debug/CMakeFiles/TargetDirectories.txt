@@ -1,3 +1,0 @@
-C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/CMakeFiles/Track4K.dir
-C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,9 +1,0 @@
-"C:\Program Files (x86)\JetBrains\CLion 2016.3\bin\cmake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\Charles\Desktop\CILT\track4k
--- OpenCV ARCH: x64
--- OpenCV RUNTIME: mingw
--- OpenCV STATIC: ON
--- Found OpenCV 3.1.0 in C:/opencv/build/install/x64/mingw/lib
--- You might need to add C:/opencv/build/install/x64/mingw/bin to your PATH to be able to run your applications.
--- Configuring done
--- Generating done
--- Build files have been written to: C:/Users/Charles/Desktop/CILT/track4k/cmake-build-debug
