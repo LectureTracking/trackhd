@@ -19,12 +19,12 @@
 //
 
 #include <stdlib.h>
-#include "Board Segmentation/headers/Track4KPreProcess.h"
+#include "segmentation/Track4KPreProcess.h"
 #include "PersistentData.h"
-#include "Panning/headers/VirtualCinematographer.h"
+#include "Panning/VirtualCinematographer.h"
 #include "PointPlotter.h"
-#include "Tracking/headers/MovementDetection.h"
-#include "Tracking/headers/MovementDetection.h"
+#include "tracking/MovementDetection.h"
+#include "tracking/MovementDetection.h"
 #include "CodeTimer.h"
 
 using namespace std;

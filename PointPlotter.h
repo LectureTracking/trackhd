@@ -20,11 +20,11 @@
 
 #ifndef TRACK4K_POINTPLOTTER_H
 #define TRACK4K_POINTPLOTTER_H
-#include "Panning/headers/VideoOutput.h"
-#include "Panning/headers/FrameCropper.h"
+#include "Panning/VideoOutput.h"
+#include "Panning/FrameCropper.h"
 #include "opencv2/opencv.hpp"
-#include "Panning/headers/PresenterMotion.h"
-#include "Panning/headers/PanLogic.h"
+#include "Panning/PresenterMotion.h"
+#include "Panning/PanLogic.h"
 #include <fstream>
 #include "FileReader.h"
 
