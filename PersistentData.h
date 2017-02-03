@@ -43,11 +43,11 @@ public:
 
     void setVideoInfo(int f, int t, cv::Size s);
 
-    std::string saveFileExtension = "flv";
-    std::string inputFileName = "Videos/PanningTest40s.mp4";
+    std::string saveFileExtension = "flv"; //Default save extension
+    std::string inputFileName = "";
 
     cv::Size panOutputVideoSize = cv::Size(1280, 720);
-    std::string panOutputVideoSaveFileName = "finalPanOutput.flv";
+    std::string outputVideoFilenameSuffix = "";
 
     vector<Rect> vals;
     int skipFrameMovementDetection;
