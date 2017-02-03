@@ -207,14 +207,14 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &pD)
 
 
     VideoWriter outputVideo;
-    outputVideo.open(pD.panOutputVideoSaveFileName, CV_FOURCC('F', 'L', 'V', '1'), pD.fps, pD.panOutputVideoSize, 1);
+    outputVideo.open(pD.outputVideoFilenameSuffix, CV_FOURCC('F', 'L', 'V', '1'), pD.fps, pD.panOutputVideoSize, 1);
 
 
     VideoWriter outputVideoAll;
     outputVideoAll.open("finalOverviewDebugView.flv", CV_FOURCC('F', 'L', 'V', '1'), pD.fps, pD.videoDimension, 1);
 
     VideoWriter outputBoardSegment;
-    outputBoardSegment.open("BoardSegment-" + pD.panOutputVideoSaveFileName, CV_FOURCC('F', 'L', 'V', '1'), pD.fps,
+    outputBoardSegment.open("BoardSegment-" + pD.outputVideoFilenameSuffix, CV_FOURCC('F', 'L', 'V', '1'), pD.fps,
                             Size(pD.boardCropRegion.width, pD.boardCropRegion.height), 1);
 
     FileReader fileReader;

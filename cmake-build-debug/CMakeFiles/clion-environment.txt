@@ -1,1 +1,2 @@
-CMake: 3.6.2@/opt/clion-2016.3/bin/cmake/bin/cmake
+ToolSet: w64 5.0@C:\MinGW64\mingw64
+CMake: 3.6.2@C:\Program Files (x86)\JetBrains\CLion 2016.3\bin\cmake\bin\cmake.exe
