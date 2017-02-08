@@ -37,10 +37,12 @@
 #include <iostream>
 #include <sstream>
 
-class MotionDetection {
+class MotionDetection
+{
 public:
 
     Rect boundMotion(cv::Mat threshold_output);
+
     int subtract(std::vector<cv::Mat> &frames, PersistentData &persistentData);
 };
 

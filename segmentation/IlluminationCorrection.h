@@ -25,11 +25,20 @@
 #include <vector>
 #include "../MetaFrame.h"
 
-class IlluminationCorrection {
+class IlluminationCorrection
+{
 public:
-    void histogramNormalisation(std::vector<cv::Mat> &mFrames);
+    /**
+     * This method takes a vecotr of frames and applies the Contrast Limited Adaptive Histogram Equalization method to each frame.
+     * @param mFrames is the vector containing frames of type cv::Mat
+     */
+    void correctLight(std::vector<cv::Mat> &mFrames);
 
-    void histogramNormalisation(cv::Mat &frame);
+    /**
+     * This method takes a single frame and applies the Contrast Limited Adaptive Histogram Equalization method to the frame.
+     * @param frame
+     */
+    void applyCLAHE(cv::Mat &frame);
 };
 
 

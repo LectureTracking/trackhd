@@ -27,7 +27,8 @@
 #include "../PersistentData.h"
 
 
-class Track4KPreProcess {
+class Track4KPreProcess
+{
 
 public:
 

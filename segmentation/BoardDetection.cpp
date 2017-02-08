@@ -29,11 +29,6 @@ Mat thresh_img;
 int thresh = 100;
 RNG rng(12345);
 
-bool debug = true;
-bool showContours = false;
-bool showCanny = false;
-int waitTime = 1;
-
 int keyPointChangeThresh = 150;
 int leftKeyPointInitial = 0;
 int rightKeyPointInitial = 0;
@@ -53,9 +48,7 @@ BoardDetection::BoardDetection()
 {
 
 
-
     boardVid.open("boardDebug.flv", CV_FOURCC('F', 'L', 'V', '1'), 1, cv::Size(3840, 2160), 1);
-
 
 }
 
@@ -64,12 +57,6 @@ BoardDetection::BoardDetection()
 ///----------------------------//
 void BoardDetection::extractBoards(std::vector<Mat> &frames, PersistentData &pD)
 {
-    if(debug){
-        namedWindow("Debug Viewer", WINDOW_NORMAL);
-        resizeWindow("Debug Viewer", 1280, 720);
-    }
-
-
     //Initialise parameters needed
     Size sizeOfFrames = pD.videoDimension;
     leftHalf = Rect(Point(0, 0), Point(sizeOfFrames.width / 2, sizeOfFrames.height));
@@ -77,23 +64,6 @@ void BoardDetection::extractBoards(std::vector<Mat> &frames, PersistentData &pD)
 
     vector<BoardDetection::BoardRect> boardRectangles; //Store all board rectangles found
     vector<BoardDetection::BoardRect> boardColumnRectangles;
-
-    //create GUI windows
-    if (debug)
-    {
-        if (showCanny)
-        {
-            namedWindow("Canny", WINDOW_NORMAL);
-            resizeWindow("Canny", 1080, 720);
-        }
-
-        if (showContours)
-        {
-            namedWindow("Contours", WINDOW_NORMAL);
-            resizeWindow("Contours", 1080, 720);
-        }
-
-    }
 
     Rect cropRegion;
     Rect finalCrop;
@@ -108,7 +78,7 @@ void BoardDetection::extractBoards(std::vector<Mat> &frames, PersistentData &pD)
         }
         Mat frame = frames[i];
         debugFrame = frames[i];
-        //illuminationCorrection.histogramNormalisation(frame);
+        //illuminationCorrection.applyCLAHE(frame);
 
         //Find the cropping area
         boardRectangles.clear();
@@ -188,8 +158,8 @@ void BoardDetection::extractBoards(std::vector<Mat> &frames, PersistentData &pD)
                 //Left board used
                 leftBoardUsed = true;
                 cout << "Left used" << endl;
-
             }
+
             if (rightK > rightKeyPointInitial + keyPointChangeThresh)
             {
                 //right board used
@@ -197,40 +167,45 @@ void BoardDetection::extractBoards(std::vector<Mat> &frames, PersistentData &pD)
                 cout << "Right used" << endl;
             }
 
-
             //Now apply this update back to the metaframe
             pD.metaFrameVector.push_back(
                     MetaFrame(true, leftBoardUsed, rightBoardUsed, projectorUsedLeft, projectorUsedRight));
-
         }
 
 
-        for (int a = 0; a < boardColumnRectangles.size(); a++){
+        for (int a = 0; a < boardColumnRectangles.size(); a++)
+        {
             Scalar color = Scalar(0, 0, 255);
             Rect boardRect = boardColumnRectangles.at(a).r;
 
             //drawContours( drawing, contours_poly, i, color, 1, 8, vector<Vec4i>(), 0, Point() );
             rectangle(debugFrame, boardRect.tl(), boardRect.br(), color, 2, 8, 0);
 
-            if(isContained(boardRect, leftHalf)){
-                if(leftBoardUsed){
+            if (isContained(boardRect, leftHalf))
+            {
+                if (leftBoardUsed)
+                {
                     putText(debugFrame,
                             ("Board Column " + to_string(a) + " - USED"),
                             Point(boardRect.x, boardRect.y), FONT_HERSHEY_PLAIN, 4.0,
                             color, 4.0);
-                } else{
+                } else
+                {
                     putText(debugFrame,
                             ("Board Column " + to_string(a)),
                             Point(boardRect.x, boardRect.y), FONT_HERSHEY_PLAIN, 4.0,
                             color, 4.0);
                 }
-            } else{
-                if(rightBoardUsed){
+            } else
+            {
+                if (rightBoardUsed)
+                {
                     putText(debugFrame,
                             ("Board Column " + to_string(a) + " - USED"),
                             Point(boardRect.x, boardRect.y), FONT_HERSHEY_PLAIN, 4.0,
                             color, 4.0);
-                } else{
+                } else
+                {
                     putText(debugFrame,
                             ("Board Column " + to_string(a)),
                             Point(boardRect.x, boardRect.y), FONT_HERSHEY_PLAIN, 4.0,
@@ -241,11 +216,6 @@ void BoardDetection::extractBoards(std::vector<Mat> &frames, PersistentData &pD)
         }
 
 
-
-        ///cout << "Left Total Features: " << leftKeyPointInitial << endl;
-        ///cout << "Right Total Features: " << rightKeyPointInitial << endl;
-        ///cout << "Left Features: " << leftK << endl;
-        ///cout << "Right Features: " << rightK << endl;
         //If we find an area big enough we assume the boards are contained in the crop region
         if (cropRegion.area() > int(boardFoundThresh * sizeOfFrames.area()) && !pD.boardsFound)
         {
@@ -264,17 +234,19 @@ void BoardDetection::extractBoards(std::vector<Mat> &frames, PersistentData &pD)
         }
 
 
-        if(pD.boardsFound){
+        if (pD.boardsFound)
+        {
             Scalar color = Scalar(0, 0, 0);
-            rectangle(debugFrame, pD.boardCropRegion.tl(),pD.boardCropRegion.br(), color, 2, 8, 0);
+            rectangle(debugFrame, pD.boardCropRegion.tl(), pD.boardCropRegion.br(), color, 2, 8, 0);
 
             putText(debugFrame, "Final Crop Region",
-                    Point(pD.boardCropRegion.x+1200, pD.boardCropRegion.y), FONT_HERSHEY_PLAIN, 4.0,
+                    Point(pD.boardCropRegion.x + 1200, pD.boardCropRegion.y), FONT_HERSHEY_PLAIN, 4.0,
                     color, 4.0);
         }
 
 
-        if(debug){
+        if (debug)
+        {
             imshow("Debug Viewer", debugFrame);
             waitKey(waitTime);
             //Output here
@@ -296,7 +268,6 @@ void BoardDetection::findRectangles(cv::Mat &frame, Rect &cropArea, vector<Board
     /// Convert image to gray and blur it
     cvtColor(src, src_gray, CV_BGR2GRAY);
     blur(src_gray, src_gray, Size(3, 3));
-
 
 
     Mat canny_output;
@@ -662,8 +633,7 @@ bool BoardDetection::isDark(cv::Rect &r)
 std::vector<KeyPoint> BoardDetection::countFeatures(Mat cropImg)
 {
 
-    //Perform sift function on image
-
+    //Perform sift function on image to find key features such as writing on the boards
 
     //-- Step 1: Detect the keypoints using SURF Detector
     int minHessian = 400;
@@ -673,18 +643,6 @@ std::vector<KeyPoint> BoardDetection::countFeatures(Mat cropImg)
     std::vector<KeyPoint> keypoints_1;
 
     detector->detect(cropImg, keypoints_1);
-
-
-    /* //-- Draw keypoints
-     Mat img_keypoints_1;
-
-     drawKeypoints( cropImg, keypoints_1, img_keypoints_1, Scalar::all(-1), DrawMatchesFlags::DEFAULT );
-
-     //-- Show detected (drawn) keypoints
-     imshow("Keypoints 1", img_keypoints_1 );
-     imwrite("KeyPoints.png", img_keypoints_1);
-
-     waitKey(waitTime);*/
 
     return keypoints_1;
 }
@@ -696,61 +654,3 @@ bool BoardDetection::isContained(cv::Rect r1, cv::Rect r2)
     //Is r1 contained in r2?
     return r3.area() == r1.area();
 }
-
-
-
-
-//Detect writing (http://stackoverflow.com/questions/35320409/estimate-white-background)
-/*
- * #include <opencv2/opencv.hpp>
-#include <opencv2/photo.hpp>
-using namespace cv;
-
-void findText(const Mat3b& src, Mat1b& mask)
-{
-    // Convert to grayscale
-    Mat1b gray;
-    cvtColor(src, gray, COLOR_BGR2GRAY);
-
-    // Compute gradient magnitude
-    Mat1f dx, dy, mag;
-    Sobel(gray, dx, CV_32F, 1, 0);
-    Sobel(gray, dy, CV_32F, 0, 1);
-    magnitude(dx, dy, mag);
-
-    // Remove low magnitude, keep only text
-    mask = mag > 10;
-
-    // Apply a dilation to deal with thick text
-    Mat1b K = getStructuringElement(MORPH_ELLIPSE, Size(3, 3));
-    dilate(mask, mask, K);
-}
-
-int main(int argc, const char * argv[])
-{
-    Mat3b img = imread("path_to_image");
-
-    // Segment white
-    Mat1b mask;
-    findText(img, mask);
-
-    // Show intermediate images
-    Mat3b background = img.clone();
-    background.setTo(0, mask);
-
-    Mat3b foreground = img.clone();
-    foreground.setTo(0, ~mask);
-
-    // Apply inpainting
-    Mat3b inpainted;
-    inpaint(img, mask, inpainted, 21, CV_INPAINT_TELEA);
-
-    imshow("Original", img);
-    imshow("Foreground", foreground);
-    imshow("Background", background);
-    imshow("Inpainted", inpainted);
-    waitKey();
-
-    return 0;
-}
- */

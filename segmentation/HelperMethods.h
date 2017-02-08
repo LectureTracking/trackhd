@@ -24,7 +24,8 @@
 
 #include <opencv2/core/types.hpp>
 
-class HelperMethods {
+class HelperMethods
+{
 
 public:
     bool RectA_inside_RectB(cv::Rect r1, cv::Rect r2);

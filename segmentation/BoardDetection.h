@@ -38,24 +38,28 @@
 #include "IlluminationCorrection.h"
 
 
-class BoardDetection {
+class BoardDetection
+{
 
 public:
     BoardDetection();
 
-    enum type {
+    enum type
+    {
         BLACKBOARD, PROJECTORSCREEN, BOUNDING
     };
 
     ///Rectangle struct for storing boards
-    struct BoardRect {
+    struct BoardRect
+    {
         int ID;
         cv::Rect r;
         int numFeatures;
         type boardType;
         std::vector<KeyPoint> features;
 
-        BoardRect(int id, cv::Rect rect, std::vector<KeyPoint> f, BoardDetection::type bT) {
+        BoardRect(int id, cv::Rect rect, std::vector<KeyPoint> f, BoardDetection::type bT)
+        {
 
             ID = id;
             r = rect;
@@ -68,32 +72,29 @@ public:
     void extractBoards(std::vector<cv::Mat> &frames, PersistentData &pD);
 
     void findRectangles(cv::Mat &frame, cv::Rect &cropArea, std::vector<BoardRect> &boardRects,
-                            std::vector<BoardRect> &boardColumnRects);
+                        std::vector<BoardRect> &boardColumnRects);
 
-     void boundContoursWithRectangles(std::vector<std::vector<cv::Point>> contours, std::vector<cv::Rect> &vR);
+    void boundContoursWithRectangles(std::vector<std::vector<cv::Point>> contours, std::vector<cv::Rect> &vR);
 
-     bool checkContainment(std::vector<int> &v, int val);
+    bool checkContainment(std::vector<int> &v, int val);
 
-     void findBoards(std::vector<cv::Rect> &allRectangles, std::vector<cv::Rect> &possibleBoardColumns,
-                               std::vector<BoardRect> &boards);
+    void findBoards(std::vector<cv::Rect> &allRectangles, std::vector<cv::Rect> &possibleBoardColumns,
+                    std::vector<BoardRect> &boards);
 
-     void removeOverlappingRectangles(std::vector<BoardRect> &boards);
+    void removeOverlappingRectangles(std::vector<BoardRect> &boards);
 
-     void findBoardColumns(std::vector<cv::Rect> &allRectangles, std::vector<BoardRect> &boardColumnsR);
+    void findBoardColumns(std::vector<cv::Rect> &allRectangles, std::vector<BoardRect> &boardColumnsR);
 
-     void findAreaToSegment(std::vector<BoardRect> &boardColumns, cv::Rect &finalCrop,
-                                     std::vector<BoardRect> &Boards);
+    void findAreaToSegment(std::vector<BoardRect> &boardColumns, cv::Rect &finalCrop,
+                           std::vector<BoardRect> &Boards);
 
-     int calculateAspectRatio(cv::Rect &r);
+    int calculateAspectRatio(cv::Rect &r);
 
     std::vector<KeyPoint> countFeatures(cv::Mat cropImg);
 
-     bool isDark(cv::Rect &r);
+    bool isDark(cv::Rect &r);
 
     bool isContained(cv::Rect r1, cv::Rect r2);
-
-
-
 
 };
 
