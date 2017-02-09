@@ -10,7 +10,7 @@ find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 set(SOURCE_FILES FileReader.cpp FileReader.h MetaFrame.cpp MetaFrame.h "segmentation/Track4KPreProcess.cpp" CodeTimer.cpp CodeTimer.h "segmentation/IlluminationCorrection.cpp" "segmentation/IlluminationCorrection.h" "segmentation/MotionDetection.cpp" "segmentation/MotionDetection.h" panning/VirtualCinematographer.cpp panning/VirtualCinematographer.h panning/VideoOutput.cpp panning/VideoOutput.h panning/FrameCropper.cpp panning/FrameCropper.h "segmentation/Track4KPreProcess.h" "segmentation/BoardDetection.cpp" "segmentation/BoardDetection.h" panning/PresenterMotion.cpp panning/PresenterMotion.h panning/PanLogic.cpp panning/PanLogic.h mainDriver.cpp PersistentData.h PersistentData.cpp PointPlotter.cpp PointPlotter.h tracking/RecognitionDriver.h tracking/RecognitionDriver.cpp
-        tracking/MovementDetection.h tracking/MovementDetection.cpp tracking/Ghost.cpp tracking/Ghost.h "segmentation/HelperMethods.cpp" "segmentation/HelperMethods.h")
+        tracking/MovementDetection.h tracking/MovementDetection.cpp tracking/Ghost.cpp tracking/Ghost.h)
 add_executable(Track4K ${SOURCE_FILES})
 
 

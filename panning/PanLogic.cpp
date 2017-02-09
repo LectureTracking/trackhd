@@ -158,7 +158,7 @@ void PanLogic::doPan(std::vector<PresenterMotion::Movement> &motionLines, std::v
             //Todo - check if noise fits into pan region + Align correctly
             //This is dropped frames (noise)
             //Get last rectangle and duplicate because we want crop region to remain still where the lecturer doesnt move significantly
-            //Rect r = croppingRectangles.at(croppingRectangles.size() - 1);
+            //Rect boundingRectangle = croppingRectangles.at(croppingRectangles.size() - 1);
 
             if (m.numFrames > 50)
             {
