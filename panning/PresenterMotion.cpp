@@ -19,33 +19,25 @@
 //
 
 #include "PresenterMotion.h"
-#include "../PersistentData.h"
-
 
 using namespace std;
 using namespace cv;
 
 
-//Given a vector of points (Lecturer positions), create line segments each time the direction of motion changes.
-// This includes very small line segments and a separate method deals with culling of these
+/**
+ * Given a vector of points (Lecturer positions), create line segments each time the direction of motion changes.
+ * @param lecturerPositions
+ * @param skipFrames
+ */
 void PresenterMotion::generateMotionLines(std::vector<Point> lecturerPositions, int skipFrames)
 {
-
-    //TODO - Simulate points that are read in from the text file
-
-
-    //Set initial direction
     bool right;
     right = lecturerPositions.at(0).x < lecturerPositions.at(1).x;
-
-    int counter = skipFrames; //The counter tracks the number of frames that have passed
+    int counter = skipFrames;
     Point endPoint;
-
-    //TODO - Initialize start point correctly
-    //This is the very first position of the lecturer.
     Point startPoint = lecturerPositions.at(0);
 
-    Movement m;
+    Movement movement;
     Point prev;
     Point current;
 /*
@@ -59,140 +51,106 @@ void PresenterMotion::generateMotionLines(std::vector<Point> lecturerPositions, 
 
         if (prev.x < current.x && right)
         {
-            //Going right and there is no change
-            //Add the frame to the line vector
-            counter+= skipFrames;
-
-        } //else if(prev.x>current.x && right){
+            counter += skipFrames;
+        }
         else if (prev.x > current.x && !right)
         {
-            //Goin left and there is no change
-            //Add frame to the line vector
-            counter+=skipFrames;
-
-        } else
+            counter += skipFrames;
+        }
+        else
         {
-
-            //counter++;
-            //TODO Cannot be current because current has already changed the direction ---Has to be previous--- ***Has been fixed
             endPoint = prev;
-
-
-            m.start = startPoint;
-            m.end = endPoint;
-            m.numFrames = counter;
-            m.right = right;
-
-            motion.push_back(m);
-
+            movement.start = startPoint;
+            movement.end = endPoint;
+            movement.numFrames = counter;
+            movement.right = right;
+            motion.push_back(movement);
             right = !right;
             startPoint = endPoint;
-            counter =skipFrames;
-
+            counter = skipFrames;
         }
     }
-
     endPoint = prev;
-
-
-    m.start = startPoint;
-    m.end = endPoint;
-    m.numFrames = counter;
-    m.right = right;
-
-    motion.push_back(m);
+    movement.start = startPoint;
+    movement.end = endPoint;
+    movement.numFrames = counter;
+    movement.right = right;
+    motion.push_back(movement);
 }
 
-void PresenterMotion::checkLogic()
-{
-
-    //Just to debug
-    int sm = 0;
-    for (int i = 0; i < motion.size(); i++)
-    {
-        sm += motion.at(i).numFrames;
-    }
-    cout << "[3] Number of frames as stored by motion Lines: " << sm << endl;
-
-}
-
-//Used to remove all line segments that are shorter than the given threshold value
+/**
+ * Reduces jittery movements by fusing short lines
+ * @param ignoreThresh
+ * @param yFix
+ */
 void PresenterMotion::cullMotion(int ignoreThresh, int yFix)
 {
 
-    vector<Movement> temp;
+    vector<Movement> tempMovements;
     int dropCounter = 0;
-    int avgX = 0;
-    int avgY = 0;
 
     int minX = INT_MAX;
     int maxX = INT_MIN;
 
-    for (Movement m:motion)
+    for (Movement movement:motion)
     {
 
-        if (m.length() > ignoreThresh && (m.length()/m.numFrames)<25)
+        if (movement.length() > ignoreThresh && (movement.length() / movement.numFrames) < 25)
         {
 
             if (dropCounter > 0)
             {
-                Movement mv;
-                mv.numFrames = dropCounter;
-                mv.isDropData = true;
-
-                //Set points
-                mv.start = Point(minX, yFix);
-                mv.end = Point(maxX, yFix);
-                temp.push_back(mv);
+                Movement movement1;
+                movement1.numFrames = dropCounter;
+                movement1.isDropData = true;
+                movement1.start = Point(minX, yFix);
+                movement1.end = Point(maxX, yFix);
+                tempMovements.push_back(movement1);
                 dropCounter = 0;
                 minX = INT_MAX;
                 maxX = INT_MIN;
             }
-            temp.push_back(m);
-        } else
+            tempMovements.push_back(movement);
+        }
+        else
         {
 
-            dropCounter += m.numFrames;
-            //dropCounter++;
-            if (m.start.x < minX)
+            dropCounter += movement.numFrames;
+
+            if (movement.start.x < minX)
             {
-                minX = m.start.x;
+                minX = movement.start.x;
             }
 
-            if (m.end.x > maxX)
+            if (movement.end.x > maxX)
             {
-                maxX = m.end.x;
+                maxX = movement.end.x;
             }
 
-            if (m.end.x < minX)
+            if (movement.end.x < minX)
             {
-                minX = m.end.x;
+                minX = movement.end.x;
             }
 
-            if (m.start.x > maxX)
+            if (movement.start.x > maxX)
             {
-                maxX = m.start.x;
+                maxX = movement.start.x;
             }
         }
     }
 
     if (dropCounter > 0)
     {
-        Movement mv;
-        mv.numFrames = dropCounter;
-        mv.isDropData = true;
-
-        //Set points
-        mv.start = Point(minX, yFix);
-        mv.end = Point(maxX, yFix);
-        temp.push_back(mv);
-        dropCounter = 0;
-        minX = INT_MAX;
-        maxX = INT_MIN;
+        Movement movement;
+        movement.numFrames = dropCounter;
+        movement.isDropData = true;
+        movement.start = Point(minX, yFix);
+        movement.end = Point(maxX, yFix);
+        tempMovements.push_back(movement);
     }
 
     motion.clear();
-    motion = temp;
+    motion = tempMovements;
 }
 
 /*void PresenterMotion::repairCulling(int ignoreThresh)
@@ -243,7 +201,7 @@ void PresenterMotion::cullMotion(int ignoreThresh, int yFix)
                 temp.push_back(motion[i + 2]);
                 i += 2;
             }
-            //For motiong going left
+            //For motion going left
         } else if (!motion[i].isDropData && !motion[i].right)
         {
             if (motion[i + 1].isDropData &&
@@ -290,11 +248,16 @@ void PresenterMotion::cullMotion(int ignoreThresh, int yFix)
     motion = temp;
 }*/
 
+
+/**
+ * Stitches together smaller pan operations going in the same direction (interrupted by noise).
+ * @param ignoreThresh
+ */
 void PresenterMotion::repairCulling(int ignoreThresh)
 {
 
     std::vector<Movement> temp;
-    int droppFramesCount = 0;
+    int dropFramesCount = 0;
     Movement m_new;
     m_new.numFrames = 0;
     Movement current;
@@ -312,214 +275,191 @@ void PresenterMotion::repairCulling(int ignoreThresh)
         }
 
 
-        if(current.isDropData){
-            //Noise
-            if(current.numFrames<ignoreThresh){
-                droppFramesCount+=current.numFrames;
-            } else{
-                if(first){
+        if (current.isDropData)
+        {
+            if (current.numFrames < ignoreThresh)
+            {
+                dropFramesCount += current.numFrames;
+            }
+            else
+            {
+                if (first)
+                {
                     temp.push_back(current);
-                } else{
-                    m_new.numFrames+=droppFramesCount;
-                    droppFramesCount=0;
+                }
+                else
+                {
+                    m_new.numFrames += dropFramesCount;
+                    dropFramesCount = 0;
                     temp.push_back(m_new);
                     temp.push_back(current);
                     first = true;
                 }
-
             }
-
-        } else{
-            //Actual motion
-            if(first){
+        }
+        else
+        {
+            if (first)
+            {
                 m_new.isDropData = false;
                 m_new.start = current.start;
                 m_new.end = current.end;
                 m_new.right = current.right;
-                m_new.numFrames+=current.numFrames;
+                m_new.numFrames += current.numFrames;
                 first = false;
-            } else if(!first && (current.right==m_new.right)){
+            }
+            else if (!first && (current.right == m_new.right))
+            {
                 m_new.isDropData = false;
                 m_new.end = current.end;
                 m_new.right = current.right;
-                m_new.numFrames+=current.numFrames;
+                m_new.numFrames += current.numFrames;
                 first = false;
-            } else if(!first && (current.right!=m_new.right)){
-                //Change in direction
+            }
+            else if (!first && (current.right != m_new.right))
+            {
                 temp.push_back(m_new);
-
-
-
-
-
-                //Set up new temp
                 m_new.isDropData = false;
                 m_new.start = current.start;
                 m_new.end = current.end;
                 m_new.right = current.right;
                 m_new.numFrames = 0;
-                m_new.numFrames+=droppFramesCount;
-                droppFramesCount = 0;
-                m_new.numFrames+=current.numFrames;
+                m_new.numFrames += dropFramesCount;
+                dropFramesCount = 0;
+                m_new.numFrames += current.numFrames;
             }
-
-        }
-
-
-    }
-
-    if(temp.at(temp.size()-1).start != m_new.start && temp.at(temp.size()-1).end != m_new.end){
-        if(droppFramesCount>0){
-            m_new.numFrames+=droppFramesCount;
-            temp.push_back(m_new);
-
-        } else{
-            temp.push_back(m_new);
         }
     }
 
-
+    if (temp.at(temp.size() - 1).start != m_new.start && temp.at(temp.size() - 1).end != m_new.end)
+    {
+        if (dropFramesCount > 0)
+        {
+            m_new.numFrames += dropFramesCount;
+            temp.push_back(m_new);
+        }
+        else
+        {
+            temp.push_back(m_new);
+        }
+    }
     motion.clear();
     motion = temp;
 }
 
-
-//Takes an empty image in and populates it with the lines depicting the motion graphically
+/**
+ * Creates a motion graph where each line represents a pan operation. Blue is left, red is right, white is noise and the length is the distance on the x-plane.
+ * @param img
+ */
 void PresenterMotion::generateMotionImage(Mat &img)
 {
 
     int yOff = 20;
-    int addOn = 0; //Just to space lines on diagram
+    int addOn = 0;
     for (Movement m:motion)
     {
         Scalar s;
         if (m.isDropData)
         {
-
             s = Scalar(255, 255, 255);
             DrawLine(img, Point(m.start.x, yOff + addOn), Point(m.end.x, yOff + addOn), s);
             addOn += yOff;
-
-        } else
+        }
+        else
         {
-
             if (m.right)
             {
                 s = Scalar(0, 0, 255);
-            } else
+            }
+            else
             {
                 s = Scalar(255, 170, 0);
             }
-
             DrawLine(img, Point(m.start.x, yOff + addOn), Point(m.end.x, yOff + addOn), s);
             addOn += yOff;
         }
     }
 }
 
+/**
+ * Aligns jagged edges between pans (i.e The start point of the next pan is the end of the current pan).
+ */
 void PresenterMotion::relinkMotion()
 {
-
     int continueFrom = 0;
     bool last_x = false;
-
     for (int i = 0; i < motion.size(); i++)
     {
-
         Movement m = motion.at(i);
-
         if (!m.isDropData)
         {
-            //This is an actual motion line
-
             if (!last_x)
             {
                 continueFrom = m.end.x;
             }
-
-
             if (i > 0 && last_x)
             {
-
                 motion.at(i).start.x = continueFrom;
                 last_x = false;
-
             }
-
-        } else
+        }
+        else
         {
-
             last_x = true;
             continueFrom = m.end.x;
-
-
         }
-
     }
 }
 
-//Basically a get method - Returns by reference through parameter given
+/**
+ * Returns by reference through parameter given
+ * @param outMotionVec
+ */
 void PresenterMotion::getMotionLines(vector<PresenterMotion::Movement> &outMotionVec)
 {
-
     outMotionVec = motion;
 }
 
-//Helper method used by the generateMotionImage() method to draw the actual line segments onto an image
+/**
+ * Helper method used by the generateMotionImage() method to draw the actual line segments onto an image
+ * @param img
+ * @param start
+ * @param end
+ * @param s
+ */
 void PresenterMotion::DrawLine(Mat &img, Point start, Point end, Scalar s)
 {
 
     int thickness = 10;
     int lineType = 8;
-    line(img,
-         start,
-         end,
-         s,
-         thickness,
-         lineType);
+    line(img, start, end, s, thickness, lineType);
 }
 
-//Just a method used for debugging - For each line segment, prints out details about it
-void PresenterMotion::printLines()
+/**
+ * Labels a motion line if (and where) a board was used.
+ * @param persistentData
+ */
+void PresenterMotion::attatchBoardUsage(PersistentData &persistentData)
 {
-
-    for (int i = 0; i < motion.size(); i++)
-    {
-        if (motion.at(i).isDropData)
-        {
-            cout << "This is dropped data. AVG_Start =" << motion.at(i).start.x << " AVG_End=" << motion.at(i).end.x
-                 << " FrameCount="
-                 << motion.at(i).numFrames << endl;
-        } else
-        {
-            cout << "Start=" << motion.at(i).start.x << " End=" << motion.at(i).end.x << " FrameCount="
-                 << motion.at(i).numFrames << endl;
-        }
-
-    }
-}
-
-
-void PresenterMotion::attatchBoardUsage(PersistentData &pD)
-{
-    int rangeS = 0;
-    int rangeE = 0;
+    int rangeStart = 0;
+    int rangeEnd = 0;
 
     int checkpoint = 0;
 
     for (int i = 0; i < motion.size(); i++)
     {
-        int rangeE = rangeS + motion.at(i).numFrames;
+        rangeEnd = rangeStart + motion.at(i).numFrames;
 
-        for (int j = checkpoint; j < pD.metaFrameVector.size(); j++)
+        for (int j = checkpoint; j < persistentData.metaFrameVector.size(); j++)
         {
-            if (j * pD.boardDetectionSkipFrames>=rangeS && j * pD.boardDetectionSkipFrames<rangeE) //Finds corresponding motion line to attach board usage to
+            if (j * persistentData.boardDetectionSkipFrames >= rangeStart && j * persistentData.boardDetectionSkipFrames < rangeEnd)
             {
-                if (pD.metaFrameVector.at(j).leftProjector || pD.metaFrameVector.at(j).leftBoard)
+                if (persistentData.metaFrameVector.at(j).leftProjector || persistentData.metaFrameVector.at(j).leftBoard)
                 {
                     motion.at(i).boardUsed = true;
                     motion.at(i).rightBoardUsed = false;
-                } else if (pD.metaFrameVector.at(j).rightProjector || pD.metaFrameVector.at(j).rightBoard)
+                }
+                else if (persistentData.metaFrameVector.at(j).rightProjector || persistentData.metaFrameVector.at(j).rightBoard)
                 {
                     motion.at(i).boardUsed = true;
                     motion.at(i).rightBoardUsed = true;
@@ -528,6 +468,6 @@ void PresenterMotion::attatchBoardUsage(PersistentData &pD)
                 checkpoint = j;
             }
         }
-        rangeS = rangeE;
+        rangeStart = rangeEnd;
     }
 }

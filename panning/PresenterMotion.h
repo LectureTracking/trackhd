@@ -33,7 +33,9 @@ class PresenterMotion
 
 public:
 
-    //Struct stores data of each line segment. It also can be used to store noise by enabling the @isDropData boolean
+    /**
+     * Struct stores data of each line segment. It also can be used to store noise by enabling the @isDropData boolean
+     */
     struct Movement
     {
         bool isDropData = false;
@@ -61,17 +63,13 @@ public:
 
     void repairCulling(int ignoreThresh);
 
-    void printLines();
-
     void generateMotionImage(cv::Mat &img);
 
     void getMotionLines(std::vector<Movement> &outMotionVec);
 
-    void checkLogic();
-
     void relinkMotion();
 
-    void attatchBoardUsage(PersistentData &pD);
+    void attatchBoardUsage(PersistentData &persistentData);
 
 };
 

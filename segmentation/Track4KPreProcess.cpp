@@ -18,7 +18,6 @@
 // Created by Charles Fitzhenry on 2016/07/19.
 //
 
-#include "../CodeTimer.h"
 #include "IlluminationCorrection.h"
 
 #include "MotionDetection.h"

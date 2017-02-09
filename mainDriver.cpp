@@ -20,12 +20,9 @@
 
 #include <stdlib.h>
 #include "segmentation/Track4KPreProcess.h"
-#include "PersistentData.h"
 #include "Panning/VirtualCinematographer.h"
 #include "PointPlotter.h"
 #include "tracking/MovementDetection.h"
-#include "tracking/MovementDetection.h"
-#include "CodeTimer.h"
 
 using namespace std;
 
@@ -41,14 +38,10 @@ int main(int argc, char *argv[])
     int cropHeight = 0;
     cv::Size saveDimensions;
 
-
-
     //Check if input of command line parameters are valid
     if (argc != 5)
     {
-        cerr
-                << "The number of parameters entered were incorrect. Expected track4k.exe <inputFileName.extension> <outputFileName.extension> <crop width> <crop height>"
-                << endl;
+        cerr << "The number of parameters entered were incorrect. Expected track4k.exe <inputFileName.extension> <outputFileName.extension> <crop width> <crop height>" << endl;
         return -1;
     }
 

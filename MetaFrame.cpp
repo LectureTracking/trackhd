@@ -42,16 +42,19 @@
  * 5) Grayscale Video
  *
  */
-MetaFrame::MetaFrame(cv::Mat frame) : colourFrame(cv::Mat(frame)) {
+MetaFrame::MetaFrame(cv::Mat frame) : colourFrame(cv::Mat(frame))
+{
 
 }
 
-void MetaFrame::setColourFrame(cv::Mat cFrame) {
+void MetaFrame::setColourFrame(cv::Mat cFrame)
+{
 
     colourFrame = cv::Mat(cFrame);
 }
 
-void MetaFrame::setBoardUsage(bool hasBoardData, bool lB, bool rB, bool lP, bool rP) {
+void MetaFrame::setBoardUsage(bool hasBoardData, bool lB, bool rB, bool lP, bool rP)
+{
 
     hasBoardUsageData = hasBoardData;
     leftBoard = lB;

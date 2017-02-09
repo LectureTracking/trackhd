@@ -24,29 +24,34 @@ using namespace std;
 using namespace cv;
 
 bool initialCrop = true;
-bool boardDataActive = false;
 
-//Cos function
+/**
+ * Cos function over with which the pan operation is divided
+ * @param x
+ * @return
+ */
 long double PanLogic::smooth(double x)
 {
     return (cos(x - (135)) + 1);
 }
 
-//Given a start and end point create a vector of rectangles that will essentially pan over that line
-void PanLogic::smoothMove(int start, int end, int numFrames, bool right, Position panOffsetType,
-                          std::vector<cv::Rect> &croppingRectangles)
+/**
+ * This method, given a start and end point, creates a vector of rectangles that will pan over that line.
+ * @param start
+ * @param end
+ * @param numFrames
+ * @param right
+ * @param panOffsetType
+ * @param croppingRectangles
+ */
+void PanLogic::smoothMove(int start, int end, int numFrames, bool right, Position panOffsetType, std::vector<cv::Rect> &croppingRectangles)
 {
-
-    //This is the starting x position of the cropping rectangle
-    //Todo - The (cropFrameWidth/2) is currently a crude way of centering the rectangle about the lecturers position (Which is assumed to be the (x,y) coordinates of his/her face.
-    //TODO - This needs to be updated depending on whether the lecturer needs to be place in [LEFT; CENTER; RIGHT] of the frame and depends on board usage and how this will be handled
 
     if (initialCrop)
     {
         setPan(start, currentPan);
         initialCrop = false;
     }
-
 
     if (!checkIfPanRequired(start, end) && numFrames > 59)
     {
@@ -82,7 +87,8 @@ void PanLogic::smoothMove(int start, int end, int numFrames, bool right, Positio
             if (right)
             {
                 currentPos += outP;
-            } else
+            }
+            else
             {
                 currentPos -= outP;
             }
@@ -94,11 +100,11 @@ void PanLogic::smoothMove(int start, int end, int numFrames, bool right, Positio
             croppingRectangles.push_back(currentPan);
 
         }
-    } else
+    }
+    else
     {
 
-        //Dont pan. just push back current crop
-        //TODO - Can add re-centering feature here.
+        //Don't pan. just push back current crop
         for (int i = 0; i < numFrames; i++)
         {
             croppingRectangles.push_back(currentPan);
@@ -107,28 +113,29 @@ void PanLogic::smoothMove(int start, int end, int numFrames, bool right, Positio
 }
 
 //Essentially the main method for this class
+/**
+ * Makes the crop window move over the pan operations.
+ * @param motionLines
+ * @param croppingRectangles
+ */
 void PanLogic::doPan(std::vector<PresenterMotion::Movement> &motionLines, std::vector<cv::Rect> &croppingRectangles)
 {
-
-    int sP;
+    int startingPosition;
 
     //Loop over all motion lines
     for (int i = 0; i < motionLines.size(); i++)
     {
-        //TODO - For each line determine if needed to pan!!! Currently just following lecturer all the time
-
-        PresenterMotion::Movement m = motionLines.at(i);
-        if (!m.isDropData)
+        PresenterMotion::Movement movement = motionLines.at(i);
+        if (!movement.isDropData)
         {
             //This is an actual motion line
-            //TODO CENTER is the board offset
             if (i > 0)
             {
-                sP = getPan(currentPan);
-
-            } else
+                startingPosition = getPan(currentPan);
+            }
+            else
             {
-                sP = m.start.x;
+                startingPosition = movement.start.x;
             }
 
             //If boards used in this motion line
@@ -138,40 +145,40 @@ void PanLogic::doPan(std::vector<PresenterMotion::Movement> &motionLines, std::v
                 if (!motionLines.at(i).rightBoardUsed)
                 {
                     cout << "Left Board Usage Activated in panning Logic" << endl;
-                    smoothMove(sP, m.end.x, m.numFrames, m.right, LEFT, croppingRectangles);
+                    smoothMove(startingPosition, movement.end.x, movement.numFrames, movement.right, LEFT, croppingRectangles);
 
-                } else
+                }
+                else
                 {
                     cout << "Right Board Usage Activated in panning Logic" << endl;
-                    smoothMove(sP, m.end.x, m.numFrames, m.right, RIGHT, croppingRectangles);
+                    smoothMove(startingPosition, movement.end.x, movement.numFrames, movement.right, RIGHT, croppingRectangles);
                 }
 
-            } else
+            }
+            else
             {
                 cout << "Center or No Board Usage Activated in panning Logic" << endl;
-                smoothMove(sP, m.end.x, m.numFrames, m.right, CENTER, croppingRectangles);
+                smoothMove(startingPosition, movement.end.x, movement.numFrames, movement.right, CENTER, croppingRectangles);
             }
 
-        } else
+        }
+        else
         {
-
-            //Todo - check if noise fits into pan region + Align correctly
             //This is dropped frames (noise)
-            //Get last rectangle and duplicate because we want crop region to remain still where the lecturer doesnt move significantly
-            //Rect r = croppingRectangles.at(croppingRectangles.size() - 1);
-
-            if (m.numFrames > 50)
+            //Where noise is reduced (jittery motions dropped), fill up vacant frames with last known data
+            if (movement.numFrames > 50)
             {
-                int spos = getPan(currentPan);
-                int epos = m.start.x + abs(m.end.x - m.start.x);
-                bool r = false;
-                if(spos<epos){
-                    r=true;
+                int startPosition = getPan(currentPan);
+                int endPosition = int (movement.start.x + abs(movement.end.x - movement.start.x));
+                bool right = false;
+                if (startPosition < endPosition)
+                {
+                    right = true;
                 }
 
-                smoothMove(spos,epos, m.numFrames, r, CENTER,
-                           croppingRectangles);
-            } else
+                smoothMove(startPosition, endPosition, movement.numFrames, right, CENTER, croppingRectangles);
+            }
+            else
             {
                 int speed = motionLines.at(i).numFrames; //Number of frames to reposition over
 
@@ -196,10 +203,10 @@ void PanLogic::doPan(std::vector<PresenterMotion::Movement> &motionLines, std::v
                     cout << "Reposition CENTER" << endl;
                     rePosition(CENTER, speed, m, croppingRectangles);
                 }
-    */
+                */
 
-                int rem = speed;
-                for (int j = 0; j < rem; j++)
+                int remain = speed;
+                for (int j = 0; j < remain; j++)
                 {
                     croppingRectangles.push_back(currentPan);
                 }
@@ -209,53 +216,68 @@ void PanLogic::doPan(std::vector<PresenterMotion::Movement> &motionLines, std::v
     }
 }
 
-void PanLogic::rePosition(Position moveToPosition, int numFrames, PresenterMotion::Movement &m,
-                          std::vector<cv::Rect> &croppingRectangles)
+/**
+ * Adjusts the crop window position.
+ * @param moveToPosition
+ * @param numFrames
+ * @param movement
+ * @param croppingRectangles
+ */
+void PanLogic::rePosition(Position moveToPosition, int numFrames, PresenterMotion::Movement &movement, std::vector<cv::Rect> &croppingRectangles)
 {
 
-    int s = getPan(currentPan);
-    int e;
+    int startPos = getPan(currentPan);
+    int endPos;
     bool right;
 
     switch (moveToPosition)
     {
         case LEFT:
-            if (m.start.x > m.end.x)
+            if (movement.start.x > movement.end.x)
             {
-                e = m.start.x;
-            } else
+                endPos = movement.start.x;
+            }
+            else
             {
-                e = m.end.x;
+                endPos = movement.end.x;
             }
             break;
 
         case RIGHT:
-            if (m.start.x < m.end.x)
+            if (movement.start.x < movement.end.x)
             {
-                e = m.start.x;
-            } else
+                endPos = movement.start.x;
+            }
+            else
             {
-                e = m.end.x;
+                endPos = movement.end.x;
             }
             break;
         case CENTER:
-            if (m.start.x < m.end.x)
+            if (movement.start.x < movement.end.x)
             {
-                e = m.start.x + m.length() / 2;
-            } else
+                endPos = movement.start.x + movement.length() / 2;
+            }
+            else
             {
-                e = m.start.x - m.length() / 2;
+                endPos = movement.start.x - movement.length() / 2;
             }
             break;
     }
 
-    right = s > e;
+    right = startPos > endPos;
 
-    smoothMove(s, e, numFrames, right, moveToPosition, croppingRectangles);
+    smoothMove(startPos, endPos, numFrames, right, moveToPosition, croppingRectangles);
 
 }
 
 //Method to initialise the dimensions of the panning class
+/**
+ * Initialise the dimensions of the frame and cropping window
+ * @param inputFrameSize
+ * @param cropSize
+ * @param yPanLevel
+ */
 void PanLogic::initialise(cv::Size inputFrameSize, cv::Size cropSize, int yPanLevel)
 {
 
@@ -270,6 +292,12 @@ void PanLogic::initialise(cv::Size inputFrameSize, cv::Size cropSize, int yPanLe
 
 }
 
+/**
+ * Checks if a pan is necessary
+ * @param start
+ * @param end
+ * @return
+ */
 bool PanLogic::checkIfPanRequired(int start, int end)
 {
 
@@ -279,42 +307,53 @@ bool PanLogic::checkIfPanRequired(int start, int end)
 
 }
 
+/**
+ * Checks edge cases of the pan operation and adjusts coordinates accordingly. Leaves pan operation in an orderly state
+ * @param currentPosX
+ * @param crop
+ */
 void PanLogic::setPan(int currentPosX, Rect &crop)
 {
-    Rect tmp = Rect(currentPosX - (cropFrameWidth / 2), yLevelOfPanWindow, cropFrameWidth, cropFrameHeight);
-    if (!inBounds(tmp))
+    Rect tempRect = Rect(currentPosX - (cropFrameWidth / 2), yLevelOfPanWindow, cropFrameWidth, cropFrameHeight);
+    if (!inBounds(tempRect))
     {
         if (initialCrop)
         {
             if (currentPosX > cropFrameWidth)
             {
-                tmp = Rect(inputFrameWidth - cropFrameWidth, yLevelOfPanWindow, cropFrameWidth, cropFrameHeight);
-            } else
+                tempRect = Rect(inputFrameWidth - cropFrameWidth, yLevelOfPanWindow, cropFrameWidth, cropFrameHeight);
+            }
+            else
             {
-                tmp = Rect(0, yLevelOfPanWindow, cropFrameWidth, cropFrameHeight);
+                tempRect = Rect(0, yLevelOfPanWindow, cropFrameWidth, cropFrameHeight);
             }
 
             initialCrop = false;
-            currentPan = tmp;
+            currentPan = tempRect;
         }
         crop = currentPan;
-    } else
+    }
+    else
     {
-        crop = tmp;
+        crop = tempRect;
     }
 }
 
-bool PanLogic::inBounds(int x)
-{
-
-    return x >= 0 && (x - cropFrameWidth / 2 + cropFrameWidth) <= inputFrameWidth;
-}
-
+/**
+ * Checks that a crop window falls within the bounds of the original frame
+ * @param crop
+ * @return
+ */
 bool PanLogic::inBounds(cv::Rect &crop)
 {
     return crop.tl().x >= 0 && crop.tl().x + cropFrameWidth <= inputFrameWidth;
 }
 
+/**
+ * returns crop window coordinates (central x-value of rectangle)
+ * @param crop
+ * @return
+ */
 int PanLogic::getPan(cv::Rect &crop)
 {
     return crop.x + (cropFrameWidth / 2);
