@@ -26,11 +26,14 @@
 #include "BoardDetection.h"
 #include "../PersistentData.h"
 
-
-class Track4KPreProcess {
+class Track4KPreProcess
+{
 
 public:
-
+    /**
+     * This is the main method used by the mainDriver class to run the segmentation section
+     * @param persistentData is the link to the central class sharing all data between the different modules.
+     */
     void preProcessDriver(PersistentData &persistentData);
 };
 

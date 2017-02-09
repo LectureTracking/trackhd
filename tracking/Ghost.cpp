@@ -105,7 +105,7 @@ bool Ghost::resize(vector<Rect>* sizingRects){
     //increment time alive
     onScreenTime++;
 
-    //if no rects intersected the ghost decrease area (shrink) or if thresh of intersection hasn't been reached
+    //if no rects intersected the ghost decrease area (shrink) or if cannyThreshold of intersection hasn't been reached
     if (!intersected || ((double)amountIntersected / (double) ghost.area()) < shrinkThresh) {
         return decreaseArea();
     }

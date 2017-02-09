@@ -37,11 +37,24 @@
 #include <iostream>
 #include <sstream>
 
-class MotionDetection {
+class MotionDetection
+{
 public:
-
+/**
+ * This method bounds the merged difference image with rectangles
+ * @param threshold_output is the image containing the merged motion from the subtract method.
+ * @return a rectangle that bounds all motion
+ */
     Rect boundMotion(cv::Mat threshold_output);
-    int subtract(std::vector<cv::Mat> &frames, PersistentData &persistentData);
+
+    /**
+     * This method loops over all frames and takes two consecutive frames and differences them. This difference is then
+     * accumulated in a final frame containing all motion for the frames in the vector.
+     *
+     * @param frames is the vector containing the input frames
+     * @param persistentData is the link to the central class sharing all data between the different modules.
+     */
+    void subtract(std::vector<cv::Mat> &frames, PersistentData &persistentData);
 };
 
 #endif //TRACK4K_MOTIONDETECTION_H

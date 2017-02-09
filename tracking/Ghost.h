@@ -44,7 +44,7 @@ private:
     long onScreenTime; //time existing on screen (number of frames)
     double sizeRatio = 0.75; //amount that a resize affects the ghost
     double shrinkRatio = 0.1; //the amount by which a rect shrinks each turn
-    double shrinkThresh = 0.6; //thresh value (0.1 - 1) of how full rect needs to be to avoid shrinking
+    double shrinkThresh = 0.6; //cannyThreshold value (0.1 - 1) of how full rect needs to be to avoid shrinking
     int deleteThresh = 40;
 
 public:

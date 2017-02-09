@@ -26,9 +26,10 @@
 using namespace std;
 using namespace cv;
 
-void Track4KPreProcess::preProcessDriver(PersistentData &persistentData) {
+void Track4KPreProcess::preProcessDriver(PersistentData &persistentData)
+{
 
-    vector<Mat> frameMats;
+    vector<Mat> frameVector;
 
     //Read in video file
     FileReader fileReader;
@@ -40,15 +41,16 @@ void Track4KPreProcess::preProcessDriver(PersistentData &persistentData) {
 
     //Keep reading in frames from the video file until the end is reached.
     //Number of frames to read on each iteration is defined in the PersistentData class
-    while (!fileReader.isEndOfFile()) {
+    while (!fileReader.isEndOfFile())
+    {
         //Read in frames
-        fileReader.getNextSegment(persistentData.areasOfMotionOverNumberOfFrames, frameMats);
+        fileReader.getNextSegment(persistentData.areasOfMotionOverNumberOfFrames, frameVector);
 
         //Detect areas of motion
-        motionDetection.subtract(frameMats, persistentData);
+        motionDetection.subtract(frameVector, persistentData);
 
         //Detect the boards
-        boardDetection.extractBoards(frameMats, persistentData);
+        boardDetection.extractBoards(frameVector, persistentData);
 
     }
 
