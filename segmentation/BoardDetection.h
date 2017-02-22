@@ -30,8 +30,6 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/video.hpp>
 #include <vector>
-#include "../Panning/VideoOutput.h"
-#include "../Panning/FrameCropper.h"
 #include "opencv2/core.hpp"
 #include "opencv2/features2d.hpp"
 #include "opencv2/xfeatures2d.hpp"

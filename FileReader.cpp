@@ -57,7 +57,7 @@ bool FileReader::readFile(std::string filename, PersistentData &pD)
     cout << "FPS: " << fps << endl;
 
     //Set video file info
-    pD.setVideoInfo(fps,numFrames,videoDimension);
+    pD.setVideoInfo(fps, numFrames, videoDimension, ex);
 
     return 0;
 
@@ -97,13 +97,13 @@ void FileReader::getNextSegment(int segSize, std::vector<cv::Mat> &frameVec)
     //Clear the vector
     frameVec.clear();
 
-    cout << "Section is " << segSize << " frames." << endl;
+    //cout << "Section is " << segSize << " frames." << endl;
     for (int i = 0; i < segSize; i++)
     {
         //read the current frame
         if (!inputVideo.read(frame))
         {
-            cerr << "End of video file" << endl;
+            //cerr << "End of reading video file" << endl;
             endOfFile = true;
             break; //If end of video file
         }

@@ -60,11 +60,9 @@ void PanLogic::smoothMove(int start, int end, int numFrames, bool right, Positio
         {
             case LEFT:
                 end -= (cropFrameWidth / 2) - boardOffSet;
-                cout << "PanOffset = LEFT" << endl;
                 break;
             case RIGHT:
                 end += (cropFrameWidth / 2) - boardOffSet;
-                cout << "PanOffset = RIGHT" << endl;
                 break;
             case CENTER:
                 break;
@@ -144,20 +142,17 @@ void PanLogic::doPan(std::vector<PresenterMotion::Movement> &motionLines, std::v
                 //True should be board used
                 if (!motionLines.at(i).rightBoardUsed)
                 {
-                    cout << "Left Board Usage Activated in panning Logic" << endl;
                     smoothMove(startingPosition, movement.end.x, movement.numFrames, movement.right, LEFT, croppingRectangles);
 
                 }
                 else
                 {
-                    cout << "Right Board Usage Activated in panning Logic" << endl;
                     smoothMove(startingPosition, movement.end.x, movement.numFrames, movement.right, RIGHT, croppingRectangles);
                 }
 
             }
             else
             {
-                cout << "Center or No Board Usage Activated in panning Logic" << endl;
                 smoothMove(startingPosition, movement.end.x, movement.numFrames, movement.right, CENTER, croppingRectangles);
             }
 

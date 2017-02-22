@@ -153,7 +153,7 @@ private:
     //debugging
 
     //draw visuals
-    bool drawFrameStatus = true;
+    bool drawFrameStatus = false;
     /*
      * 0 - draw contours
      * 1 - draw bounding rectangles
@@ -166,10 +166,10 @@ private:
     bool drawSettings[7] = {true, true, true, true, true, true, true};
 
     //write text to console
-    bool showFrameStatus = true;
+    bool showFrameStatus = false;
 
     //write video file information
-    bool showFileInfo = true;
+    bool showFileInfo = false;
 
     //vectors that are saved for final processing step
     vector<vector<Rect>> memoryRects; //list of all rectangles

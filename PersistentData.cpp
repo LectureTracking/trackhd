@@ -21,12 +21,13 @@
 #include "PersistentData.h"
 
 
-void PersistentData::setVideoInfo(int f, int t, cv::Size s)
+void PersistentData::setVideoInfo(int f, int t, cv::Size s, int ext)
 {
     if(!videoInfoSet){
         fps = f;
         totalFrames = t;
         videoDimension = s;
+        ext_int = ext;
         videoInfoSet = true;
     }
 

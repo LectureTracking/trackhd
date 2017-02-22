@@ -41,11 +41,12 @@ public:
     int totalFrames; //Number of frames
     cv::Size videoDimension;
 
-    void setVideoInfo(int f, int t, cv::Size s);
+    void setVideoInfo(int f, int t, cv::Size s, int ext);
 
-    std::string saveFileExtension = "flv"; //Default save extension
+    std::string saveFileExtension = "mp4"; //Default save extension
     std::string inputFileName = "";
-
+    int ext_int; //The int version of the file extension
+    int codec; //Default codec for mp4
     cv::Size panOutputVideoSize = cv::Size(1280, 720);
     std::string outputVideoFilenameSuffix = "";
 

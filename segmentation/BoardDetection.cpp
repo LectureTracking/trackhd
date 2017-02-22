@@ -38,17 +38,11 @@ bool initialLoop = true;
 
 double boardFoundThresh = 0.4;
 
-VideoWriter boardVid;
-
-Mat debugFrame;
-
 IlluminationCorrection illuminationCorrection;
 
 BoardDetection::BoardDetection()
 {
 
-
-    boardVid.open("boardDebug.flv", CV_FOURCC('F', 'L', 'V', '1'), 1, cv::Size(3840, 2160), 1);
 
 }
 
@@ -77,8 +71,7 @@ void BoardDetection::extractBoards(std::vector<Mat> &frames, PersistentData &pD)
             break;
         }
         Mat frame = frames[i];
-        debugFrame = frames[i];
-        //illuminationCorrection.applyCLAHE(frame);
+        illuminationCorrection.applyCLAHE(frame);
 
         //Find the cropping area
         boardRectangles.clear();
@@ -113,16 +106,6 @@ void BoardDetection::extractBoards(std::vector<Mat> &frames, PersistentData &pD)
                         leftK += b.numFeatures;
                     }
 
-                    color = Scalar(255, 0, 0);
-                    rectangle(debugFrame, b.boundingRectangle.tl(), b.boundingRectangle.br(), color, 2, 8, 0);
-
-                    putText(debugFrame, ("Blackboard " + to_string(a) + " (" + to_string(b.numFeatures) + ")"),
-                            Point(b.boundingRectangle.x, b.boundingRectangle.y), FONT_HERSHEY_PLAIN, 4.0,
-                            color, 4.0);
-                    drawKeypoints(debugFrame(b.boundingRectangle), b.featurePoints, debugFrame(b.boundingRectangle), Scalar::all(-1),
-                                  DrawMatchesFlags::DEFAULT);
-
-
                     break;
                 case PROJECTORSCREEN:
                     if (isContained(b.boundingRectangle, rightHalf))
@@ -133,14 +116,6 @@ void BoardDetection::extractBoards(std::vector<Mat> &frames, PersistentData &pD)
                         projectorUsedLeft = true;
                     }
 
-                    color = Scalar(0, 255, 0);
-                    rectangle(debugFrame, b.boundingRectangle.tl(), b.boundingRectangle.br(), color, 2, 8, 0);
-
-                    putText(debugFrame, ("Projector Screen " + to_string(a) + " (" + to_string(b.numFeatures) + ")"),
-                            Point(b.boundingRectangle.x, b.boundingRectangle.y), FONT_HERSHEY_PLAIN, 4.0,
-                            color, 4.0);
-                    drawKeypoints(debugFrame(b.boundingRectangle), b.featurePoints, debugFrame(b.boundingRectangle), Scalar::all(-1),
-                                  DrawMatchesFlags::DEFAULT);
             }
         }
 
@@ -157,62 +132,17 @@ void BoardDetection::extractBoards(std::vector<Mat> &frames, PersistentData &pD)
             {
                 //Left board used
                 leftBoardUsed = true;
-                cout << "Left used" << endl;
             }
 
             if (rightK > rightKeyPointInitial + keyPointChangeThresh)
             {
                 //right board used
                 rightBoardUsed = true;
-                cout << "Right used" << endl;
             }
 
             //Now apply this update back to the metaframe
             pD.metaFrameVector.push_back(
                     MetaFrame(true, leftBoardUsed, rightBoardUsed, projectorUsedLeft, projectorUsedRight));
-        }
-
-
-        for (int a = 0; a < boardColumnRectangles.size(); a++)
-        {
-            Scalar color = Scalar(0, 0, 255);
-            Rect boardRect = boardColumnRectangles.at(a).boundingRectangle;
-
-            //drawContours( drawing, contours_poly, i, color, 1, 8, vector<Vec4i>(), 0, Point() );
-            rectangle(debugFrame, boardRect.tl(), boardRect.br(), color, 2, 8, 0);
-
-            if (isContained(boardRect, leftHalf))
-            {
-                if (leftBoardUsed)
-                {
-                    putText(debugFrame,
-                            ("Board Column " + to_string(a) + " - USED"),
-                            Point(boardRect.x, boardRect.y), FONT_HERSHEY_PLAIN, 4.0,
-                            color, 4.0);
-                } else
-                {
-                    putText(debugFrame,
-                            ("Board Column " + to_string(a)),
-                            Point(boardRect.x, boardRect.y), FONT_HERSHEY_PLAIN, 4.0,
-                            color, 4.0);
-                }
-            } else
-            {
-                if (rightBoardUsed)
-                {
-                    putText(debugFrame,
-                            ("Board Column " + to_string(a) + " - USED"),
-                            Point(boardRect.x, boardRect.y), FONT_HERSHEY_PLAIN, 4.0,
-                            color, 4.0);
-                } else
-                {
-                    putText(debugFrame,
-                            ("Board Column " + to_string(a)),
-                            Point(boardRect.x, boardRect.y), FONT_HERSHEY_PLAIN, 4.0,
-                            color, 4.0);
-                }
-            }
-
         }
 
 
@@ -222,7 +152,6 @@ void BoardDetection::extractBoards(std::vector<Mat> &frames, PersistentData &pD)
             finalCrop = cropRegion;
             pD.boardsFound = true;
             pD.boardCropRegion = cropRegion;
-            cout << "Board was found" << endl;
         } else
         {
             //If the new area found is bigger than current crop area --> Update current crop area to new
@@ -230,18 +159,6 @@ void BoardDetection::extractBoards(std::vector<Mat> &frames, PersistentData &pD)
             {
                 // pD.boardCropRegion = cropRegion;
             }
-            //cerr << "Crop NOT found!!! " << "The current crop region is " << cropRegion.area() << " and the desired area is "  << int(boardFoundThresh*sizeOfFrames.area()) <<  endl;
-        }
-
-
-        if (pD.boardsFound)
-        {
-            Scalar color = Scalar(0, 0, 0);
-            rectangle(debugFrame, pD.boardCropRegion.tl(), pD.boardCropRegion.br(), color, 2, 8, 0);
-
-            putText(debugFrame, "Final Crop Region",
-                    Point(pD.boardCropRegion.x + 1200, pD.boardCropRegion.y), FONT_HERSHEY_PLAIN, 4.0,
-                    color, 4.0);
         }
 
     }
@@ -347,7 +264,6 @@ void BoardDetection::findBoards(std::vector<cv::Rect> &allRectangles, std::vecto
     int boardIdCounter = 0;
     int projectorIdCounter = 0;
 
-
     vector<Rect> rectanglesToKeep;
     //Loop over all rectangles
     for (int i = 0; i < allRectangles.size(); i++)
@@ -446,7 +362,8 @@ void BoardDetection::removeOverlappingRectangles(vector<BoardDetection::BoardRec
 
 }
 
-void BoardDetection::findBoardColumns(std::vector<cv::Rect> &allRectangles, std::vector<BoardRectangleStruct> &boardColumnsR)
+void
+BoardDetection::findBoardColumns(std::vector<cv::Rect> &allRectangles, std::vector<BoardRectangleStruct> &boardColumnsR)
 {
 
     ///-------------------------------------------///
