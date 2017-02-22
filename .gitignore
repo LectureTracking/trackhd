@@ -8,6 +8,7 @@ build/
 *.avi
 *.cbp
 *.cmake
+*.exe
 cmake-build-debug/
 cmake/
 build/
