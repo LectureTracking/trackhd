@@ -23,8 +23,8 @@ $ sudo apt-get install cmake git build-essential libgtk2.0-dev pkg-config libavc
 ```
 
 #### Downloading and Installing the OpenCV libraries
-Next, we need to download and install the OpenCV libraries.
-The needed OpenCV library comes in two components. First download the core OpenCV library. Choose any directory as your directory to download these files into.
+The next step is to download and install the OpenCV libraries.
+The necessary OpenCV library comes in two components. First download the core OpenCV library. Choose any directory as your download destination directory.
 Clone OpenCV from Git as follows:
 ```
 $ cd <your_chosen_working_directory>
@@ -40,7 +40,7 @@ The next step is to build OpenCV.
 
 #### Building the OpenCV library
 
-Firstly change into the OpenCV directory (installation destination). There should be two folders, one is the main OpenCV library and the other contains the Extra modules.
+Firstly change into the OpenCV directory (download destination). There should be two folders, one is the main OpenCV library and the other contains the Extra modules.
 
 ```
 $ cd <your_chosen_working_directory>
@@ -61,13 +61,13 @@ The path decribed below is an example. Fill in the directory path on your machin
 ```
 cmake -DOPENCV_EXTRA_MODULES_PATH=<OpenCV Extra Modules Folder Path>/modules ../
 ```
-Next, we need to make these files:
+Next step is to make these files:
 
 ```
 $ make -j8
 ```
 
-Finally, we need to install these modules. Run the following command:
+Finally, install these modules by running the following command:
 ```
 $ sudo make install
 ```
@@ -78,8 +78,8 @@ Run the program as follows:
 ```
 $ ./Track4K <inputVideoFileName.extension> <outputVideoFileName.extension> <outputFrameWidth> <outputFrameHeight> [FOURCC Codec code]
 ```
-The FOURCC codec parameter is optional (default CODEC is X264).
-To see all available codecs, visit [FOURCC](https://www.fourcc.org/codecs.php)
+The FOURCC CODEC parameter is optional (default CODEC is X264).
+To see all available CODECs, visit [FOURCC](https://www.fourcc.org/codecs.php)
 
 ## Built With
 
