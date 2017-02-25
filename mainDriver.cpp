@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
 
 
     for (int i = 0; i < rR->size(); i++) {
-        persistentData.vals.push_back(std::move(rR->at(i)));
+        persistentData.lecturerTrackedLocationRectangles.push_back(std::move(rR->at(i)));
     }
 
     persistentData.skipFrameMovementDetection = move.getFrameSkipReset();

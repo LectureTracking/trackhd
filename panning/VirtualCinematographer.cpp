@@ -24,6 +24,8 @@
 using namespace cv;
 using namespace std;
 
+int skipLecturePosition = 2; //Only process every second point of lecturers position (Helps filter noisy movement/jitter out)
+
 /**
  * Main method for the Virtual Cinematographer module
  * @param persistentData
@@ -37,28 +39,34 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
     long int y_value = 0;
 
     //Generate this fixed y-value from average y-value of all lecture positions
-    for (int i = 0; i < persistentData.vals.size(); i++) {
-        y_value += ((persistentData.vals.at(i).tl().y + (persistentData.vals.at(i).height / 2)));
+    for (int i = 0; i < persistentData.lecturerTrackedLocationRectangles.size(); i++) {
+        y_value += ((persistentData.lecturerTrackedLocationRectangles.at(i).tl().y +
+                     (persistentData.lecturerTrackedLocationRectangles.at(i).height / 2)));
     }
 
-    y_value = y_value / persistentData.vals.size();
+    y_value = y_value / persistentData.lecturerTrackedLocationRectangles.size();
 
     //Add an offset to the y-value
-    int y = y_value - 600;
+    int y = y_value - 500;
 
     //Remove every second point as we dont need that accuracy, only general direction of lecturer
-    for (int i = 0; i < persistentData.vals.size(); i += 2) {
-        if (i > persistentData.vals.size()) {
+    for (int i = 0; i < persistentData.lecturerTrackedLocationRectangles.size(); i += skipLecturePosition) {
+        if (i > persistentData.lecturerTrackedLocationRectangles.size()) {
             break;
         }
-        int x = ((persistentData.vals.at(i).tl().x + (persistentData.vals.at(i).width / 2)));
-        int y = persistentData.vals.at(i).y;
+        int x = ((persistentData.lecturerTrackedLocationRectangles.at(i).tl().x +
+                  (persistentData.lecturerTrackedLocationRectangles.at(i).width / 2)));
+        int y = persistentData.lecturerTrackedLocationRectangles.at(i).y;
 
         lectPoints.push_back(Point(x, y));
     }
 
     PresenterMotion presenterMotion;
-    presenterMotion.generateMotionLines(lectPoints, 4 * 2);
+    presenterMotion.generateMotionLines(lectPoints, (persistentData.skipFrameMovementDetection + 1) * skipLecturePosition);
+    //4*2 because tracking section evaluates every 4th frame
+    // and here we evaluate every 2nd one of those points, so essentially
+    // we evaluating every 8th frame from the original video file
+
     presenterMotion.cullMotion(150, y);
 
     vector<PresenterMotion::Movement> movementLines;
@@ -69,22 +77,11 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
     vector<Rect> cropRectangles;
     panLogic.doPan(movementLines, cropRectangles);
 
-
-    cout << persistentData.outputVideoFilenameSuffix + "." + persistentData.saveFileExtension << endl;
-    cout << "BoardSegment-" << persistentData.outputVideoFilenameSuffix + persistentData.saveFileExtension << endl;
-    cout << persistentData.codec << endl;
-
     //Create video writer object for writing the cropped output video
     VideoWriter outputVideo;
     outputVideo.open(persistentData.outputVideoFilenameSuffix + "." + persistentData.saveFileExtension,
                      persistentData.codec, persistentData.fps, persistentData.panOutputVideoSize, 1);
 
-    //Create video writer object to write the segmented board stream
-    VideoWriter outputBoardSegment;
-    outputBoardSegment.open(
-            "BoardSegment-" + persistentData.outputVideoFilenameSuffix + "." + persistentData.saveFileExtension,
-            persistentData.codec, persistentData.fps,
-            Size(persistentData.boardCropRegion.width, persistentData.boardCropRegion.height), 1);
 
     //Open original input video file
     FileReader fileReader;
@@ -97,8 +94,9 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
 
         fileReader.getNextFrame(drawing);
 
-        outputVideo.write(drawing(cropRectangles[i]));
-        outputBoardSegment.write(drawing(persistentData.boardCropRegion));
+        if (!fileReader.isEndOfFile()) {
+            outputVideo.write(drawing(cropRectangles[i]));
+        }
 
         drawing.release();
 
@@ -106,6 +104,5 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
 
     //Close all file writers
     outputVideo.release();
-    outputBoardSegment.release();
     fileReader.getInputVideo().release();
 }

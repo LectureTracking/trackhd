@@ -33,7 +33,7 @@ private:
     bool videoInfoSet = false;
 public:
     //Store the areas of motion. Each vector stores x frames worth of motion
-    int areasOfMotionOverNumberOfFrames = 290;
+    int segmentationNumFramesToProcessPerIteration = 29; // number of frames that will be read into memory
     std::vector<Rect> areasOfMotion;
     std::vector<MetaFrame> metaFrameVector;
 
@@ -50,7 +50,7 @@ public:
     cv::Size panOutputVideoSize = cv::Size(1280, 720);
     std::string outputVideoFilenameSuffix = "";
 
-    vector<Rect> vals;
+    vector<Rect> lecturerTrackedLocationRectangles;
     int skipFrameMovementDetection;
 
     int boardDetectionSkipFrames = 28*2;

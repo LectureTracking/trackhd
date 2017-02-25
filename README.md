@@ -81,6 +81,9 @@ $ ./Track4K <inputVideoFileName.extension> <outputVideoFileName.extension> <outp
 The FOURCC CODEC parameter is optional (default CODEC is X264).
 To see all available CODECs, visit [FOURCC](https://www.fourcc.org/codecs.php)
 
+###Memory Requirements
+The program reads a maximum of 29 frames into memory at a time. So a minimum of 4GB RAM should be sufficient.
+
 ## Built With
 
 * [OpenCV](http://www.opencv.org) - The computer vision library of choice

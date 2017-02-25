@@ -769,7 +769,7 @@ double MovementDetection::positionWeighting(Rect r, long onScreenTime) {
     distX /= center.x; //get x ratio
     distY /= center.y; //get y ratio
 
-    //pair of ratiod vals
+    //pair of ratiod lecturerTrackedLocationRectangles
     double ratioX;
     double ratioY;
     ratioX = onScreenTime * (distX * distX);

@@ -22,6 +22,8 @@
 
 #include "MotionDetection.h"
 #include "Track4KPreProcess.h"
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 using namespace cv;
@@ -44,13 +46,29 @@ void Track4KPreProcess::preProcessDriver(PersistentData &persistentData)
     while (!fileReader.isEndOfFile())
     {
         //Read in frames
-        fileReader.getNextSegment(persistentData.areasOfMotionOverNumberOfFrames, frameVector);
+        fileReader.getNextSegment(persistentData.segmentationNumFramesToProcessPerIteration, frameVector);
 
+        ///Unused feature - intended to speed up tracking section search space in future
         //Detect areas of motion
-        motionDetection.subtract(frameVector, persistentData);
+        //motionDetection.subtract(frameVector, persistentData);
 
         //Detect the boards
         boardDetection.extractBoards(frameVector, persistentData);
+
+    }
+
+    //If board crop was found, write this coordinates to text file
+    if(persistentData.boardsFound){
+        int out_w = persistentData.boardCropRegion.width;
+        int out_h = persistentData.boardCropRegion.height;
+        int out_x = persistentData.boardCropRegion.tl().x;
+        int out_y = persistentData.boardCropRegion.tl().y;
+
+
+        ofstream outTextFile;
+        outTextFile.open ("boardCropCoordinates.txt");
+        outTextFile << out_w << ":" << out_h << ":" << out_x << ":" << out_y;
+        outTextFile.close();
 
     }
 
