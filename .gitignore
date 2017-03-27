@@ -13,3 +13,4 @@ cmake-build-debug/
 cmake/
 build/
 CMakeFiles/
+CMakeCache.txt
