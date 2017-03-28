@@ -14,3 +14,6 @@ cmake/
 build/
 CMakeFiles/
 CMakeCache.txt
+Makefile
+boardCropCoordinates.txt
+Track4K

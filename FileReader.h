@@ -30,7 +30,7 @@ class FileReader
 private:
     cv::VideoCapture inputVideo;
     cv::Mat frame; //current frame
-    int fps; //Frame Rate
+    float fps; //Frame Rate
     int numFrames; //Number of frames
     int videoDuration;
     cv::Size videoDimension;

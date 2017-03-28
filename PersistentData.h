@@ -37,11 +37,11 @@ public:
     std::vector<Rect> areasOfMotion;
     std::vector<MetaFrame> metaFrameVector;
 
-    int fps; //Frame Rate
+    float fps; //Frame Rate
     int totalFrames; //Number of frames
     cv::Size videoDimension;
 
-    void setVideoInfo(int f, int t, cv::Size s, int ext);
+    void setVideoInfo(float f, int t, cv::Size s, int ext);
 
     std::string saveFileExtension = "mp4"; //Default save extension
     std::string inputFileName = "";

@@ -21,7 +21,7 @@
 #include "PersistentData.h"
 
 
-void PersistentData::setVideoInfo(int f, int t, cv::Size s, int ext)
+void PersistentData::setVideoInfo(float f, int t, cv::Size s, int ext)
 {
     if(!videoInfoSet){
         fps = f;
