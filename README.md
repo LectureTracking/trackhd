@@ -6,11 +6,11 @@ These instructions will help get the program and all its dependencies set up on 
 
 ### Prerequisites
 These instructions are written with the assumption that the project will be installed on a Linux-based system (preferably a Debian version). To be able to run this project, you will need to first install the following dependencies:
-* OpenCV 3
-* OpenCV Extra Modules
-* C++ Libraries
-* CMake
-* git
+* OpenCV 3 (3.2.0 or future releases)
+* OpenCV Extra Modules (latest version on repository)
+* C++ Libraries (6.3 or future releases)
+* CMake (3.8.0 or future releases)
+* git (2.10.2 or future releases)
 
 ### Installation
 
@@ -27,7 +27,7 @@ The next step is to download and install the OpenCV libraries.
 The necessary OpenCV library comes in two components. First download the core OpenCV library. Choose any directory as your download destination directory.
 Clone OpenCV from Git as follows:
 ```
-$ cd <your_chosen_working_directory>
+$ cd `your_chosen_working_directory`
 $ git clone https://github.com/opencv/opencv
 
 ```
@@ -39,27 +39,31 @@ You should now have two folders in your working directory.
 The next step is to build OpenCV.
 
 #### Building the OpenCV library
-
-Firstly change into the OpenCV directory (download destination). There should be two folders, one is the main OpenCV library and the other contains the Extra modules.
+Your Chosen directory now contains two folders, opencv and opencv_contrib. The opencv folder contains the main OpenCV libraries and opencv_contib contains the extra modules.
 
 ```
-$ cd <your_chosen_working_directory>
+$ cd `your_chosen_working_directory`
 ```
-Inside the main OpenCV folder, change directory into the build folder and remove all files, since it will require rebuilding. To rebuild OpenCV run the following command from within the build folder:
+Inside the main OpenCV folder, change directory into the build folder (create one if it does not exist) and remove all files, since it will require rebuilding. To rebuild OpenCV run the following command from within the build folder:
 
 ```
 $ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
 ```
-This step will generate a MakeFile. Once complete perform the following command to run make faster (the number after the j-flag is the number of processors the job will use).
+This step will generate a MakeFile. Once complete perform the following command to run make faster (the number after the j-flag is the number of processors the job will use). If you are not sure how many processors the machine has use the following instruction to find out:
 
 ```
-$ make -j8
+cat/proc/cpuinfo | grep processor | wc -l
+```
+Use the result from this in the j-flag
+
+```
+$ make -j`processor_count`
 ```
 Remain in the build folder and run the following cmake command to make the extra modules.
 The path decribed below is an example. Fill in the directory path on your machine which points to the OpenCV Extra modules folder.
 
 ```
-cmake -DOPENCV_EXTRA_MODULES_PATH=<OpenCV Extra Modules Folder Path>/modules ../
+cmake -DOPENCV_EXTRA_MODULES_PATH=`OpenCV_Extra_Modules_Folder_Path`/modules ../
 ```
 Next step is to make these files:
 
@@ -71,12 +75,28 @@ Finally, install these modules by running the following command:
 ```
 $ sudo make install
 ```
+#### Building Track4K
 
-## Running the program
+The trackhd directory should have 2 main folders inside it: source and build. The source folder comntains all the header and source files while the build file contains all object files and executables.
+The first step is to navigate into the build folder. Once inside run delete all files (if any) and then type the following command in terminal:
+
+```
+cmake ../source
+```
+Now it is possible to run the build instruction:
+
+```
+make -j`number_of_processors`
+```
+You can now install the project to /usr/local/bin/ by running the following command:
+```
+make install
+```
+#### Running Track4K
 
 Run the program as follows:
 ```
-$ ./Track4K <inputVideoFileName.extension> <outputVideoFileName.extension> <outputFrameWidth> <outputFrameHeight> [FOURCC Codec code]
+$ ./track4k `inputVideoFileName.extension` `outputVideoFileName.extension` `outputFrameWidth` `outputFrameHeight` [FOURCC Codec code]
 ```
 The FOURCC CODEC parameter is optional (default CODEC is X264).
 To see all available CODECs, visit [FOURCC](https://www.fourcc.org/codecs.php)
