@@ -76,6 +76,18 @@ Finally, install these modules by running the following command:
 $ sudo make install
 ```
 #### Building Track4K
+##### Automatic Method
+There is a shell script in the trackhd folder called intall_track4k.sh which can be used to install track4k automatically.
+To use this script run the following command:
+
+```
+sudo ./install_track4k.sh
+```
+
+This will run all the steps listed in the manual method mentioned below.
+
+##### Manual Method
+This method is for the case where the automatic method does not work. It does everything the shell script does manually.
 
 The trackhd directory should have 2 main folders inside it: source and build. The source folder comntains all the header and source files while the build file contains all object files and executables.
 The first step is to navigate into the build folder. Once inside run delete all files (if any) and then type the following command in terminal:
@@ -90,7 +102,7 @@ make -j`number_of_processors`
 ```
 You can now install the project to /usr/local/bin/ by running the following command:
 ```
-make install
+sudo make install
 ```
 #### Running Track4K
 
