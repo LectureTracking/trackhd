@@ -53,7 +53,7 @@ void Track4KPreProcess::preProcessDriver(PersistentData &persistentData)
         //motionDetection.subtract(frameVector, persistentData);
 
         //Detect the boards
-        boardDetection.extractBoards(frameVector, persistentData);
+        //boardDetection.extractBoards(frameVector, persistentData);
 
     }
 
