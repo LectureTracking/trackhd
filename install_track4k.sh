@@ -17,7 +17,7 @@ cmake ../source/
 echo "STAGE 3/4: Executing make operation..." 
 make $jFlag$numCores
 
-echo "STAGE 4/4: Insalling..." 
+echo "STAGE 4/4: Installing..."
 sudo make install
 
 echo "Complete!"
