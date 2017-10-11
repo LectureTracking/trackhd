@@ -2,10 +2,12 @@
 
 echo "Installing TRACK4K" 
 jFlag="-j"
-numCores= cat /proc/cpuinfo | grep processor | wc -l
+numCores=`cat /proc/cpuinfo | grep processor | wc -l`
+
+echo Cores: $numCores
 
 echo "STAGE 1/4: Removing previous builds..." 
-rm -r build
+rm -rf build
 mkdir build
 cd build
 
