@@ -40,17 +40,17 @@ int main(int argc, char *argv[]) {
     cv::Size saveDimensions;
 
     //Check if input of command line parameters are valid
-    if (argc == 6) {
+    if (argc == 7) {
         string codecInput = argv[5];
         persistentData.codec = CV_FOURCC(codecInput[0], codecInput[1], codecInput[2], codecInput[3]);
-
-    } else if (argc == 5) {
+    } else if (argc == 6) {
         //Use default codec
         persistentData.codec = CV_FOURCC('X', '2', '6', '4');
-
     } else {
         cerr
-                << "The number of parameters entered were incorrect. Expected track4k.exe <inputFileName.extension> <outputFileName.extension> <crop width> <crop height> [FOURCC Codec] \n See http://www.fourcc.org/codecs.php for available codecs. The default codec of X264 for mp4 will be used, if none is specified!"
+		<< "\ntrack4k build UCT 2017-10-12a\n\n"
+                << "Parameters:\n  track4k <inputFileName> <outputFileName> <output-width> <output-height> <padding-frames> [FOURCC Codec]\n\n"
+                << "See http://www.fourcc.org/codecs.php for available codecs. The default codec of X264 for mp4 will be used, if none is specified!\n"
                 << endl;
         return -1;
     }
@@ -69,12 +69,15 @@ int main(int argc, char *argv[]) {
     cropHeight = stoi(argv[4]);
     saveDimensions = cv::Size(cropWidth, cropHeight);
 
+    // Padding frames
+    int padding = stoi(argv[5]);
 
     //Update this information in PersistantData
     persistentData.inputFileName = inputFilename;
     persistentData.outputVideoFilenameSuffix = outputFilename.substr(0,outputFilename.find_first_of('.'));
     persistentData.saveFileExtension = outputFileExtension;
     persistentData.panOutputVideoSize = saveDimensions;
+    persistentData.outputPadding = padding;
 
     cout << "\n----------------------------------------" << endl;
     cout << "Stage [1 of 3] - Board Segmentation" << endl;

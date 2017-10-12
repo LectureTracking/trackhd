@@ -96,6 +96,13 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
 
         if (!fileReader.isEndOfFile()) {
             outputVideo.write(drawing(cropRectangles[i]));
+
+            // Pad the start of the video if necessary
+            if ((i == 0) && (persistentData.outputPadding > 0)) {
+		for (int j = 0; j < persistentData.outputPadding; j++) {
+                    outputVideo.write(drawing(cropRectangles[i]));
+                }
+            }
         }
 
         drawing.release();

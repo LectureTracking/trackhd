@@ -58,7 +58,8 @@ public:
     bool boardsFound = false;
     cv::Rect boardCropRegion;
 
+    // Number of frames to repeat at the start of the output video
+    int outputPadding = 0;
 };
-
 
 #endif //TRACK4K_PERSISTENTDATA_H
