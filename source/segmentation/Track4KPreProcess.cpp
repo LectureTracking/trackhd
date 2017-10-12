@@ -31,6 +31,8 @@ using namespace cv;
 void Track4KPreProcess::preProcessDriver(PersistentData &persistentData)
 {
 
+    int skip = 1;
+
     vector<Mat> frameVector;
 
     //Read in video file
@@ -43,7 +45,7 @@ void Track4KPreProcess::preProcessDriver(PersistentData &persistentData)
 
     //Keep reading in frames from the video file until the end is reached.
     //Number of frames to read on each iteration is defined in the PersistentData class
-    while (!fileReader.isEndOfFile())
+    while (!skip && !fileReader.isEndOfFile())
     {
         //Read in frames
         fileReader.getNextSegment(persistentData.segmentationNumFramesToProcessPerIteration, frameVector);
