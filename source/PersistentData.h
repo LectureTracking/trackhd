@@ -38,6 +38,7 @@ public:
     std::vector<MetaFrame> metaFrameVector;
 
     double fps; //Frame Rate
+    double outputFps; // Output Frame Rate
     int totalFrames; //Number of frames
     cv::Size videoDimension;
 

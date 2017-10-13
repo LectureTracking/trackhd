@@ -77,10 +77,12 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
     vector<Rect> cropRectangles;
     panLogic.doPan(movementLines, cropRectangles);
 
+    cout << "Writing output file " << persistentData.outputVideoFilenameSuffix << "." << persistentData.saveFileExtension << endl;
+
     //Create video writer object for writing the cropped output video
     VideoWriter outputVideo;
     outputVideo.open(persistentData.outputVideoFilenameSuffix + "." + persistentData.saveFileExtension,
-                     persistentData.codec, persistentData.fps, persistentData.panOutputVideoSize, 1);
+                     persistentData.codec, persistentData.outputFps, persistentData.panOutputVideoSize, 1);
 
     //Open original input video file
     FileReader fileReader;
@@ -89,6 +91,8 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
     Mat drawing;
 
     //Loop over all frames in the input video and save the cropped frames to a stream as well as the board segment
+    cout << "Crop rectangles: " << cropRectangles.size() << endl;
+
     for (int i = 0; i < cropRectangles.size(); i++) {
 
         fileReader.getNextFrame(drawing);
@@ -98,6 +102,7 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
 
             // Pad the start of the video if necessary
             if ((i == 0) && (persistentData.outputPadding > 0)) {
+                cout << "Writing " << persistentData.outputPadding << " padding frames" << endl;
 		for (int j = 0; j < persistentData.outputPadding; j++) {
                     outputVideo.write(drawing(cropRectangles[i]));
                 }
@@ -105,10 +110,9 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
         }
 
         drawing.release();
-
     }
 
-    //Close all file writers
+    // Close all file writers
     outputVideo.release();
     fileReader.getInputVideo().release();
 }

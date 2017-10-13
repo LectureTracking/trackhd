@@ -84,7 +84,7 @@ void FileReader::getNextSegment(int segSize, std::vector<MetaFrame> &frameVec)
         //read the current frame
         if (!inputVideo.read(frame))
         {
-            cerr << "End of video file" << endl;
+            cerr << "End of video file in getNextSegment()" << endl;
             endOfFile = true;
             break; //If end of video file
         }
@@ -122,7 +122,7 @@ void FileReader::getNextFrame(cv::Mat &frame)
         //read the current frame
         if (!inputVideo.read(frame))
         {
-            cerr << "End of video file" << endl;
+            cerr << "End of video file in getNextFrame()" << endl;
             endOfFile = true;
         }
 

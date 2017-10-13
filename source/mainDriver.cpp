@@ -40,16 +40,16 @@ int main(int argc, char *argv[]) {
     cv::Size saveDimensions;
 
     //Check if input of command line parameters are valid
-    if (argc == 7) {
-        string codecInput = argv[5];
+    if (argc == 8) {
+        string codecInput = argv[7];
         persistentData.codec = CV_FOURCC(codecInput[0], codecInput[1], codecInput[2], codecInput[3]);
-    } else if (argc == 6) {
+    } else if (argc == 7) {
         //Use default codec
         persistentData.codec = CV_FOURCC('X', '2', '6', '4');
     } else {
         cerr
-		<< "\ntrack4k build UCT 2017-10-13a\n\n"
-                << "Parameters:\n  track4k <inputFileName> <outputFileName> <output-width> <output-height> <padding-frames> [FOURCC Codec]\n\n"
+		<< "\ntrack4k build UCT " << __DATE__ << " " << __TIME__ << "\n\n"
+                << "Parameters:\n  track4k <inputFileName> <outputFileName> <output-width> <output-height> <padding-frames> <frame-rate> [FOURCC Codec]\n\n"
                 << "See http://www.fourcc.org/codecs.php for available codecs. The default codec of X264 for mp4 will be used, if none is specified!\n"
                 << endl;
         return -1;
@@ -63,7 +63,6 @@ int main(int argc, char *argv[]) {
     inputFileExtension = inputFilename.substr(inputFilename.find_first_of('.') + 1);
     outputFileExtension = outputFilename.substr(outputFilename.find_first_of('.') + 1);
 
-
     //Extract the crop dimensions from the parameters
     cropWidth = stoi(argv[3]);
     cropHeight = stoi(argv[4]);
@@ -72,12 +71,18 @@ int main(int argc, char *argv[]) {
     // Padding frames
     int padding = stoi(argv[5]);
 
+    // Target framerate
+    double targetFps = stod(argv[6]);
+
     //Update this information in PersistantData
     persistentData.inputFileName = inputFilename;
     persistentData.outputVideoFilenameSuffix = outputFilename.substr(0,outputFilename.find_first_of('.'));
     persistentData.saveFileExtension = outputFileExtension;
     persistentData.panOutputVideoSize = saveDimensions;
     persistentData.outputPadding = padding;
+    persistentData.outputFps = targetFps;
+
+    cout << "track4k build UCT " << __DATE__ << " " << __TIME__ << endl;
 
     cout << "\n----------------------------------------" << endl;
     cout << "Stage [1 of 3] - Board Segmentation (skip)" << endl;
@@ -97,13 +102,11 @@ int main(int argc, char *argv[]) {
     cout << "\nStage 2 Complete" << endl;
     cout << "----------------------------------------\n" << endl;
 
-
     for (int i = 0; i < rR->size(); i++) {
         persistentData.lecturerTrackedLocationRectangles.push_back(std::move(rR->at(i)));
     }
 
     persistentData.skipFrameMovementDetection = move.getFrameSkipReset();
-
 
     cout << "\n----------------------------------------" << endl;
     cout << "Stage [3 of 3] - Virtual Cinematographer" << endl;
@@ -112,6 +115,5 @@ int main(int argc, char *argv[]) {
     vc.cinematographerDriver(persistentData);
     cout << "\nStage 3 Complete" << endl;
     cout << "----------------------------------------\n" << endl;
-
 
 }
