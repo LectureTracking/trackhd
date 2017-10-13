@@ -385,7 +385,7 @@ MovementDetection::MovementDetection(string vidLocation, vector<Rect> *lect) {
 
     processTime = clock() - processTime;
 
-    cout << "Processing took: " << (processTime / 1000.0) << "s" << endl;
+    cout << "Processing took: " << int(processTime / CLOCKS_PER_SEC) << "s" << endl;
 
     cout << "Performing ghost adjustments!" << endl;
 
@@ -413,7 +413,7 @@ MovementDetection::MovementDetection(string vidLocation, vector<Rect> *lect) {
 
     time = (clock() - time);
 
-    cout << "Postprocessing took: " << (time) << "ms" << endl;
+    cout << "Postprocessing took: " << int(time / CLOCKS_PER_SEC) << "s" << endl;
 
     cout << "Finished processing!" << endl;
 

@@ -21,6 +21,9 @@
 #include "FileReader.h"
 #include "opencv2/opencv.hpp"
 
+#include <limits>
+#include <iomanip>
+
 using namespace std;
 using namespace cv;
 
@@ -28,11 +31,14 @@ bool FileReader::readFile(std::string filename, PersistentData &pD)
 {
     //read in video file
     inputVideo = VideoCapture(filename);
+
     if (!inputVideo.isOpened())
     {
         cout << "Could not open the input video: " << filename << endl;
         return -1;
     }
+
+    cout << "Reading video file: " << filename << endl;
 
     fps = inputVideo.get(CV_CAP_PROP_FPS); //Frame Rate
     numFrames = inputVideo.get(CV_CAP_PROP_FRAME_COUNT); //Number of frames
@@ -48,13 +54,12 @@ bool FileReader::readFile(std::string filename, PersistentData &pD)
     videoDimension = Size((int) inputVideo.get(CV_CAP_PROP_FRAME_WIDTH),    // Acquire input size
                           (int) inputVideo.get(CV_CAP_PROP_FRAME_HEIGHT));
 
-    //Print out progress info
-
+    // Print out progress info
     cout << "Input frame resolution: Width=" << videoDimension.width << "  Height=" << videoDimension.height
-         << " of nr#: " << numFrames << endl;
-    cout << "Input codec type: " << EXT << endl;
-    cout << "Video Duration (Seconds): " << videoDuration << endl;
-    cout << "FPS: " << fps << endl;
+         << " Frames=" << numFrames << endl;
+    // cout << "Input codec type: " << EXT << endl;
+    cout << "Calculated Video Duration (frames / fps): " << std::fixed << std::setprecision(3) << videoDuration << " seconds" << endl;
+    cout << "FPS: " <<  std::fixed << std::setprecision(6) << fps << endl;
 
     //Set video file info
     pD.setVideoInfo(fps, numFrames, videoDimension, ex);

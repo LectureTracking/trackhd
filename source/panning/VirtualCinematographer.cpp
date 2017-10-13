@@ -82,7 +82,6 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
     outputVideo.open(persistentData.outputVideoFilenameSuffix + "." + persistentData.saveFileExtension,
                      persistentData.codec, persistentData.fps, persistentData.panOutputVideoSize, 1);
 
-
     //Open original input video file
     FileReader fileReader;
     fileReader.readFile(persistentData.inputFileName, persistentData);
