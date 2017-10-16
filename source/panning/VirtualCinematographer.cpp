@@ -17,8 +17,11 @@
 //
 // Created by Mohamed Tanweer Khatieb on 2016/07/21.
 //
+
 #include "../segmentation/Track4KPreProcess.h"
 #include "VirtualCinematographer.h"
+
+#include <iostream>
 #include <fstream>
 
 using namespace cv;
@@ -77,42 +80,40 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
     vector<Rect> cropRectangles;
     panLogic.doPan(movementLines, cropRectangles);
 
-    cout << "Writing output file " << persistentData.outputVideoFilenameSuffix << "." << persistentData.saveFileExtension << endl;
+    ofstream cropdata;
+    cropdata.open(persistentData.outputFile);
 
-    //Create video writer object for writing the cropped output video
-    VideoWriter outputVideo;
-    outputVideo.open(persistentData.outputVideoFilenameSuffix + "." + persistentData.saveFileExtension,
-                     persistentData.codec, persistentData.outputFps, persistentData.panOutputVideoSize, 1);
-
-    //Open original input video file
-    FileReader fileReader;
-    fileReader.readFile(persistentData.inputFileName, persistentData);
-
-    Mat drawing;
-
-    //Loop over all frames in the input video and save the cropped frames to a stream as well as the board segment
-    cout << "Crop rectangles: " << cropRectangles.size() << endl;
-
-    for (int i = 0; i < cropRectangles.size(); i++) {
-
-        fileReader.getNextFrame(drawing);
-
-        if (!fileReader.isEndOfFile()) {
-            outputVideo.write(drawing(cropRectangles[i]));
-
-            // Pad the start of the video if necessary
-            if ((i == 0) && (persistentData.outputPadding > 0)) {
-                cout << "Writing " << persistentData.outputPadding << " padding frames" << endl;
-		for (int j = 0; j < persistentData.outputPadding; j++) {
-                    outputVideo.write(drawing(cropRectangles[i]));
-                }
-            }
-        }
-
-        drawing.release();
+    if (cropdata.is_open()) {
+       cout << "Writing cropping data to output file " << persistentData.outputFile << endl;
+    } else {
+       cerr << "Unable to write cropping data to output file " << persistentData.outputFile << endl;
+       return 1;
     }
 
+    //Loop over all frames in the input video and save the cropped frames to a stream as well as the board segment
+    cout << "Crop rectangles : " << cropRectangles.size() << endl;
+    cout << "Frames processed: " << persistentData.processedFrames << endl;
+
+    cropdata << "# track4k " << persistentData.inputFile << " " << persistentData.processedFrames 
+             << " frames (frame top-left-x top-left-y) output frame size " << persistentData.panOutputVideoSize << endl;
+
+    int last_x = -1;
+    int last_y =-1;
+
+    for (int i = 0; i < persistentData.processedFrames - 1; i++) {
+        if ((cropRectangles[i].x != last_x) || (cropRectangles[i].y != last_y)) {
+            cropdata << i << " " << cropRectangles[i].x << " " << cropRectangles[i].y << endl;
+            last_x = cropRectangles[i].x;
+            last_y = cropRectangles[i].y;
+        }
+    }
+
+    // Always write out the last frame
+    int i = persistentData.processedFrames - 1;
+    cropdata << i << " " << cropRectangles[i].x << " " << cropRectangles[i].y << endl;
+
     // Close all file writers
-    outputVideo.release();
-    fileReader.getInputVideo().release();
+    cropdata.close();
+
+    return 0;
 }

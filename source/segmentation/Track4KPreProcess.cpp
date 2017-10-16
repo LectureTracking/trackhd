@@ -37,7 +37,7 @@ void Track4KPreProcess::preProcessDriver(PersistentData &persistentData)
 
     //Read in video file
     FileReader fileReader;
-    fileReader.readFile(persistentData.inputFileName, persistentData);
+    fileReader.readFile(persistentData.inputFile, persistentData);
 
     //Create objects
     MotionDetection motionDetection; //Detects and segments overall merged motion over a given number of frames

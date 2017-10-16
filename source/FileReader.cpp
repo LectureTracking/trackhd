@@ -40,8 +40,8 @@ bool FileReader::readFile(std::string filename, PersistentData &pD)
 
     cout << "Reading video file: " << filename << endl;
 
-    fps = inputVideo.get(CV_CAP_PROP_FPS); //Frame Rate
-    numFrames = inputVideo.get(CV_CAP_PROP_FRAME_COUNT); //Number of frames
+    fps = inputVideo.get(CV_CAP_PROP_FPS); // Frame Rate
+    numFrames = inputVideo.get(CV_CAP_PROP_FRAME_COUNT); // Number of frames (may not be accurate)
 
     videoDuration = numFrames / fps; //Duration of video file in seconds
 
@@ -62,7 +62,7 @@ bool FileReader::readFile(std::string filename, PersistentData &pD)
     cout << "FPS: " <<  std::fixed << std::setprecision(6) << fps << endl;
 
     //Set video file info
-    pD.setVideoInfo(fps, numFrames, videoDimension, ex);
+    pD.setVideoInfo(fps, videoDimension, ex);
 
     return 0;
 
@@ -124,8 +124,11 @@ void FileReader::getNextFrame(cv::Mat &frame)
         {
             cerr << "End of video file in getNextFrame()" << endl;
             endOfFile = true;
+        } else {
+            // Appears to return a calculated position from frame and framerate rather than actual position
+            // long stamp = inputVideo.get( CV_CAP_PROP_POS_MSEC );
+            // std::cout << "Timestamp: " << stamp << std::endl;
         }
-
 }
 
 

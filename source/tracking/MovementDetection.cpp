@@ -29,7 +29,9 @@ using namespace std;
 VideoWriter maxS;
 
 
-MovementDetection::MovementDetection(string vidLocation, vector<Rect> *lect) {
+MovementDetection::MovementDetection(PersistentData &persistentData, vector<Rect> *lect) {
+
+    string vidLocation = persistentData.inputFile;
 
     //set vid directory and window name
     setVideoDir(vidLocation);
@@ -382,6 +384,8 @@ MovementDetection::MovementDetection(string vidLocation, vector<Rect> *lect) {
     cout << "Final frame count: " << frameNumber << endl;
 
     inputVideo.release();
+
+    persistentData.processedFrames = frameNumber;
 
     processTime = clock() - processTime;
 

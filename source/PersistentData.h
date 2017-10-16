@@ -29,27 +29,31 @@
 
 class PersistentData
 {
-private:
+  private:
     bool videoInfoSet = false;
-public:
+
+  public:
     //Store the areas of motion. Each vector stores x frames worth of motion
     int segmentationNumFramesToProcessPerIteration = 29; // number of frames that will be read into memory
     std::vector<Rect> areasOfMotion;
     std::vector<MetaFrame> metaFrameVector;
 
     double fps; //Frame Rate
-    double outputFps; // Output Frame Rate
-    int totalFrames; //Number of frames
+    int processedFrames; // Number of frames read during analysis
     cv::Size videoDimension;
 
-    void setVideoInfo(double f, int t, cv::Size s, int ext);
+    void setVideoInfo(double f, cv::Size s, int ext);
 
-    std::string saveFileExtension = "mp4"; //Default save extension
-    std::string inputFileName = "";
+    // Input file
+    std::string inputFile = "";
+
     int ext_int; //The int version of the file extension
     int codec; //Default codec for mp4
+
     cv::Size panOutputVideoSize = cv::Size(1280, 720);
-    std::string outputVideoFilenameSuffix = "";
+
+    // Output file (cropping data)
+    std::string outputFile = "";
 
     vector<Rect> lecturerTrackedLocationRectangles;
     int skipFrameMovementDetection;
@@ -58,9 +62,6 @@ public:
 
     bool boardsFound = false;
     cv::Rect boardCropRegion;
-
-    // Number of frames to repeat at the start of the output video
-    int outputPadding = 0;
 };
 
 #endif //TRACK4K_PERSISTENTDATA_H
