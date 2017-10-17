@@ -180,6 +180,7 @@ static int open_output_file(const char *filename, int width, int height)
                 // Quality
                 enc_ctx->flags |= CODEC_FLAG_QSCALE;
                 enc_ctx->global_quality = FF_QP2LAMBDA * 23;
+                av_opt_set(enc_ctx->priv_data, "crf", "23", AV_OPT_SEARCH_CHILDREN);
 
 		av_log(NULL, AV_LOG_INFO, "Output CTX timebase for stream %i is %i/%i\n", i, enc_ctx->time_base.num, enc_ctx->time_base.den);
             }
