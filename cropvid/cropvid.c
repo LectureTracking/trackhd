@@ -664,13 +664,13 @@ int main(int argc, char **argv)
                 if (first_frame && pre_keyframe) {
                     av_log(NULL, AV_LOG_INFO, "Writing %i frames from PTS %li for pre-keyframe buffer\n", pre_keyframe, pre_key_pts[0]);
                     for (int i=0; i < pre_keyframe; i++) {
-                      cropped->pts = pre_key_pts[i];
+                      cropped->pts = pre_key_pts[i] - first_pts;
                       ret = encode_write_frame(cropped, stream_index, &got_frame);
                     }
                     first_frame = 0;
-                    cropped->pts = frame->pts;
                 }
 
+                cropped->pts = frame->pts - first_pts;
                 ret = encode_write_frame(cropped, stream_index, &got_frame);
 
                 av_frame_free(&frame);
@@ -710,10 +710,6 @@ int main(int argc, char **argv)
             goto end;
         }
     }
-
-    ofmt_ctx->duration = last_pts - first_pts;
-
-    av_dump_format(ofmt_ctx, 0, argv[2], 1);
 
     av_write_trailer(ofmt_ctx);
 
