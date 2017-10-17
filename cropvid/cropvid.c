@@ -178,9 +178,17 @@ static int open_output_file(const char *filename, int width, int height)
                 enc_ctx->framerate = dec_ctx->framerate;
 
                 // Quality
-                enc_ctx->flags |= CODEC_FLAG_QSCALE;
-                enc_ctx->global_quality = FF_QP2LAMBDA * 23;
-                av_opt_set(enc_ctx->priv_data, "crf", "23", AV_OPT_SEARCH_CHILDREN);
+
+		// Ignored by libx264
+                // https://lists.ffmpeg.org/pipermail/ffmpeg-cvslog/2014-March/075524.html
+                // enc_ctx->flags |= CODEC_FLAG_QSCALE;
+                // enc_ctx->global_quality = FF_QP2LAMBDA * 23;
+
+                // https://lists.ffmpeg.org/pipermail/libav-user/2015-April/008027.html
+                ret = av_opt_set(enc_ctx->priv_data, "crf", "27", AV_OPT_SEARCH_CHILDREN);
+                if (ret == AVERROR_OPTION_NOT_FOUND) {
+		    av_log(NULL, AV_LOG_INFO, "Encoding option crf not found");
+                }
 
 		av_log(NULL, AV_LOG_INFO, "Output CTX timebase for stream %i is %i/%i\n", i, enc_ctx->time_base.num, enc_ctx->time_base.den);
             }
