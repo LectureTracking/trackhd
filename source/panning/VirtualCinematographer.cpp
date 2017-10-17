@@ -95,7 +95,8 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
     cout << "Frames processed: " << persistentData.processedFrames << endl;
 
     cropdata << "# track4k " << persistentData.inputFile << " " << persistentData.processedFrames 
-             << " frames (frame top-left-x top-left-y) output frame size " << persistentData.panOutputVideoSize << endl;
+             << " frames (frame top-left-x top-left-y) output frame size "
+             << persistentData.panOutputVideoSize.width << " " << persistentData.panOutputVideoSize.height << endl;
 
     int last_x = -1;
     int last_y =-1;
