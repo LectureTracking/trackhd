@@ -12,6 +12,8 @@ build/
 cmake-build-debug/
 cmake/
 build/
+cropvid/cropvid
+cropvid/*.txt
 CMakeFiles/
 CMakeCache.txt
 Makefile
