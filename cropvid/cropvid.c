@@ -40,18 +40,27 @@
 
 static AVFormatContext *ifmt_ctx;
 static AVFormatContext *ofmt_ctx;
+
 typedef struct FilteringContext {
     AVFilterContext *buffersink_ctx;
     AVFilterContext *buffersrc_ctx;
     AVFilterGraph *filter_graph;
 } FilteringContext;
+
 static FilteringContext *filter_ctx;
 
 typedef struct StreamContext {
     AVCodecContext *dec_ctx;
     AVCodecContext *enc_ctx;
 } StreamContext;
+
 static StreamContext *stream_ctx;
+
+typedef struct FrameCrop {
+    int frame;
+    int x;
+    int y;
+} FrameCrop;
 
 static int open_input_file(const char *filename)
 {
@@ -168,6 +177,10 @@ static int open_output_file(const char *filename, int width, int height)
                 enc_ctx->pkt_timebase = dec_ctx->pkt_timebase;
                 enc_ctx->framerate = dec_ctx->framerate;
 
+                // Quality
+                enc_ctx->flags |= CODEC_FLAG_QSCALE;
+                enc_ctx->global_quality = FF_QP2LAMBDA * 23;
+
 		av_log(NULL, AV_LOG_INFO, "Output CTX timebase for stream %i is %i/%i\n", i, enc_ctx->time_base.num, enc_ctx->time_base.den);
             }
 
@@ -185,13 +198,17 @@ static int open_output_file(const char *filename, int width, int height)
             if (ofmt_ctx->oformat->flags & AVFMT_GLOBALHEADER)
                 enc_ctx->flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
 
-            av_log(NULL, AV_LOG_INFO, "SM2 Setting stream params");
+            av_log(NULL, AV_LOG_INFO, "Setting stream params\n");
             out_stream->time_base = enc_ctx->time_base;
             out_stream->r_frame_rate = in_stream->r_frame_rate;
             out_stream->avg_frame_rate = in_stream->avg_frame_rate;
             out_stream->start_time = in_stream->start_time;
 
-	    av_log(NULL, AV_LOG_INFO, "Output stream timebase for stream %i is %i/%i\n", i, out_stream->time_base.num, out_stream->time_base.den);
+            if (in_stream->duration > 0)
+              out_stream->duration = in_stream->duration;
+
+	    av_log(NULL, AV_LOG_INFO, "Output stream timebase for stream %i is %i/%i, duration is %li\n",
+              i, out_stream->time_base.num, out_stream->time_base.den, out_stream->duration);
 
             stream_ctx[i].enc_ctx = enc_ctx;
 
@@ -443,7 +460,7 @@ static AVFilterGraph *init_crop_filter(const AVFrame *in, int left, int top, int
     ret = avfilter_graph_config(filter_graph, NULL);
     if (ret < 0) return NULL;
 
-    av_log(NULL, AV_LOG_INFO, "Filter:\n%s\n", args);
+    av_log(NULL, AV_LOG_DEBUG, "Filter:\n%s\n", args);
 
     return filter_graph;
 }
@@ -475,6 +492,27 @@ static AVFrame *crop_frame(const AVFrame *in, AVFilterGraph *filter_graph)
     return f;
 }
 
+// Get next cropping data. Returns -1 for frame number on EOF
+
+FrameCrop getCropInfo(FILE *cropfile) {
+
+    char line[256];
+    FrameCrop crop;
+
+    crop.frame = -1;
+    crop.x = 0;
+    crop.y = 0;
+
+    // frame x y
+    if (fgets(line, sizeof(line), cropfile) != NULL) {
+      if (3 == sscanf(line, "%i %i %i", &crop.frame, &crop.x, &crop.y)) {
+        av_log(NULL, AV_LOG_DEBUG, "Frame %i crop %i %i\n", crop.frame, crop.x, crop.y);
+      }
+    }
+
+   return crop;
+}
+
 int main(int argc, char **argv)
 {
 
@@ -486,9 +524,16 @@ int main(int argc, char **argv)
     unsigned int stream_index;
     unsigned int i;
     int framecount;
+    int cropframes;
     int pktcount;
     int eof;
     int got_frame;
+    int found_keyframe;
+    int pre_keyframe;
+    int64_t pre_key_pts[128];
+    int first_frame;
+    int64_t first_pts;
+    int64_t last_pts;
 
     int out_width, out_height;
 
@@ -510,25 +555,31 @@ int main(int argc, char **argv)
     if ((ret = init_filters()) < 0)
         goto end;
 
-    FILE* cropfile = fopen(argv[3], "r"); /* should check the result */
+    FILE *cropfile = fopen(argv[3], "r"); /* should check the result */
     if (cropfile == NULL) {
         av_log(NULL, AV_LOG_ERROR, "Cannot open cropping data file %s\n", argv[3]);
         goto end;
     }
 
     char line[256];
+    fgets(line, sizeof(line), cropfile);
 
-    while (fgets(line, sizeof(line), cropfile)) {
-        /* note that fgets don't strip the terminating \n, checking its
-           presence would allow to handle lines longer that sizeof(line) */
-        printf("%s", line); 
-    }
+    // # track4k short.mkv 224 frames (frame top-left-x top-left-y) output frame size 1920 1080
+    sscanf(line, "%*s %*s %*s %i %*s %*s %*s %*s %*s %*s %*s %i %i", &cropframes, &out_width, &out_height);
 
-    fclose(cropfile);
+    av_log(NULL, AV_LOG_INFO, "Crop data: %i frames width %i height %i\n", cropframes, out_width, out_height);
+
+    FrameCrop crop = getCropInfo(cropfile);
+    FrameCrop next_crop = getCropInfo(cropfile);
 
     framecount = 0;
     pktcount = 0;
     eof = 0;
+    found_keyframe = 0;
+    pre_keyframe = 0;
+    first_frame = 1;
+    first_pts = -1;
+    last_pts = 0;
 
     /* read all packets */
     while (!eof) {
@@ -540,8 +591,21 @@ int main(int argc, char **argv)
 
         stream_index = packet.stream_index;
 
-        av_log(NULL, AV_LOG_DEBUG, "Demuxer gave packet %i of stream_index %u pts %li duration %li\n", 
-          pktcount, stream_index, packet.pts, packet.duration);
+        av_log(NULL, AV_LOG_DEBUG, "Demuxer gave packet %i of stream_index %u pts %li duration %li flags %i\n", 
+          pktcount, stream_index, packet.pts, packet.duration, packet.flags);
+
+        if (first_pts < 0) first_pts = packet.pts;
+        if (packet.pts > last_pts) last_pts = packet.pts;
+
+        // First keyframe
+        if (packet.flags & AV_PKT_FLAG_KEY) {
+            found_keyframe = 1;
+        }
+
+        // Record the packet PTS value
+        if (!found_keyframe) {
+          pre_key_pts[pre_keyframe++] = packet.pts;
+        }
 
         pktcount++;
 
@@ -578,18 +642,40 @@ int main(int argc, char **argv)
                 }
             } else {
                 av_log(NULL, AV_LOG_INFO, "Frame %i pts is %li duration %li\n", framecount, frame->pts, frame->pkt_duration);
-                framecount++;
 
 		if (crop_filter_graph == NULL) {
-		    crop_filter_graph = init_crop_filter(frame, 0, 0, out_width, out_height);
+		    crop_filter_graph = init_crop_filter(frame, crop.x, crop.y, out_width, out_height);
+                }
+
+                // New cropping data
+                if ((framecount >= next_crop.frame) && (next_crop.frame > 0)) {
+                    crop = next_crop;
+                    next_crop = getCropInfo(cropfile);
+
+                    // Recreate filter graph
+                    avfilter_graph_free(&crop_filter_graph);
+		    crop_filter_graph = init_crop_filter(frame, crop.x, crop.y, out_width, out_height);
                 }
 
 		AVFrame *cropped = crop_frame(frame, crop_filter_graph);
+
+                // Write out frames for pre-keyframe packets to keep audio timesync for muxing
+                if (first_frame && pre_keyframe) {
+                    av_log(NULL, AV_LOG_INFO, "Writing %i frames from PTS %li for pre-keyframe buffer\n", pre_keyframe, pre_key_pts[0]);
+                    for (int i=0; i < pre_keyframe; i++) {
+                      cropped->pts = pre_key_pts[i];
+                      ret = encode_write_frame(cropped, stream_index, &got_frame);
+                    }
+                    first_frame = 0;
+                    cropped->pts = frame->pts;
+                }
 
                 ret = encode_write_frame(cropped, stream_index, &got_frame);
 
                 av_frame_free(&frame);
                 av_frame_free(&cropped);
+
+                framecount++;
 
                 if (ret < 0)
                     goto end;
@@ -624,7 +710,12 @@ int main(int argc, char **argv)
         }
     }
 
+    ofmt_ctx->duration = last_pts - first_pts;
+
+    av_dump_format(ofmt_ctx, 0, argv[2], 1);
+
     av_write_trailer(ofmt_ctx);
+
 end:
     av_packet_unref(&packet);
     av_frame_free(&frame);
@@ -645,6 +736,7 @@ end:
     if (ret < 0)
         av_log(NULL, AV_LOG_ERROR, "Error occurred: %s\n", av_err2str(ret));
 
+    fclose(cropfile);
 
     return ret ? 1 : 0;
 }
