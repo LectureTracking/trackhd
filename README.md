@@ -127,7 +127,7 @@ Track4K runs in two parts: track4k analyzes a video file and produces a cropping
 video file according to the cropping information in the data file, using ffmpeg libraries.
 
 ```
-$ track4k <inputFileName> <outputFileName> <output-width> <output-height> [FOURCC Codec]
+$ track4k <inputFileName> <outputFileName> <output-width> <output-height>
 $ cropvid <input file> <output file> <cropping file>
 ```
 
@@ -137,9 +137,6 @@ Example:
 track4k presenter.mkv presenter-crop.txt 1920 1080
 cropvid presenter.mkv tracked.mkv presenter-crop.txt
 ```
-
-The FOURCC CODEC parameter is optional (default CODEC is X264).
-To see all available CODECs, visit [FOURCC](https://www.fourcc.org/codecs.php)
 
 ### Memory Requirements
 The program reads a maximum of 29 frames into memory at a time. So a minimum of 4GB RAM should be sufficient.

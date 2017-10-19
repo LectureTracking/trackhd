@@ -47,11 +47,9 @@ int main(int argc, char *argv[]) {
         //Use default codec
         persistentData.codec = CV_FOURCC('X', '2', '6', '4');
     } else {
-        cerr
-		<< "\ntrack4k build UCT " << __DATE__ << " " << __TIME__ << "\n\n"
-                << "Parameters:\n  track4k <inputFileName> <outputFileName> <output-width> <output-height> [FOURCC Codec]\n\n"
-                << "See http://www.fourcc.org/codecs.php for available codecs. The default codec of X264 for mp4 will be used, if none is specified!\n"
-                << endl;
+        cerr << endl
+		<< "track4k build UCT " << __DATE__ << " " << __TIME__ << endl << endl
+                << "Parameters:" << endl << " track4k <inputFileName> <outputFileName> <output-width> <output-height>" << endl << endl;
         return -1;
     }
 
