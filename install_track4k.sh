@@ -1,6 +1,8 @@
 #!/bin/bash
 
+echo ""
 echo "Installing TRACK4K" 
+
 jFlag="-j"
 numCores=`cat /proc/cpuinfo | grep processor | wc -l`
 
@@ -20,4 +22,14 @@ make $jFlag$numCores
 echo "STAGE 4/4: Installing..."
 sudo make install
 
+echo ""
+echo "Building and installing cropvid"
+echo ""
+
+cd ../cropvid
+./build.sh
+cp cropvid /usr/local/bin/
+
 echo "Complete!"
+echo ""
+
