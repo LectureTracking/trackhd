@@ -187,10 +187,10 @@ static int open_output_file(const char *filename, int width, int height)
                 // https://lists.ffmpeg.org/pipermail/libav-user/2015-April/008027.html
                 ret = av_opt_set(enc_ctx->priv_data, "crf", "27", AV_OPT_SEARCH_CHILDREN);
                 if (ret == AVERROR_OPTION_NOT_FOUND) {
-		    av_log(NULL, AV_LOG_INFO, "Encoding option crf not found");
+		    av_log(NULL, AV_LOG_ERROR, "Encoding option crf not found (not an H264 encoder?)");
                 }
 
-		av_log(NULL, AV_LOG_INFO, "Output CTX timebase for stream %i is %i/%i\n", i, enc_ctx->time_base.num, enc_ctx->time_base.den);
+		av_log(NULL, AV_LOG_DEBUG, "Output CTX timebase for stream %i is %i/%i\n", i, enc_ctx->time_base.num, enc_ctx->time_base.den);
             }
 
             /* Third parameter can be used to pass settings to encoder */
@@ -207,7 +207,6 @@ static int open_output_file(const char *filename, int width, int height)
             if (ofmt_ctx->oformat->flags & AVFMT_GLOBALHEADER)
                 enc_ctx->flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
 
-            av_log(NULL, AV_LOG_INFO, "Setting stream params\n");
             out_stream->time_base = enc_ctx->time_base;
             out_stream->r_frame_rate = in_stream->r_frame_rate;
             out_stream->avg_frame_rate = in_stream->avg_frame_rate;
@@ -216,7 +215,7 @@ static int open_output_file(const char *filename, int width, int height)
             if (in_stream->duration > 0)
               out_stream->duration = in_stream->duration;
 
-	    av_log(NULL, AV_LOG_INFO, "Output stream timebase for stream %i is %i/%i, duration is %li\n",
+	    av_log(NULL, AV_LOG_DEBUG, "Output stream timebase for stream %i is %i/%i, duration is %li\n",
               i, out_stream->time_base.num, out_stream->time_base.den, out_stream->duration);
 
             stream_ctx[i].enc_ctx = enc_ctx;
@@ -576,7 +575,7 @@ int main(int argc, char **argv)
     // # track4k short.mkv 224 frames (frame top-left-x top-left-y) output frame size 1920 1080
     sscanf(line, "%*s %*s %*s %i %*s %*s %*s %*s %*s %*s %*s %i %i", &cropframes, &out_width, &out_height);
 
-    av_log(NULL, AV_LOG_INFO, "Crop data: %i frames width %i height %i\n", cropframes, out_width, out_height);
+    av_log(NULL, AV_LOG_INFO, "\nCrop data: %i frames width %i height %i\n\n", cropframes, out_width, out_height);
 
     FrameCrop crop = getCropInfo(cropfile);
     FrameCrop next_crop = getCropInfo(cropfile);
@@ -622,7 +621,7 @@ int main(int argc, char **argv)
             frame = av_frame_alloc();
             if (!frame) {
                 ret = AVERROR(ENOMEM);
-                av_log(NULL, AV_LOG_INFO, "  not a frame\n");
+                av_log(NULL, AV_LOG_DEBUG, "  not a frame\n");
                 break;
             }
 
@@ -650,7 +649,8 @@ int main(int argc, char **argv)
                   break;
                 }
             } else {
-                av_log(NULL, AV_LOG_INFO, "Frame %i pts is %li duration %li\n", framecount, frame->pts, frame->pkt_duration);
+		if ((framecount % 300) == 0)
+                    av_log(NULL, AV_LOG_INFO, "Frame %i pts %li\n", framecount, frame->pts);
 
 		if (crop_filter_graph == NULL) {
 		    crop_filter_graph = init_crop_filter(frame, crop.x, crop.y, out_width, out_height);
@@ -670,7 +670,7 @@ int main(int argc, char **argv)
 
                 // Write out frames for pre-keyframe packets to keep audio timesync for muxing
                 if (first_frame && pre_keyframe) {
-                    av_log(NULL, AV_LOG_INFO, "Writing %i frames from PTS %li for pre-keyframe buffer\n", pre_keyframe, pre_key_pts[0]);
+                    av_log(NULL, AV_LOG_INFO, "Writing %i frames from pts %li for pre-keyframe buffer\n", pre_keyframe, pre_key_pts[0]);
                     for (int i=0; i < pre_keyframe; i++) {
                       cropped->pts = pre_key_pts[i] - first_pts;
                       ret = encode_write_frame(cropped, stream_index, &got_frame);
