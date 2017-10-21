@@ -36,18 +36,9 @@
 #include <libavfilter/buffersink.h>
 #include <libavfilter/buffersrc.h>
 #include <libavutil/opt.h>
-#include <libavutil/pixdesc.h>
 
 static AVFormatContext *ifmt_ctx;
 static AVFormatContext *ofmt_ctx;
-
-typedef struct FilteringContext {
-    AVFilterContext *buffersink_ctx;
-    AVFilterContext *buffersrc_ctx;
-    AVFilterGraph *filter_graph;
-} FilteringContext;
-
-static FilteringContext *filter_ctx;
 
 typedef struct StreamContext {
     AVCodecContext *dec_ctx;
@@ -158,21 +149,12 @@ static int open_output_file(const char *filename, int width, int height)
                 return AVERROR(ENOMEM);
             }
 
-            /* In this example, we transcode to same properties (picture size,
-             * sample rate etc.). These properties can be changed for output
-             * streams easily using filters */
             if (dec_ctx->codec_type == AVMEDIA_TYPE_VIDEO) {
+		// Set output parameters the same as input params
                 enc_ctx->height = height;
                 enc_ctx->width = width;
                 enc_ctx->sample_aspect_ratio = dec_ctx->sample_aspect_ratio;
-
-                /* take first format from list of supported formats */
-                // if (encoder->pix_fmts)
-                //    enc_ctx->pix_fmt = encoder->pix_fmts[0];
-                // else
                 enc_ctx->pix_fmt = dec_ctx->pix_fmt;
-
-		// Set all the things the same
                 enc_ctx->time_base = dec_ctx->time_base;
                 enc_ctx->pkt_timebase = dec_ctx->pkt_timebase;
                 enc_ctx->framerate = dec_ctx->framerate;
@@ -187,7 +169,7 @@ static int open_output_file(const char *filename, int width, int height)
                 // https://lists.ffmpeg.org/pipermail/libav-user/2015-April/008027.html
                 ret = av_opt_set(enc_ctx->priv_data, "crf", "27", AV_OPT_SEARCH_CHILDREN);
                 if (ret == AVERROR_OPTION_NOT_FOUND) {
-		    av_log(NULL, AV_LOG_ERROR, "Encoding option crf not found (not an H264 encoder?)");
+		    av_log(NULL, AV_LOG_ERROR, "Encoding option crf not found (not an H264 encoder?)\n");
                 }
 
 		av_log(NULL, AV_LOG_DEBUG, "Output CTX timebase for stream %i is %i/%i\n", i, enc_ctx->time_base.num, enc_ctx->time_base.den);
@@ -251,129 +233,6 @@ static int open_output_file(const char *filename, int width, int height)
         return ret;
     }
 
-    return 0;
-}
-
-static int init_filter(FilteringContext* fctx, AVCodecContext *dec_ctx,
-        AVCodecContext *enc_ctx, const char *filter_spec)
-{
-    char args[512];
-    int ret = 0;
-    AVFilter *buffersrc = NULL;
-    AVFilter *buffersink = NULL;
-    AVFilterContext *buffersrc_ctx = NULL;
-    AVFilterContext *buffersink_ctx = NULL;
-    AVFilterInOut *outputs = avfilter_inout_alloc();
-    AVFilterInOut *inputs  = avfilter_inout_alloc();
-    AVFilterGraph *filter_graph = avfilter_graph_alloc();
-
-    if (!outputs || !inputs || !filter_graph) {
-        ret = AVERROR(ENOMEM);
-        goto end;
-    }
-
-    if (dec_ctx->codec_type == AVMEDIA_TYPE_VIDEO) {
-        buffersrc = avfilter_get_by_name("buffer");
-        buffersink = avfilter_get_by_name("buffersink");
-        if (!buffersrc || !buffersink) {
-            av_log(NULL, AV_LOG_ERROR, "filtering source or sink element not found\n");
-            ret = AVERROR_UNKNOWN;
-            goto end;
-        }
-
-        snprintf(args, sizeof(args),
-                "video_size=%dx%d:pix_fmt=%d:time_base=%d/%d:pixel_aspect=%d/%d",
-                dec_ctx->width, dec_ctx->height, dec_ctx->pix_fmt,
-                dec_ctx->time_base.num, dec_ctx->time_base.den,
-                dec_ctx->sample_aspect_ratio.num,
-                dec_ctx->sample_aspect_ratio.den);
-
-        ret = avfilter_graph_create_filter(&buffersrc_ctx, buffersrc, "in",
-                args, NULL, filter_graph);
-        if (ret < 0) {
-            av_log(NULL, AV_LOG_ERROR, "Cannot create buffer source\n");
-            goto end;
-        }
-
-        ret = avfilter_graph_create_filter(&buffersink_ctx, buffersink, "out",
-                NULL, NULL, filter_graph);
-        if (ret < 0) {
-            av_log(NULL, AV_LOG_ERROR, "Cannot create buffer sink\n");
-            goto end;
-        }
-
-        ret = av_opt_set_bin(buffersink_ctx, "pix_fmts",
-                (uint8_t*)&enc_ctx->pix_fmt, sizeof(enc_ctx->pix_fmt),
-                AV_OPT_SEARCH_CHILDREN);
-        if (ret < 0) {
-            av_log(NULL, AV_LOG_ERROR, "Cannot set output pixel format\n");
-            goto end;
-        }
-    } else {
-        ret = AVERROR_UNKNOWN;
-        goto end;
-    }
-
-    /* Endpoints for the filter graph. */
-    outputs->name       = av_strdup("in");
-    outputs->filter_ctx = buffersrc_ctx;
-    outputs->pad_idx    = 0;
-    outputs->next       = NULL;
-
-    inputs->name       = av_strdup("out");
-    inputs->filter_ctx = buffersink_ctx;
-    inputs->pad_idx    = 0;
-    inputs->next       = NULL;
-
-    if (!outputs->name || !inputs->name) {
-        ret = AVERROR(ENOMEM);
-        goto end;
-    }
-
-    if ((ret = avfilter_graph_parse_ptr(filter_graph, filter_spec,
-                    &inputs, &outputs, NULL)) < 0)
-        goto end;
-
-    if ((ret = avfilter_graph_config(filter_graph, NULL)) < 0)
-        goto end;
-
-    /* Fill FilteringContext */
-    fctx->buffersrc_ctx = buffersrc_ctx;
-    fctx->buffersink_ctx = buffersink_ctx;
-    fctx->filter_graph = filter_graph;
-
-end:
-    avfilter_inout_free(&inputs);
-    avfilter_inout_free(&outputs);
-
-    return ret;
-}
-
-static int init_filters(void)
-{
-    const char *filter_spec;
-    unsigned int i;
-    int ret;
-    filter_ctx = av_malloc_array(ifmt_ctx->nb_streams, sizeof(*filter_ctx));
-    if (!filter_ctx)
-        return AVERROR(ENOMEM);
-
-    for (i = 0; i < ifmt_ctx->nb_streams; i++) {
-        filter_ctx[i].buffersrc_ctx  = NULL;
-        filter_ctx[i].buffersink_ctx = NULL;
-        filter_ctx[i].filter_graph   = NULL;
-        if (!(ifmt_ctx->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO))
-            continue;
-
-        if (ifmt_ctx->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO)
-            filter_spec = "null"; /* passthrough (dummy) filter for video */
-
-        ret = init_filter(&filter_ctx[i], stream_ctx[i].dec_ctx,
-                stream_ctx[i].enc_ctx, filter_spec);
-
-        if (ret)
-            return ret;
-    }
     return 0;
 }
 
@@ -490,12 +349,12 @@ static AVFrame *crop_frame(const AVFrame *in, AVFilterGraph *filter_graph)
     assert(buffersink_ctx != NULL);
 
     av_frame_ref(f, in);
+
     ret = av_buffersrc_add_frame(buffersrc_ctx, f);
     if (ret < 0) return NULL;
+
     ret = av_buffersink_get_frame(buffersink_ctx, f);
     if (ret < 0) return NULL;
-
-    // avfilter_graph_free(&filter_graph);
 
     return f;
 }
@@ -560,8 +419,6 @@ int main(int argc, char **argv)
         goto end;
     if ((ret = open_output_file(argv[2], out_width, out_height)) < 0)
         goto end;
-    if ((ret = init_filters()) < 0)
-        goto end;
 
     FILE *cropfile = fopen(argv[3], "r"); /* should check the result */
     if (cropfile == NULL) {
@@ -617,7 +474,8 @@ int main(int argc, char **argv)
 
         pktcount++;
 
-        if (filter_ctx[stream_index].filter_graph) {
+        if (stream_ctx[stream_index].dec_ctx->codec_type == AVMEDIA_TYPE_VIDEO) {
+
             frame = av_frame_alloc();
             if (!frame) {
                 ret = AVERROR(ENOMEM);
@@ -728,10 +586,7 @@ end:
         avcodec_free_context(&stream_ctx[i].dec_ctx);
         if (ofmt_ctx && ofmt_ctx->nb_streams > i && ofmt_ctx->streams[i] && stream_ctx[i].enc_ctx)
             avcodec_free_context(&stream_ctx[i].enc_ctx);
-        if (filter_ctx && filter_ctx[i].filter_graph)
-            avfilter_graph_free(&filter_ctx[i].filter_graph);
     }
-    av_free(filter_ctx);
     av_free(stream_ctx);
     avformat_close_input(&ifmt_ctx);
     if (ofmt_ctx && !(ofmt_ctx->oformat->flags & AVFMT_NOFILE))
