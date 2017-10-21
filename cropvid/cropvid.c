@@ -404,28 +404,22 @@ int main(int argc, char **argv)
 
     int out_width, out_height;
 
+    av_log(NULL, AV_LOG_INFO, "\ncropvid build %s %s\n", __DATE__, __TIME__);
+
     out_width = 1920;
     out_height = 1080;
 
     if (argc != 4) {
-        av_log(NULL, AV_LOG_ERROR, "Usage: %s <input file> <output file> <cropping file>\n", argv[0]);
+        av_log(NULL, AV_LOG_INFO, "\nUsage: %s <input file> <output file> <cropping file>\n\n", argv[0]);
         return 1;
     }
 
-    av_register_all();
-    avfilter_register_all();
-
-    if ((ret = open_input_file(argv[1])) < 0)
-        goto end;
-    if ((ret = open_output_file(argv[2], out_width, out_height)) < 0)
-        goto end;
-
+    // Cropping data
     FILE *cropfile = fopen(argv[3], "r"); /* should check the result */
     if (cropfile == NULL) {
         av_log(NULL, AV_LOG_ERROR, "Cannot open cropping data file %s\n", argv[3]);
         goto end;
     }
-
     char line[256];
     fgets(line, sizeof(line), cropfile);
 
@@ -437,6 +431,16 @@ int main(int argc, char **argv)
     FrameCrop crop = getCropInfo(cropfile);
     FrameCrop next_crop = getCropInfo(cropfile);
 
+    // Input and output videos
+    av_register_all();
+    avfilter_register_all();
+
+    if ((ret = open_input_file(argv[1])) < 0)
+        goto end;
+    if ((ret = open_output_file(argv[2], out_width, out_height)) < 0)
+        goto end;
+
+    // Process
     framecount = 0;
     pktcount = 0;
     eof = 0;
