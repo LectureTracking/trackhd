@@ -38,19 +38,23 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
     //Vector of points representing the lecturers positions
     vector<Point> lectPoints;
 
-    //Set a fixed y-value for the crop window
-    long int y_value = 0;
+    int y = persistentData.y_top;
 
-    //Generate this fixed y-value from average y-value of all lecture positions
-    for (int i = 0; i < persistentData.lecturerTrackedLocationRectangles.size(); i++) {
+    if (y < 0) {
+      //Set a fixed y-value for the crop window
+      long int y_value = 0;
+
+      //Generate this fixed y-value from average y-value of all lecture positions
+      for (int i = 0; i < persistentData.lecturerTrackedLocationRectangles.size(); i++) {
         y_value += ((persistentData.lecturerTrackedLocationRectangles.at(i).tl().y +
                      (persistentData.lecturerTrackedLocationRectangles.at(i).height / 2)));
+      }
+
+      y_value = y_value / persistentData.lecturerTrackedLocationRectangles.size();
+
+      //Add an offset to the y-value
+      y = y_value - 500;
     }
-
-    y_value = y_value / persistentData.lecturerTrackedLocationRectangles.size();
-
-    //Add an offset to the y-value
-    int y = y_value - 500;
 
     //Remove every second point as we dont need that accuracy, only general direction of lecturer
     for (int i = 0; i < persistentData.lecturerTrackedLocationRectangles.size(); i += skipLecturePosition) {

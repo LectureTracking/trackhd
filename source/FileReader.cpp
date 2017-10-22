@@ -35,7 +35,7 @@ bool FileReader::readFile(std::string filename, PersistentData &pD)
     if (!inputVideo.isOpened())
     {
         cout << "Could not open the input video: " << filename << endl;
-        return -1;
+        return false;
     }
 
     cout << "Reading video file: " << filename << endl;
@@ -64,8 +64,7 @@ bool FileReader::readFile(std::string filename, PersistentData &pD)
     //Set video file info
     pD.setVideoInfo(fps, videoDimension, ex);
 
-    return 0;
-
+    return true;
 }
 
 //This method returns the next section (where @segSize is in seconds)

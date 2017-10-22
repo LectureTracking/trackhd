@@ -52,6 +52,9 @@ class PersistentData
 
     cv::Size panOutputVideoSize = cv::Size(1280, 720);
 
+    // Height of the top of the cropping rectangle (-1 if unset)
+    int y_top = -1;
+
     // Output file (cropping data)
     std::string outputFile = "";
 

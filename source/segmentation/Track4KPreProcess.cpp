@@ -28,16 +28,17 @@
 using namespace std;
 using namespace cv;
 
-void Track4KPreProcess::preProcessDriver(PersistentData &persistentData)
+bool Track4KPreProcess::preProcessDriver(PersistentData &persistentData)
 {
-
     int skip = 1;
 
     vector<Mat> frameVector;
 
     //Read in video file
     FileReader fileReader;
-    fileReader.readFile(persistentData.inputFile, persistentData);
+    if (!fileReader.readFile(persistentData.inputFile, persistentData)) {
+      return false;
+    }
 
     //Create objects
     MotionDetection motionDetection; //Detects and segments overall merged motion over a given number of frames
@@ -75,4 +76,6 @@ void Track4KPreProcess::preProcessDriver(PersistentData &persistentData)
     }
 
     fileReader.getInputVideo().release();
+
+    return true;
 }

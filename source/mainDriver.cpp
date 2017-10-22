@@ -19,6 +19,8 @@
 //
 
 #include <stdlib.h>
+#include <stdexcept>
+
 #include "segmentation/Track4KPreProcess.h"
 #include "panning/VirtualCinematographer.h"
 #include "tracking/MovementDetection.h"
@@ -35,23 +37,33 @@ int main(int argc, char *argv[]) {
     string outputFilename = "";
     string inputFileExtension = "";
     string outputFileExtension = "";
+    string crop_y_str = "";
     int cropWidth = 0;
     int cropHeight = 0;
     cv::Size saveDimensions;
 
-    //Check if input of command line parameters are valid
-    if (argc == 6) {
-        string codecInput = argv[5];
-        persistentData.codec = CV_FOURCC(codecInput[0], codecInput[1], codecInput[2], codecInput[3]);
-    } else if (argc == 5) {
-        //Use default codec
-        persistentData.codec = CV_FOURCC('X', '2', '6', '4');
-    } else {
+    if ((argc < 5) || (argc > 6)) {
         cerr << endl
 		<< "track4k build UCT " << __DATE__ << " " << __TIME__ << endl << endl
-                << "Parameters:" << endl << " track4k <inputFileName> <outputFileName> <output-width> <output-height>" << endl << endl;
-        return -1;
+                << "Usage: track4k <input video> <output crop data file> <output-width> <output-height> [crop-y-top]" << endl << endl;
+        return EXIT_FAILURE;
     }
+
+    cout << "track4k build UCT " << __DATE__ << " " << __TIME__ << endl;
+
+    if (argc == 6) {
+        try {
+          persistentData.y_top = stoi(argv[5]);
+        } catch (...) {
+          cerr << "Invalid value for crop top y position: " << argv[5] << endl;
+          return EXIT_FAILURE;
+        }
+    }
+
+    // Unused (until cropvid incorporated into track4k)
+    // string codecInput = argv[5];
+    // persistentData.codec = CV_FOURCC(codecInput[0], codecInput[1], codecInput[2], codecInput[3]);
+    persistentData.codec = CV_FOURCC('X', '2', '6', '4');
 
     //Get filenames from the command line and store them
     inputFilename = argv[1];
@@ -71,13 +83,16 @@ int main(int argc, char *argv[]) {
 
     persistentData.panOutputVideoSize = saveDimensions;
 
-    cout << "track4k build UCT " << __DATE__ << " " << __TIME__ << endl;
-
     cout << "\n----------------------------------------" << endl;
     cout << "Stage [1 of 3] - Board Segmentation (skip)" << endl;
     cout << "----------------------------------------\n" << endl;
+
     Track4KPreProcess pre;
-    pre.preProcessDriver(persistentData);
+
+    if (!pre.preProcessDriver(persistentData)) {
+	return EXIT_FAILURE;
+    }
+
     cout << "\nStage 1 Complete" << endl;
     cout << "----------------------------------------\n" << endl;
 
@@ -85,9 +100,11 @@ int main(int argc, char *argv[]) {
     cout << "\n----------------------------------------" << endl;
     cout << "Stage [2 of 3] - Lecturer Tracking" << endl;
     cout << "----------------------------------------\n" << endl;
+
     MovementDetection move(persistentData, &r);
     vector<Rect> *rR = new vector<Rect>();
     move.getLecturer(rR);
+
     cout << "\nStage 2 Complete" << endl;
     cout << "----------------------------------------\n" << endl;
 
