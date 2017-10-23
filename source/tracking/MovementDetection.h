@@ -34,6 +34,8 @@
 #include <vector>
 #include "Ghost.h"
 
+#include "../PersistentData.h"
+
 using namespace cv;
 using namespace std;
 
@@ -60,7 +62,7 @@ public:
     void setVideoDir(string name){ videoDir = name; }
 
     //default constructor and tracking runner
-    MovementDetection(string name, vector<Rect>* lect);
+    MovementDetection(PersistentData &persistentData, vector<Rect>* lect);
 
     //calculates the distance between the closest two edge points of two rectangles
     double closestDistance(Rect a, Rect b);

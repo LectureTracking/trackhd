@@ -19,6 +19,8 @@
 //
 
 #include <stdlib.h>
+#include <stdexcept>
+
 #include "segmentation/Track4KPreProcess.h"
 #include "panning/VirtualCinematographer.h"
 #include "tracking/MovementDetection.h"
@@ -35,25 +37,33 @@ int main(int argc, char *argv[]) {
     string outputFilename = "";
     string inputFileExtension = "";
     string outputFileExtension = "";
+    string crop_y_str = "";
     int cropWidth = 0;
     int cropHeight = 0;
     cv::Size saveDimensions;
 
-    //Check if input of command line parameters are valid
-    if (argc == 6) {
-        string codecInput = argv[5];
-        persistentData.codec = CV_FOURCC(codecInput[0], codecInput[1], codecInput[2], codecInput[3]);
-
-    } else if (argc == 5) {
-        //Use default codec
-        persistentData.codec = CV_FOURCC('X', '2', '6', '4');
-
-    } else {
-        cerr
-                << "The number of parameters entered were incorrect. Expected track4k.exe <inputFileName.extension> <outputFileName.extension> <crop width> <crop height> [FOURCC Codec] \n See http://www.fourcc.org/codecs.php for available codecs. The default codec of X264 for mp4 will be used, if none is specified!"
-                << endl;
-        return -1;
+    if ((argc < 5) || (argc > 6)) {
+        cerr << endl
+		<< "track4k build UCT " << __DATE__ << " " << __TIME__ << endl << endl
+                << "Usage: track4k <input video> <output crop data file> <output-width> <output-height> [crop-y-top]" << endl << endl;
+        return EXIT_FAILURE;
     }
+
+    cout << "track4k build UCT " << __DATE__ << " " << __TIME__ << endl;
+
+    if (argc == 6) {
+        try {
+          persistentData.y_top = stoi(argv[5]);
+        } catch (...) {
+          cerr << "Invalid value for crop top y position: " << argv[5] << endl;
+          return EXIT_FAILURE;
+        }
+    }
+
+    // Unused (until cropvid incorporated into track4k)
+    // string codecInput = argv[5];
+    // persistentData.codec = CV_FOURCC(codecInput[0], codecInput[1], codecInput[2], codecInput[3]);
+    persistentData.codec = CV_FOURCC('X', '2', '6', '4');
 
     //Get filenames from the command line and store them
     inputFilename = argv[1];
@@ -61,26 +71,28 @@ int main(int argc, char *argv[]) {
 
     //Extract the extensions from the filenames
     inputFileExtension = inputFilename.substr(inputFilename.find_first_of('.') + 1);
-    outputFileExtension = outputFilename.substr(outputFilename.find_first_of('.') + 1);
-
 
     //Extract the crop dimensions from the parameters
     cropWidth = stoi(argv[3]);
     cropHeight = stoi(argv[4]);
     saveDimensions = cv::Size(cropWidth, cropHeight);
 
+    //Update this information in PersistentData
+    persistentData.inputFile = inputFilename;
+    persistentData.outputFile = outputFilename;
 
-    //Update this information in PersistantData
-    persistentData.inputFileName = inputFilename;
-    persistentData.outputVideoFilenameSuffix = outputFilename.substr(0,outputFilename.find_first_of('.'));
-    persistentData.saveFileExtension = outputFileExtension;
     persistentData.panOutputVideoSize = saveDimensions;
 
     cout << "\n----------------------------------------" << endl;
-    cout << "Stage [1 of 3] - Board Segmentation" << endl;
+    cout << "Stage [1 of 3] - Board Segmentation (skip)" << endl;
     cout << "----------------------------------------\n" << endl;
+
     Track4KPreProcess pre;
-    pre.preProcessDriver(persistentData);
+
+    if (!pre.preProcessDriver(persistentData)) {
+	return EXIT_FAILURE;
+    }
+
     cout << "\nStage 1 Complete" << endl;
     cout << "----------------------------------------\n" << endl;
 
@@ -88,19 +100,19 @@ int main(int argc, char *argv[]) {
     cout << "\n----------------------------------------" << endl;
     cout << "Stage [2 of 3] - Lecturer Tracking" << endl;
     cout << "----------------------------------------\n" << endl;
-    MovementDetection move(persistentData.inputFileName, &r);
+
+    MovementDetection move(persistentData, &r);
     vector<Rect> *rR = new vector<Rect>();
     move.getLecturer(rR);
+
     cout << "\nStage 2 Complete" << endl;
     cout << "----------------------------------------\n" << endl;
-
 
     for (int i = 0; i < rR->size(); i++) {
         persistentData.lecturerTrackedLocationRectangles.push_back(std::move(rR->at(i)));
     }
 
     persistentData.skipFrameMovementDetection = move.getFrameSkipReset();
-
 
     cout << "\n----------------------------------------" << endl;
     cout << "Stage [3 of 3] - Virtual Cinematographer" << endl;
@@ -109,6 +121,5 @@ int main(int argc, char *argv[]) {
     vc.cinematographerDriver(persistentData);
     cout << "\nStage 3 Complete" << endl;
     cout << "----------------------------------------\n" << endl;
-
 
 }

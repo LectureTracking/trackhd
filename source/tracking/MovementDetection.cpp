@@ -29,7 +29,9 @@ using namespace std;
 VideoWriter maxS;
 
 
-MovementDetection::MovementDetection(string vidLocation, vector<Rect> *lect) {
+MovementDetection::MovementDetection(PersistentData &persistentData, vector<Rect> *lect) {
+
+    string vidLocation = persistentData.inputFile;
 
     //set vid directory and window name
     setVideoDir(vidLocation);
@@ -383,9 +385,11 @@ MovementDetection::MovementDetection(string vidLocation, vector<Rect> *lect) {
 
     inputVideo.release();
 
+    persistentData.processedFrames = frameNumber;
+
     processTime = clock() - processTime;
 
-    cout << "Processing took: " << (processTime / 1000.0) << "s" << endl;
+    cout << "Processing took: " << int(processTime / CLOCKS_PER_SEC) << "s" << endl;
 
     cout << "Performing ghost adjustments!" << endl;
 
@@ -413,7 +417,7 @@ MovementDetection::MovementDetection(string vidLocation, vector<Rect> *lect) {
 
     time = (clock() - time);
 
-    cout << "Postprocessing took: " << (time) << "ms" << endl;
+    cout << "Postprocessing took: " << int(time / CLOCKS_PER_SEC) << "s" << endl;
 
     cout << "Finished processing!" << endl;
 

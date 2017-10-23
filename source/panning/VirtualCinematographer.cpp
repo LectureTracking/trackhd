@@ -17,8 +17,11 @@
 //
 // Created by Mohamed Tanweer Khatieb on 2016/07/21.
 //
+
 #include "../segmentation/Track4KPreProcess.h"
 #include "VirtualCinematographer.h"
+
+#include <iostream>
 #include <fstream>
 
 using namespace cv;
@@ -35,19 +38,23 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
     //Vector of points representing the lecturers positions
     vector<Point> lectPoints;
 
-    //Set a fixed y-value for the crop window
-    long int y_value = 0;
+    int y = persistentData.y_top;
 
-    //Generate this fixed y-value from average y-value of all lecture positions
-    for (int i = 0; i < persistentData.lecturerTrackedLocationRectangles.size(); i++) {
+    if (y < 0) {
+      //Set a fixed y-value for the crop window
+      long int y_value = 0;
+
+      //Generate this fixed y-value from average y-value of all lecture positions
+      for (int i = 0; i < persistentData.lecturerTrackedLocationRectangles.size(); i++) {
         y_value += ((persistentData.lecturerTrackedLocationRectangles.at(i).tl().y +
                      (persistentData.lecturerTrackedLocationRectangles.at(i).height / 2)));
+      }
+
+      y_value = y_value / persistentData.lecturerTrackedLocationRectangles.size();
+
+      //Add an offset to the y-value
+      y = y_value - 500;
     }
-
-    y_value = y_value / persistentData.lecturerTrackedLocationRectangles.size();
-
-    //Add an offset to the y-value
-    int y = y_value - 500;
 
     //Remove every second point as we dont need that accuracy, only general direction of lecturer
     for (int i = 0; i < persistentData.lecturerTrackedLocationRectangles.size(); i += skipLecturePosition) {
@@ -77,32 +84,41 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
     vector<Rect> cropRectangles;
     panLogic.doPan(movementLines, cropRectangles);
 
-    //Create video writer object for writing the cropped output video
-    VideoWriter outputVideo;
-    outputVideo.open(persistentData.outputVideoFilenameSuffix + "." + persistentData.saveFileExtension,
-                     persistentData.codec, persistentData.fps, persistentData.panOutputVideoSize, 1);
+    ofstream cropdata;
+    cropdata.open(persistentData.outputFile);
 
-
-    //Open original input video file
-    FileReader fileReader;
-    fileReader.readFile(persistentData.inputFileName, persistentData);
-
-    Mat drawing;
-
-    //Loop over all frames in the input video and save the cropped frames to a stream as well as the board segment
-    for (int i = 0; i < cropRectangles.size(); i++) {
-
-        fileReader.getNextFrame(drawing);
-
-        if (!fileReader.isEndOfFile()) {
-            outputVideo.write(drawing(cropRectangles[i]));
-        }
-
-        drawing.release();
-
+    if (cropdata.is_open()) {
+       cout << "Writing cropping data to output file " << persistentData.outputFile << endl;
+    } else {
+       cerr << "Unable to write cropping data to output file " << persistentData.outputFile << endl;
+       return 1;
     }
 
-    //Close all file writers
-    outputVideo.release();
-    fileReader.getInputVideo().release();
+    //Loop over all frames in the input video and save the cropped frames to a stream as well as the board segment
+    cout << "Crop rectangles : " << cropRectangles.size() << endl;
+    cout << "Frames processed: " << persistentData.processedFrames << endl;
+
+    cropdata << "# track4k " << persistentData.inputFile << " " << persistentData.processedFrames 
+             << " frames (frame top-left-x top-left-y) output frame size "
+             << persistentData.panOutputVideoSize.width << " " << persistentData.panOutputVideoSize.height << endl;
+
+    int last_x = -1;
+    int last_y =-1;
+
+    for (int i = 0; i < persistentData.processedFrames - 1; i++) {
+        if ((cropRectangles[i].x != last_x) || (cropRectangles[i].y != last_y)) {
+            cropdata << i << " " << cropRectangles[i].x << " " << cropRectangles[i].y << endl;
+            last_x = cropRectangles[i].x;
+            last_y = cropRectangles[i].y;
+        }
+    }
+
+    // Always write out the last frame
+    int i = persistentData.processedFrames - 1;
+    cropdata << i << " " << cropRectangles[i].x << " " << cropRectangles[i].y << endl;
+
+    // Close all file writers
+    cropdata.close();
+
+    return 0;
 }
