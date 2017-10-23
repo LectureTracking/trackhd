@@ -23,9 +23,11 @@
  */
 
 /**
- * @file
- * API example for demuxing, decoding, filtering, encoding and muxing
- * @example transcoding.c
+ * cropvid.c: Transcode an input video to an ouput video, with frame-by-frame
+ * cropping and preserving frame timestamps.
+ *
+ * Adapted by Stephen Marquard <stephen.marquard@uct.ac.za> from FFmpeg example:
+ * https://www.ffmpeg.org/doxygen/3.2/transcoding_8c-example.html
  */
 
 #include <assert.h>
