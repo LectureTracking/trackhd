@@ -55,6 +55,9 @@ class PersistentData
     // Height of the top of the cropping rectangle (-1 if unset)
     int y_top = -1;
 
+    //Top and bottom crop lines stored as a Point(top,bottom)
+    Point topAndBottomCrop = Point(0,0);
+
     // Output file (cropping data)
     std::string outputFile = "";
 
