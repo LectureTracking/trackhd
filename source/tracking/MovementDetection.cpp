@@ -92,8 +92,13 @@ MovementDetection::MovementDetection(PersistentData &persistentData, vector<Rect
         return;
     }
 
+    //Find y limits
+    persistentData.topAndBottomCrop = findYBounds(prevFrame);
+
+
     //convert initial to grayscale
     cvtColor(prevFrame, prevFrame, CV_BGR2GRAY);
+
 
     //if true read frame as the next frame, if false read prevFrame as
     // the next frame, this is to avoid copying and moving around data
@@ -1012,5 +1017,41 @@ void MovementDetection::writeVideo(vector<Rect> *lecturer, string outName) {
     }
 
     cout << "Finished writing " << outName << endl;
+
+}
+
+Point MovementDetection::findYBounds(Mat img) {
+
+    int colIndex = 1; //Column in which to sample pixels
+
+    uchar pixelSum = 0;
+
+    int topY = 0;
+    int bottomY = 0;
+
+    Vec3b intensity; //Stores a particular pixel
+
+
+    for (int i = 0; i < img.rows; i++) {
+        intensity = img.at<Vec3b>(i, colIndex);
+        pixelSum = intensity.val[0] + intensity.val[1] + intensity.val[2];
+        if (pixelSum > 0) {
+            topY = i;
+            break;
+        }
+    }
+
+    pixelSum = 0;
+    for (int i = img.rows-1; i > 0; i--) {
+        intensity = img.at<Vec3b>(i, colIndex);
+        pixelSum = intensity.val[0] + intensity.val[1] + intensity.val[2];
+        if (pixelSum > 0) {
+            bottomY = i+1;
+            break;
+        }
+    }
+    //cout << "Top: " << topY << " Bottom " << bottomY << endl;
+    return Point(topY, bottomY);
+
 
 }

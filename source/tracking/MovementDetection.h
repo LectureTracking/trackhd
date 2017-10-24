@@ -120,6 +120,8 @@ public:
     //write video
     void writeVideo(vector<Rect>* lecturer, string outName);
 
+    Point findYBounds(Mat img);
+
 private:
 
     //frames used during processing
