@@ -126,19 +126,18 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
              << persistentData.panOutputVideoSize.width << " " << persistentData.panOutputVideoSize.height << endl;
 
     int last_x = -1;
-    int last_y = -1;
 
+    // Write out the pan x position and the fixed y position
     for (int i = 0; i < persistentData.processedFrames - 1; i++) {
-        if ((cropRectangles[i].x != last_x) || (cropRectangles[i].y != last_y)) {
-            cropdata << i << " " << cropRectangles[i].x << " " << cropRectangles[i].y << endl;
+        if (cropRectangles[i].x != last_x) {
+            cropdata << i << " " << cropRectangles[i].x << " " << y << endl;
             last_x = cropRectangles[i].x;
-            last_y = cropRectangles[i].y;
         }
     }
 
     // Always write out the last frame
     int i = persistentData.processedFrames - 1;
-    cropdata << i << " " << cropRectangles[i].x << " " << cropRectangles[i].y << endl;
+    cropdata << i << " " << cropRectangles[i].x << " " << y << endl;
 
     // Close all file writers
     cropdata.close();
