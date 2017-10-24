@@ -120,7 +120,7 @@ public:
     //write video
     void writeVideo(vector<Rect>* lecturer, string outName);
 
-    Point findYBounds(Mat img);
+    pair<int,int> findYBounds(Mat img);
 
 private:
 

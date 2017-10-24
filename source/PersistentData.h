@@ -56,7 +56,7 @@ class PersistentData
     int y_top = -1;
 
     //Top and bottom crop lines stored as a Point(top,bottom)
-    Point topAndBottomCrop = Point(0,0);
+    pair<int,int> topAndBottomCrop = pair<int,int>(0,0);
 
     // Output file (cropping data)
     std::string outputFile = "";
