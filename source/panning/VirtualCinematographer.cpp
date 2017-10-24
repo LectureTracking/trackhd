@@ -38,22 +38,44 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
     //Vector of points representing the lecturers positions
     vector<Point> lectPoints;
 
-    int y = persistentData.y_top;
+    long int y = persistentData.y_top;
 
     if (y < 0) {
-      //Set a fixed y-value for the crop window
-      long int y_value = 0;
+        //Set a fixed y-value for the crop window
+        long int y_value = 0;
 
-      //Generate this fixed y-value from average y-value of all lecture positions
-      for (int i = 0; i < persistentData.lecturerTrackedLocationRectangles.size(); i++) {
-        y_value += ((persistentData.lecturerTrackedLocationRectangles.at(i).tl().y +
-                     (persistentData.lecturerTrackedLocationRectangles.at(i).height / 2)));
-      }
+        //Generate this fixed y-value from average y-value of all lecture positions
+        for (int i = 0; i < persistentData.lecturerTrackedLocationRectangles.size(); i++) {
+            y_value += ((persistentData.lecturerTrackedLocationRectangles.at(i).tl().y +
+                         (persistentData.lecturerTrackedLocationRectangles.at(i).height / 2)));
+        }
 
-      y_value = y_value / persistentData.lecturerTrackedLocationRectangles.size();
+        y_value = y_value / persistentData.lecturerTrackedLocationRectangles.size();
 
-      //Add an offset to the y-value
-      y = y_value - 500;
+        //Add an offset to the y-value
+        y = y_value - 500;
+
+        int topY = persistentData.topAndBottomCrop.x;
+        int bottomY = persistentData.topAndBottomCrop.y;
+        int availableHeight = bottomY - topY;
+        int cropFrameHeight = persistentData.panOutputVideoSize.height;
+
+        if (cropFrameHeight <= availableHeight) {
+            //Crop frame is small enough to fit inside the margins
+            if (y < topY) {
+                y = topY;
+            }
+
+            if (y + cropFrameHeight > bottomY) {
+                y -= (y + cropFrameHeight - bottomY);
+            }
+
+        } else {
+            //Center the crop window
+            int buffer = (cropFrameHeight - availableHeight) / 2;
+            y = topY - buffer;
+        }
+
     }
 
     //Remove every second point as we dont need that accuracy, only general direction of lecturer
@@ -69,7 +91,8 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
     }
 
     PresenterMotion presenterMotion;
-    presenterMotion.generateMotionLines(lectPoints, (persistentData.skipFrameMovementDetection + 1) * skipLecturePosition);
+    presenterMotion.generateMotionLines(lectPoints,
+                                        (persistentData.skipFrameMovementDetection + 1) * skipLecturePosition);
     //4*2 because tracking section evaluates every 4th frame
     // and here we evaluate every 2nd one of those points, so essentially
     // we evaluating every 8th frame from the original video file
@@ -88,17 +111,17 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
     cropdata.open(persistentData.outputFile);
 
     if (cropdata.is_open()) {
-       cout << "Writing cropping data to output file " << persistentData.outputFile << endl;
+        cout << "Writing cropping data to output file " << persistentData.outputFile << endl;
     } else {
-       cerr << "Unable to write cropping data to output file " << persistentData.outputFile << endl;
-       return 1;
+        cerr << "Unable to write cropping data to output file " << persistentData.outputFile << endl;
+        return 1;
     }
 
     //Loop over all frames in the input video and save the cropped frames to a stream as well as the board segment
     cout << "Crop rectangles : " << cropRectangles.size() << endl;
     cout << "Frames processed: " << persistentData.processedFrames << endl;
 
-    cropdata << "# track4k " << persistentData.inputFile << " " << persistentData.processedFrames 
+    cropdata << "# track4k " << persistentData.inputFile << " " << persistentData.processedFrames
              << " frames (frame top-left-x top-left-y) output frame size "
              << persistentData.panOutputVideoSize.width << " " << persistentData.panOutputVideoSize.height << endl;
 
