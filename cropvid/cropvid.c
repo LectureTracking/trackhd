@@ -280,7 +280,7 @@ static int encode_write_frame(AVFrame *filt_frame, unsigned int stream_index, in
     /* prepare packet for muxing */
     enc_pkt.stream_index = stream_index;
 
-    av_log(NULL, AV_LOG_DEBUG, "Muxing packet pts %li duration %li\n", enc_pkt.pts, enc_pkt.duration);
+    av_log(NULL, AV_LOG_DEBUG, "Muxing packet pts %li dts %li duration %li\n", enc_pkt.pts, enc_pkt.dts, enc_pkt.duration);
 
     /* mux encoded frame */
     ret = av_interleaved_write_frame(ofmt_ctx, &enc_pkt);
@@ -401,8 +401,7 @@ int main(int argc, char **argv)
     int pre_keyframe;
     int64_t pre_key_pts[128];
     int first_frame;
-    int64_t first_pts;
-    int64_t last_pts;
+    int64_t first_pts, last_pts, current_pts, next_pts;
 
     int out_width, out_height;
 
@@ -451,6 +450,8 @@ int main(int argc, char **argv)
     first_frame = 1;
     first_pts = -1;
     last_pts = 0;
+    current_pts = -1;
+    next_pts = -1;
 
     /* read all packets */
     while (!eof) {
@@ -542,7 +543,20 @@ int main(int argc, char **argv)
                     first_frame = 0;
                 }
 
-                cropped->pts = frame->pts - first_pts;
+                // Ensure that PTS timestamps are monotonic (always increase)
+                next_pts = frame->pts;
+
+                if (next_pts > current_pts) {
+                    current_pts = next_pts;
+                } else {
+                    // Frame PTS has not incremented or gone backwards. This should never be the case except for corrupt media.
+                    av_log(NULL, AV_LOG_ERROR, "Non-monotonic frame pts %li earlier than current pts %li : adjusting to %li\n", frame->pts, current_pts, current_pts+1);
+                    current_pts++;
+                    next_pts = current_pts;
+                }
+
+                cropped->pts = next_pts - first_pts;
+
                 ret = encode_write_frame(cropped, stream_index, &got_frame);
 
                 av_frame_free(&frame);
