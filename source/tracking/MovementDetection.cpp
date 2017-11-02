@@ -1022,20 +1022,21 @@ void MovementDetection::writeVideo(vector<Rect> *lecturer, string outName) {
 
 pair<int, int> MovementDetection::findYBounds(Mat img) {
 
-    int colIndex = 1; //Column in which to sample pixels
+    int colIndex = img.cols / 2; // Column in which to sample pixels
 
     uchar pixelSum = 0;
 
     int topY = 0;
     int bottomY = 0;
 
-    Vec3b intensity; //Stores a particular pixel
+    int intensity_threshold = 15;
 
+    Vec3b intensity; //Stores a particular pixel
 
     for (int i = 0; i < img.rows; i++) {
         intensity = img.at<Vec3b>(i, colIndex);
         pixelSum = intensity.val[0] + intensity.val[1] + intensity.val[2];
-        if (pixelSum > 0) {
+        if (pixelSum > intensity_threshold) {
             topY = i;
             break;
         }
@@ -1045,13 +1046,12 @@ pair<int, int> MovementDetection::findYBounds(Mat img) {
     for (int i = img.rows - 1; i > 0; i--) {
         intensity = img.at<Vec3b>(i, colIndex);
         pixelSum = intensity.val[0] + intensity.val[1] + intensity.val[2];
-        if (pixelSum > 0) {
+        if (pixelSum > intensity_threshold) {
             bottomY = i + 1;
             break;
         }
     }
-    cout << "Top: " << topY << " Bottom " << bottomY << endl;
+    cout << "Top: " << topY << " Bottom: " << bottomY << endl;
+
     return pair<int, int>(topY, bottomY);
-
-
 }
