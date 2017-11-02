@@ -96,6 +96,12 @@ int main(int argc, char *argv[]) {
     cout << "\nStage 1 Complete" << endl;
     cout << "----------------------------------------\n" << endl;
 
+    // Check that input resolution is larger than output resolution, otherwise there's nothing to do
+    if ((persistentData.videoDimension.width <= cropWidth) || (persistentData.videoDimension.height < cropHeight)) {
+        cerr << "Input video size is the same or smaller than output size: nothing to do." << endl;
+        return EXIT_FAILURE;
+    }
+
     vector<Rect> r;
     cout << "\n----------------------------------------" << endl;
     cout << "Stage [2 of 3] - Lecturer Tracking" << endl;
