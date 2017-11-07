@@ -55,8 +55,8 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
         //Add an offset to the y-value
         y = y_value - 500;
 
-        int topY = persistentData.topAndBottomCrop.x;
-        int bottomY = persistentData.topAndBottomCrop.y;
+        int topY = persistentData.topAndBottomCrop.first;
+        int bottomY = persistentData.topAndBottomCrop.second;
         int availableHeight = bottomY - topY;
         int cropFrameHeight = persistentData.panOutputVideoSize.height;
 
