@@ -115,12 +115,14 @@ public:
     string convertFrameToTime(long frameNumber, double fps);
 
     //copy lecturer values across
-    void getLecturer(vector<Rect>* newLect);
+    void getLecturer(vector<Rect> *newLect, PersistentData &pData);
 
     //write video
     void writeVideo(vector<Rect>* lecturer, string outName);
 
     pair<int,int> findYBounds(Mat img);
+
+    void fixCenter(PersistentData &p);
 
 private:
 

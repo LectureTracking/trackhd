@@ -951,13 +951,15 @@ string MovementDetection::convertFrameToTime(long frameNumber, double fps) {
 }
 
 //copy lecturer values across
-void MovementDetection::getLecturer(vector<Rect> *newLect) {
+void MovementDetection::getLecturer(vector<Rect> *newLect, PersistentData &pData) {
     //cout << "start of get lecturer" << endl;
     //cout << "lecturer size: " << lecturer.size() << endl;
     for (int i = 0; i < lecturer.size(); i++) {
         //cout << "loop: " << i << endl;
         newLect->push_back(lecturer.at(i));
     }
+
+    fixCenter(pData);
     //cout << "end of get lecturer" << endl;
 }
 
@@ -1054,4 +1056,12 @@ pair<int, int> MovementDetection::findYBounds(Mat img) {
     cout << "Top: " << topY << " Bottom: " << bottomY << endl;
 
     return pair<int, int>(topY, bottomY);
+}
+
+void MovementDetection::fixCenter(PersistentData &p) {
+
+    Rect tempR =  Rect(lecturer.at(0));
+    tempR.x = p.videoDimension.width/2;
+    lecturer[0] = tempR;
+
 }

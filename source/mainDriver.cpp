@@ -109,7 +109,7 @@ int main(int argc, char *argv[]) {
 
     MovementDetection move(persistentData, &r);
     vector<Rect> *rR = new vector<Rect>();
-    move.getLecturer(rR);
+    move.getLecturer(rR, persistentData);
 
     cout << "\nStage 2 Complete" << endl;
     cout << "----------------------------------------\n" << endl;
