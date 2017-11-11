@@ -954,12 +954,15 @@ string MovementDetection::convertFrameToTime(long frameNumber, double fps) {
 void MovementDetection::getLecturer(vector<Rect> *newLect, PersistentData &pData) {
     //cout << "start of get lecturer" << endl;
     //cout << "lecturer size: " << lecturer.size() << endl;
+
+    //fixCenter(pData);
+
     for (int i = 0; i < lecturer.size(); i++) {
         //cout << "loop: " << i << endl;
         newLect->push_back(lecturer.at(i));
     }
 
-    fixCenter(pData);
+
     //cout << "end of get lecturer" << endl;
 }
 
