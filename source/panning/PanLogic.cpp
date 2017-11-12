@@ -47,9 +47,8 @@ long double PanLogic::smooth(double x)
 void PanLogic::smoothMove(int start, int end, int numFrames, bool right, Position panOffsetType, std::vector<cv::Rect> &croppingRectangles)
 {
 
-    if (initialCrop)
-    {
-        setPan(start, currentPan);
+    if (initialCrop) {
+        setPan(inputFrameWidth/2, currentPan);
         initialCrop = false;
     }
 
@@ -118,6 +117,12 @@ void PanLogic::smoothMove(int start, int end, int numFrames, bool right, Positio
  */
 void PanLogic::doPan(std::vector<PresenterMotion::Movement> &motionLines, std::vector<cv::Rect> &croppingRectangles)
 {
+
+    if (initialCrop) {
+        setPan(inputFrameWidth/2, currentPan);
+        initialCrop = false;
+    }
+
     int startingPosition;
 
     //Loop over all motion lines
