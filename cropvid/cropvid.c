@@ -191,7 +191,7 @@ static int open_output_file(const char *filename, int width, int height)
             if (ofmt_ctx->oformat->flags & AVFMT_GLOBALHEADER)
                 enc_ctx->flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
 
-            out_stream->time_base = enc_ctx->time_base;
+            out_stream->time_base = in_stream->time_base;
             out_stream->r_frame_rate = in_stream->r_frame_rate;
             out_stream->avg_frame_rate = in_stream->avg_frame_rate;
             out_stream->start_time = in_stream->start_time;
