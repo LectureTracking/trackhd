@@ -123,7 +123,7 @@ int main(int argc, char *argv[]) {
     cout << "\n----------------------------------------" << endl;
     cout << "Stage [3 of 3] - Virtual Cinematographer" << endl;
     cout << "----------------------------------------\n" << endl;
-    VirtualCinematographer vc;
+    VirtualCinematographer vc(new JsonVirtualCinematographerOutput());
     vc.cinematographerDriver(persistentData);
     cout << "\nStage 3 Complete" << endl;
     cout << "----------------------------------------\n" << endl;
