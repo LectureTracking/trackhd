@@ -18,12 +18,23 @@ These instructions are written with the assumption that the project will be inst
 
 ### Installation
 
+#### FFmpeg
+The standard repositories of your distribution may include FFmpeg 3.4+. If not, FFmpeg 3.4 can be built from source (more on that topic [here](https://github.com/FFmpeg/FFmpeg/blob/master/INSTALL.md)).
+
+For Ubuntu-based distributions, the PPA `ppa:jonathonf/ffmpeg-3` allows for simpler installation without the needing to build from source. The PPA can be added as follows:
+
+```
+$ sudo add-apt-repository ppa:jonathonf/ffmpeg-3
+[Press enter when prompted]
+$ sudo apt-get update
+```
+
 #### Downloading and Installing base dependencies
-The first on the install list (and most important) is CMake, followed by git and C++.
+The first on the install list (and most important) is CMake, followed by git, C++ and various multimedia packages.
 The following terminal command will get and install the necessary requirements
 
 ```
-$ sudo apt-get install cmake git build-essential libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+$ sudo apt-get install cmake git build-essential libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libavfilter-dev libx264-dev libx265-dev libvpx-dev liblzma-dev libbz2-dev libva-dev libvdpau-dev
 ```
 
 #### Downloading and Installing the OpenCV libraries
