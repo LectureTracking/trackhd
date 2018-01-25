@@ -55,7 +55,9 @@ void DefaultVirtualCinematographerOutput::outputFrames(ofstream & stream, const 
 void JsonVirtualCinematographerOutput::outputHeader(ofstream & stream, const PersistentData & persistentData) {
     stream << "{" << endl;
     stream << "\t" << "\"inputFile\":\"" << persistentData.inputFile <<
-        "\",\n\t\"processedFrames\": " << persistentData.processedFrames <<
+        "\",\n\t\"originalWidth\":" << persistentData.videoDimension.width <<
+        ", \"originalHeight\":" << persistentData.videoDimension.height <<
+        ",\n\t\"processedFrames\": " << persistentData.processedFrames <<
         ",\n\t\"width\": " << persistentData.panOutputVideoSize.width << ", \"height\": " << persistentData.panOutputVideoSize.height << "," << std::endl;
 }
 
@@ -68,15 +70,15 @@ void JsonVirtualCinematographerOutput::outputFrames(ofstream & stream, const Per
     auto printFrame = [&](int frame, int cropX, long int cropY,bool printComma) {
         int second = static_cast<int>(static_cast<double>(frame) / fps);
         if (lastSecond!=second) {
-            stream << "\n\t\t\"t" << second << "\":[" << cropX << "," << cropY << ","
+            stream << "\n\t\t{ \"time\":" << second << ", \"rect\":[" << cropX << "," << cropY << ","
                     << persistentData.panOutputVideoSize.width << ","
-                    << persistentData.panOutputVideoSize.height << "]";
+                    << persistentData.panOutputVideoSize.height << "] }";
             lastSecond = second;
             if (printComma) stream << ",";
         }
      };
 
-    stream << "\n\t\"positions\": {";
+    stream << "\n\t\"positions\": [";
     // Write out the pan x position and the fixed y position
     for (i = 0; i < persistentData.processedFrames - 1; i++) {
         if (cropRectangles[i].x != last_x) {
@@ -88,7 +90,7 @@ void JsonVirtualCinematographerOutput::outputFrames(ofstream & stream, const Per
     // Always write out the last frame
     printFrame(i,cropRectangles[i].x, y, false);
 
-    stream << std::endl << "\t}" << std::endl << "}";
+    stream << std::endl << "\t]" << std::endl << "}";
 }
 
 VirtualCinematographer::VirtualCinematographer(VirtualCinematographerOutput * output) {
