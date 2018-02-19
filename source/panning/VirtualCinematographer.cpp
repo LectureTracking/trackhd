@@ -90,7 +90,7 @@ void JsonVirtualCinematographerOutput::outputFrames(ofstream & stream, const Per
     // Always write out the last frame
     printFrame(i,cropRectangles[i].x, y, false);
 
-    stream << std::endl << "\t]" << std::endl << "}";
+    stream << std::endl << "\t]" << std::endl << "}" << std::endl;
 }
 
 VirtualCinematographer::VirtualCinematographer(VirtualCinematographerOutput * output) {
