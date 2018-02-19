@@ -70,7 +70,7 @@ void JsonVirtualCinematographerOutput::outputFrames(ofstream & stream, const Per
     auto printFrame = [&](int frame, int cropX, long int cropY,bool printComma) {
         int second = static_cast<int>(static_cast<double>(frame) / fps);
         if (lastSecond!=second) {
-            stream << "\n\t\t{ \"time\":" << second << ", \"rect\":[" << cropX << "," << cropY << ","
+            stream << "\n\t\t{ \"time\":" << second << ", \"frame\":" << frame << ", \"rect\":[" << cropX << "," << cropY << ","
                     << persistentData.panOutputVideoSize.width << ","
                     << persistentData.panOutputVideoSize.height << "] }";
             lastSecond = second;
