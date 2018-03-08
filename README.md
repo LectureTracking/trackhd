@@ -149,6 +149,17 @@ track4k presenter.mkv presenter-crop.txt 1920 1080
 cropvid presenter.mkv tracked.mkv presenter-crop.txt
 ```
 
+Track4K can also output the cropping information in JSON format, when the output filename has a `.json` extension:
+
+Example:
+
+```
+track4k presenter.mkv presenter-crop.json 1920 1080
+```
+
+The JSON format includes a timestamp as well as a frame number. The timestamp is only guaranteed to be accurate when
+the source video has been recorded with a fixed frame rate. It may be incorrect for variable frame rate source videos.
+
 ### Memory Requirements
 The program reads a maximum of 29 frames into memory at a time. So a minimum of 4GB RAM should be sufficient.
 
