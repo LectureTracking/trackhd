@@ -20,6 +20,7 @@
 
 #include <stdlib.h>
 #include <stdexcept>
+#include <regex>
 
 #include "segmentation/Track4KPreProcess.h"
 #include "panning/VirtualCinematographer.h"
@@ -70,8 +71,15 @@ int main(int argc, char *argv[]) {
     outputFilename = argv[2];
 
     //Extract the extensions from the filenames
-    inputFileExtension = inputFilename.substr(inputFilename.find_first_of('.') + 1);
-
+    std::regex rx(".*\\.([a-z]+)$");
+	std::smatch match;
+    if (std::regex_match(inputFilename, match, rx) && match.size()>1) {
+        inputFileExtension = match[1].str();
+    }
+    if (std::regex_match(outputFilename, match, rx) && match.size()>1) {
+        outputFileExtension = match[1].str();
+    }
+ 
     //Extract the crop dimensions from the parameters
     cropWidth = stoi(argv[3]);
     cropHeight = stoi(argv[4]);
@@ -123,8 +131,14 @@ int main(int argc, char *argv[]) {
     cout << "\n----------------------------------------" << endl;
     cout << "Stage [3 of 3] - Virtual Cinematographer" << endl;
     cout << "----------------------------------------\n" << endl;
-    VirtualCinematographer vc;
-    vc.cinematographerDriver(persistentData);
+    if (outputFileExtension=="json") {
+        VirtualCinematographer vc(new JsonVirtualCinematographerOutput());
+        vc.cinematographerDriver(persistentData);
+    }
+    else {
+        VirtualCinematographer vc(new DefaultVirtualCinematographerOutput());
+        vc.cinematographerDriver(persistentData);
+    }
     cout << "\nStage 3 Complete" << endl;
     cout << "----------------------------------------\n" << endl;
 
