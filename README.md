@@ -4,8 +4,10 @@ Track4K is an open source C++ project that takes a High Definition video of a le
 ## Getting Started
 These instructions will help get the program and all its dependencies set up on your machine.
 
+> Please take note that this installation guide It was made for use under Ubuntu 16.04, some changes may apply for other distributions or Ubuntu variations.
+
 ### Prerequisites
-These instructions are written with the assumption that the project will be installed on a Linux-based system (preferably a Debian version). Track4K has been tested on Ubuntu 16.04
+These instructions are written with the assumption that the project will be installed on a Linux-based system (preferably a Debian version). **Track4K has been tested on Ubuntu 16.04**
 
  To be able to run this project, you will need to first install the following dependencies:
 
@@ -16,74 +18,117 @@ These instructions are written with the assumption that the project will be inst
 * CMake (3.8.0 or future releases)
 * git (2.10.2 or future releases)
 
-### Installation
 
-#### Downloading and Installing base dependencies
-The first on the install list (and most important) is CMake, followed by git and C++.
-The following terminal command will get and install the necessary requirements
+
+## Installation of the requirements
+
+
+First go to any folder to work with the files that will be downloaded and installed. Next, install the dependencies in the order are written
+
+### Basic libraries
 
 ```
-$ sudo apt-get install cmake git build-essential libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+$sudo apt update
+$sudo apt install git build-essential libgtk2.0-dev pkg-config
 ```
 
-#### Downloading and Installing the OpenCV libraries
-The next step is to download and install the OpenCV libraries.
-The necessary OpenCV library comes in two components. First download the core OpenCV library. Choose any directory as your download destination directory.
-Clone OpenCV from Git as follows:
+### CMAKE
+
 ```
-$ cd `your_chosen_working_directory`
+$ wget https://cmake.org/files/v3.11/cmake-3.11.4-Linux-x86_64.sh
+$ sudo mkdir /opt/cmake$ sudo sh cmake-3.11.4-Linux-x86_64.sh --prefix=/opt/cmake --skip-license
+$ sudo update-alternatives --install /usr/bin/cmake cmake /opt/cmake/bin/cmake 1 --force</code></pre>
+```
+
+###  C and C++
+
+The C and C++ libraries from Ubuntu's official repositories are older than the libraries required. It's needed to have the C and C++ from version 6.3 or newer.
+
+#### Install the repository with the updated versions of C and C++
+```
+$ sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+$ sudo apt update
+```
+
+#### C Libraries installation
+```
+$ sudo apt install gcc-7
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-7 --slave /usr/bin/gcc-nm gcc-nm /usr/bin/gcc-nm-7 --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-7
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-5 --slave /usr/bin/gcc-nm gcc-nm /usr/bin/gcc-nm-5 --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-5
+```
+
+#### C++ Libraries installation
+```
+sudo apt install g++-7
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 60
+```
+
+### Install FFMPEG 3
+
+#### FMPEG Main appllication
+```
+$ sudo add-apt-repository ppa:jonathonf/ffmpeg-3
+$ sudo apt update
+$ sudo apt install ffmpeg
+```
+
+#### FFMPEG Development libraries
+```
+$ sudo apt install libavcodec-dev libavformat-dev libavfilter-dev 
+$ sudo apt install libx265-dev libx264-dev libvpx-dev libbz2-dev libvdpau-dev libva-dev liblzma-dev
+```
+
+## Installation of Track4K
+
+#### Clone the repositories:
+```
 $ git clone https://github.com/opencv/opencv
-
-```
-Next, repeat the process for the Extra modules. Remain in the same working directory and execute the following terminal command:
-```
 $ git clone https://github.com/opencv/opencv_contrib
+$ git clone https://github.com/cilt-uct/trackhd.git
 ```
-You should now have two folders in your working directory.
-The next step is to build OpenCV.
 
-#### Building the OpenCV library
-Your Chosen directory now contains two folders, opencv and opencv_contrib. The opencv folder contains the main OpenCV libraries and opencv_contib contains the extra modules.
+#### Install OpenCV
 
-```
-$ cd `your_chosen_working_directory`
-```
-Inside the main OpenCV folder, change directory into the build folder (create one if it does not exist) and remove all files, since it will require rebuilding. To rebuild OpenCV run the following command from within the build folder:
+> **Note: Track 4K works with version 3.4 of OpenCV, prerelease of V4.0 makes compilation errors.**
 
+In the OpenCV directory, Change to the 3.4 branch, next, build the program 
 ```
+$ cd opencv
+$ git checkout --track remotes/origin/3.4
+$ mkdir build
+$ cd build
 $ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
 ```
-This step will generate a MakeFile. Once complete perform the following command to run make faster (the number after the j-flag is the number of processors the job will use). If you are not sure how many processors the machine has use the following instruction to find out:
 
+Once complete perform the following command to run make faster (the number after the j-flag is the number of processors the job will use). If you are not sure how many processors the machine has use the following instruction to find out:
 ```
-cat/proc/cpuinfo | grep processor | wc -l
+$ cat /proc/cpuinfo | grep processor | wc -l
 ```
+
 Use the result from this in the j-flag
 
 ```
 $ make -j`processor_count`
 ```
-Remain in the build folder and run the following cmake command to make the extra modules.
-The path decribed below is an example. Fill in the directory path on your machine which points to the OpenCV Extra modules folder.
+
+Remain in the build folder and run the following cmake command to make the extra modules. The path decribed below is an example. Fill in the directory path on your machine which points to the OpenCV Extra modules folder.
 
 ```
-cmake -DOPENCV_EXTRA_MODULES_PATH=`OpenCV_Extra_Modules_Folder_Path`/modules ../
-```
-Next step is to make these files:
-
-```
-$ make -j8
+$ cmake -DOPENCV_EXTRA_MODULES_PATH=<Repositories folder path>/opencv_contrib/modules ../
 ```
 
-Finally, install these modules by running the following command:
+After that compile and install the files:
+
 ```
+$ make -j`processor_count`
 $ sudo make install
 ```
+
 #### Building Track4K
 
 ##### Automatic Method
 
-There is a shell script in the trackhd folder called intall_track4k.sh which can be used to install track4k automatically.
+There is a shell script in the trackhd folder called `install_track4k.sh` which can be used to install track4k automatically.
 To use this script run the following command:
 
 ```
@@ -102,6 +147,7 @@ The first step is to navigate into the build folder. Once inside run delete all 
 ```
 cmake ../source
 ```
+
 Now it is possible to run the build instruction:
 
 ```
@@ -131,7 +177,7 @@ $ track4k <inputFileName> <outputFileName> <output-width> <output-height>
 $ cropvid <input file> <output file> <cropping file>
 ```
 
-Example:
+**Example:**
 
 ```
 track4k presenter.mkv presenter-crop.txt 1920 1080
@@ -143,7 +189,8 @@ The program reads a maximum of 29 frames into memory at a time. So a minimum of 
 
 ## Built With
 
-* [OpenCV](http://www.opencv.org) - The computer vision library of choice
+[OpenCV](http://www.opencv.org) - The computer vision library of choice
+[FFFMPEG](https://www.ffmpeg.org) - A complete, cross-platform solution to record, convert and stream audio and video.
 
 ## License
 
