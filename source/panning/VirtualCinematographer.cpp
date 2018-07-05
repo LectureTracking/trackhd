@@ -29,6 +29,80 @@ using namespace std;
 
 int skipLecturePosition = 2; //Only process every second point of lecturers position (Helps filter noisy movement/jitter out)
 
+
+void DefaultVirtualCinematographerOutput::outputHeader(ofstream & stream, const PersistentData & persistentData) {
+    stream << "# track4k " << persistentData.inputFile << " " << persistentData.processedFrames
+             << " frames (frame top-left-x top-left-y) output frame size "
+             << persistentData.panOutputVideoSize.width << " " << persistentData.panOutputVideoSize.height << endl;
+}
+
+void DefaultVirtualCinematographerOutput::outputFrames(ofstream & stream, const PersistentData & persistentData, const std::vector<Rect> & cropRectangles, long int y) {
+     int last_x = -1;
+     int i;
+
+    // Write out the pan x position and the fixed y position
+    for (i = 0; i < persistentData.processedFrames - 1; i++) {
+        if (cropRectangles[i].x != last_x) {
+            stream << i << " " << cropRectangles[i].x << " " << y << endl;
+            last_x = cropRectangles[i].x;
+        }
+    }
+
+    // Always write out the last frame
+    stream << i << " " << cropRectangles[i].x << " " << y << endl;
+}
+
+void JsonVirtualCinematographerOutput::outputHeader(ofstream & stream, const PersistentData & persistentData) {
+    stream << "{" << endl;
+    stream << "\t" << "\"inputFile\":\"" << persistentData.inputFile <<
+        "\",\n\t\"originalWidth\":" << persistentData.videoDimension.width <<
+        ", \"originalHeight\":" << persistentData.videoDimension.height <<
+        ",\n\t\"processedFrames\": " << persistentData.processedFrames <<
+        ",\n\t\"width\": " << persistentData.panOutputVideoSize.width << ", \"height\": " << persistentData.panOutputVideoSize.height << "," << std::endl;
+}
+
+void JsonVirtualCinematographerOutput::outputFrames(ofstream & stream, const PersistentData & persistentData, const std::vector<Rect> & cropRectangles, long int y) {
+    int last_x = -1;
+    int i;
+    double fps = persistentData.fps;
+    int lastSecond = -1;
+
+    auto printFrame = [&](int frame, int cropX, long int cropY,bool printComma) {
+        int second = static_cast<int>(static_cast<double>(frame) / fps);
+        if (lastSecond!=second) {
+            stream << "\n\t\t{ \"time\":" << second << ", \"frame\":" << frame << ", \"rect\":[" << cropX << "," << cropY << ","
+                    << persistentData.panOutputVideoSize.width << ","
+                    << persistentData.panOutputVideoSize.height << "] }";
+            lastSecond = second;
+            if (printComma) stream << ",";
+        }
+     };
+
+    stream << "\n\t\"positions\": [";
+    // Write out the pan x position and the fixed y position
+    for (i = 0; i < persistentData.processedFrames - 1; i++) {
+        if (cropRectangles[i].x != last_x) {
+            printFrame(i,cropRectangles[i].x,y,true);
+            last_x = cropRectangles[i].x;
+        }
+    }
+
+    // Always write out the last frame
+    printFrame(i,cropRectangles[i].x, y, false);
+
+    stream << std::endl << "\t]" << std::endl << "}" << std::endl;
+}
+
+VirtualCinematographer::VirtualCinematographer(VirtualCinematographerOutput * output) {
+    if (output) {
+        _output = std::unique_ptr<VirtualCinematographerOutput>(output);
+    }
+    else {
+        _output = std::make_unique<DefaultVirtualCinematographerOutput>();
+    }
+}
+
+
 /**
  * Main method for the Virtual Cinematographer module
  * @param persistentData
@@ -121,23 +195,8 @@ int VirtualCinematographer::cinematographerDriver(PersistentData &persistentData
     cout << "Crop rectangles : " << cropRectangles.size() << endl;
     cout << "Frames processed: " << persistentData.processedFrames << endl;
 
-    cropdata << "# track4k " << persistentData.inputFile << " " << persistentData.processedFrames
-             << " frames (frame top-left-x top-left-y) output frame size "
-             << persistentData.panOutputVideoSize.width << " " << persistentData.panOutputVideoSize.height << endl;
-
-    int last_x = -1;
-
-    // Write out the pan x position and the fixed y position
-    for (int i = 0; i < persistentData.processedFrames - 1; i++) {
-        if (cropRectangles[i].x != last_x) {
-            cropdata << i << " " << cropRectangles[i].x << " " << y << endl;
-            last_x = cropRectangles[i].x;
-        }
-    }
-
-    // Always write out the last frame
-    int i = persistentData.processedFrames - 1;
-    cropdata << i << " " << cropRectangles[i].x << " " << y << endl;
+    _output->outputHeader(cropdata,persistentData);
+    _output->outputFrames(cropdata,persistentData,cropRectangles,y);
 
     // Close all file writers
     cropdata.close();

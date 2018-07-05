@@ -25,10 +25,40 @@
 #include "PresenterMotion.h"
 #include "PanLogic.h"
 
+#include <fstream>
+
+#include <memory>
+
+class VirtualCinematographerOutput
+{
+    public:
+        virtual void outputHeader(ofstream & stream, const PersistentData & persistentData) = 0;
+        virtual void outputFrames(ofstream & stream, const PersistentData & persistentData, const std::vector<Rect> & cropRectangles, long int y) = 0;
+};
+
+class DefaultVirtualCinematographerOutput : public VirtualCinematographerOutput
+{
+    public:
+        virtual void outputHeader(ofstream & stream, const PersistentData & persistentData);
+        virtual void outputFrames(ofstream & stream, const PersistentData & persistentData, const std::vector<Rect> & cropRectangles, long int y);
+};
+
+class JsonVirtualCinematographerOutput : public VirtualCinematographerOutput
+{
+    public:
+        virtual void outputHeader(ofstream & stream, const PersistentData & persistentData);
+        virtual void outputFrames(ofstream & stream, const PersistentData & persistentData, const std::vector<Rect> & cropRectangles, long int y);
+};
+
 class VirtualCinematographer
 {
     public:
+        VirtualCinematographer(VirtualCinematographerOutput * output = nullptr);
+
         int cinematographerDriver(PersistentData &persistentData);
+
+    protected:
+        std::unique_ptr<VirtualCinematographerOutput> _output;
 };
 
 
