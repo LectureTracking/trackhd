@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <definition xmlns="http://workflow.opencastproject.org">
 
-  <id>uzk-track4k</id>
+  <id>track4k</id>
   <title>Track the presenter by cropping the 4K Video</title>
   <tags/>
   <description/>
@@ -27,7 +27,7 @@
      if="${crop4k}"
      fail-on-error="true"
      retry-strategy="hold"
-     exception-handler-workflow="uzk-partial-error"
+     exception-handler-workflow="partial-error"
      description="Track4K TXT mode">
      <configurations>
        <configuration key="exec">/etc/opencast/ssh_track4k.py</configuration>
@@ -48,7 +48,7 @@
          id="execute-once"
          if="${track4k}"
          fail-on-error="true"
-         exception-handler-workflow="uzk-partial-error"
+         exception-handler-workflow="partial-error"
          description="Track4K JSON mode">
          <configurations>
            <configuration key="exec">/etc/opencast/ssh_track4k.py</configuration>
