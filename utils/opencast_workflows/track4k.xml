@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <definition xmlns="http://workflow.opencastproject.org">
 
-  <id>uzk-track4k</id>
+  <id>track4k</id>
   <title>Track the presenter by cropping the 4K Video</title>
   <tags/>
   <description/>
@@ -22,45 +22,46 @@
 
 
 <!-- Run track4k on presenter-4k/source to presenter/source | TXT mode-->
-   <operation
-     id="execute-many"
+    <operation
+     id="execute-once"
      if="${crop4k}"
      fail-on-error="true"
      retry-strategy="hold"
-     exception-handler-workflow="uzk-partial-error"
+     exception-handler-workflow="partial-error"
      description="Track4K TXT mode">
      <configurations>
-       <configuration key="exec">/etc/opencast/ssh_track4k.py</configuration>
-       <configuration key="params">#{in} #{out} 1920 1080 txt</configuration>
+       <configuration key="exec">/etc/opencast/trackhd_client.py</configuration>
+       <configuration key="params">#{flavor(presenter4k/source)} #{out} 1920 1080 txt</configuration>
        <configuration key="source-flavor">presenter4k/source</configuration>
        <configuration key="source-video">true</configuration>
-       <configuration key="output-filename">tracked.mp4</configuration>
+       <configuration key="out
+         put-filename">tracked.mkv</configuration>
        <configuration key="target-flavor">presenter/source</configuration>
        <configuration key="target-tags">archive</configuration>
        <configuration key="expected-type">Track</configuration>
        <configuration key="load">2.0</configuration>
      </configurations>
-   </operation>
+    </operation>
 
 <!-- Run track4k on presenter-4k/source to presenter/source | JSON mode-->
 
-   <operation
-         id="execute-once"
-         if="${track4k}"
-         fail-on-error="true"
-         exception-handler-workflow="uzk-partial-error"
-         description="Track4K JSON mode">
-         <configurations>
-           <configuration key="exec">/etc/opencast/ssh_track4k.py</configuration>
-           <configuration key="params">#{in} #{out} 1920 1080 json </configuration>
-           <configuration key="source-flavor">presenter/source</configuration>
-           <configuration key="output-filename">trackhd.json</configuration>
-           <configuration key="target-flavor">presenter/trackhd</configuration>
-           <configuration
-   key="target-tags">engage-download,engage-streaming,archive</configuration>
-           <configuration key="expected-type">Attachment</configuration>
-         </configurations>
-       </operation>
+    <operation
+      id="execute-once"
+      if="${track4k}"
+      fail-on-error="true"
+      exception-handler-workflow="partial-error"
+      description="Track4K JSON mode">
+      <configurations>
+        <configuration key="exec">/etc/opencast/trackhd_client.py</configuration>
+        <configuration key="params">#{flavor(presenter4k/source)} #{out} 1920 1080 json </configuration>
+        <configuration key="source-flavor">presenter/source</configuration>
+        <configuration key="output-filename">trackhd.json</configuration>
+        <configuration key="target-flavor">presenter/trackhd</configuration>
+        <configuration
+          key="target-tags">engage-download,engage-streaming,archive</configuration>
+          <configuration key="expected-type">Attachment</configuration>
+        </configurations>
+      </operation>
 
 
    <!-- Tag the sources for archival -->
@@ -74,7 +75,7 @@
    </operation>
 
    <!-- Untag track4k -->
-   <!-- <operation
+   <operation
      id="tag"
      if="${crop4k}"
      description="Exclude 4K presenter source from archive">
@@ -82,7 +83,7 @@
        <configuration key="source-flavors">presenter4k/source</configuration>
        <configuration key="target-tags">-archive</configuration>
      </configurations>
-   </operation> -->
+   </operation>
 
   </operations>
 

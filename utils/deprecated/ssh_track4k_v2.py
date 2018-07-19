@@ -94,7 +94,9 @@ class ShellHandler:
 
         return shin, shout, sherr
 
-shell = ShellHandler('134.95.68.60', 'opencast', 'opencast')
+
+# Set the IP, Username and Password  
+shell = ShellHandler(<IP>, <User>, <Passwd>)
 
 if args.track_mode == 'txt':
     cmd = '/usr/local/bin/track4k ' + args.input_file + ' ' + args.output_file + '.txt' + ' ' + args.width_out + ' ' + args.height_out
