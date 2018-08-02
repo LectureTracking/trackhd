@@ -8,7 +8,10 @@ import sys
 import Pyro4
 import Pyro4.util
 import argparse
+import logging
+import sys
 
+# Pyro 4 Exceptbook: Sends error messages from Server to client
 sys.excepthook = Pyro4.util.excepthook
 
 parser = argparse.ArgumentParser(description='Executes track4K and cropvid in a remote machine')
@@ -34,11 +37,57 @@ parser.add_argument('track_mode', type=str, choices=['txt', 'json'],
 args = parser.parse_args()
 
 
-# Configure IP and port of the TrackHD serverself.
-uri = 'PYRO:trackhd.prototype@<IP>:<Port>'
+# Class to create logfiles in the client machine
+class StreamToLogger(object):
+   """
+   Fake file-like stream object that redirects writes to a logger instance.
+   """
+   def __init__(self, logger, log_level=logging.INFO):
+      self.logger = logger
+      self.log_level = log_level
+      self.linebuf = ''
+
+   def write(self, buf):
+      for line in buf.rstrip().splitlines():
+         self.logger.log(self.log_level, line.rstrip())
+
+   def flush(self):
+    pass
+
+# Log file store location, change it or configure linux to make it work in that location
+logging.basicConfig(
+   level=logging.DEBUG,
+   format='%(asctime)s:%(levelname)s:%(name)s:%(message)s',
+   filename="/var/log/pyro4trackhd/trackhd_client.log",
+   filemode='a'
+)
+
+stdout_logger = logging.getLogger('STDOUT')
+sl = StreamToLogger(stdout_logger, logging.INFO)
+sys.stdout = sl
+
+stderr_logger = logging.getLogger('STDERR')
+sl = StreamToLogger(stderr_logger, logging.ERROR)
+sys.stderr = sl
+
+
+
+
+# Configure IP and port of the TrackHD server.
+uri = 'PYRO:trackhd.prototype@{{ trackhd_ip }}:{{ trackhd_port }}'
 trackhd = Pyro4.Proxy(uri)
 
 
 #Run the application
+print("Track HD Client Started")
+print("Server IP address: " + "{{ trackhd_ip }}")
+print("Server Port address: " + "{{ trackhd_port }}")
+print (" ")
+print('Input details:')
+print('Input Filename: ' + args.input_file)
+print('Output Filename: ' + args.output_file)
+print('Desired tracking resolution: ' + args.width_out + 'x' + args.height_out)
+print('Track output mode: ' + args.track_mode)
+
 app = trackhd
 app.track4k(args.input_file, args.output_file, args.width_out, args.height_out, args.track_mode)

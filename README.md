@@ -6,6 +6,9 @@ These instructions will help get the program and all its dependencies set up on 
 
 > Please take note that this installation guide It was made for use under Ubuntu 16.04, some changes may apply for other distributions or Ubuntu variations.
 
+> All the commands are run as normal user unless if its written as super user "\#"
+
+
 ### Prerequisites
 These instructions are written with the assumption that the project will be installed on a Linux-based system (preferably a Debian version). **Track4K has been tested on Ubuntu 16.04**
 
@@ -29,16 +32,16 @@ First go to any folder to work with the files that will be downloaded and instal
 ### Basic libraries
 
 ```
-$sudo apt update
-$sudo apt install git build-essential libgtk2.0-dev pkg-config
+sudo apt update
+sudo apt install git build-essential libgtk2.0-dev pkg-config
 ```
 
 ### CMAKE
 
 ```
-$ wget https://cmake.org/files/v3.11/cmake-3.11.4-Linux-x86_64.sh
-$ sudo mkdir /opt/cmake$ sudo sh cmake-3.11.4-Linux-x86_64.sh --prefix=/opt/cmake --skip-license
-$ sudo update-alternatives --install /usr/bin/cmake cmake /opt/cmake/bin/cmake 1 --force</code></pre>
+wget https://cmake.org/files/v3.11/cmake-3.11.4-Linux-x86_64.sh
+sudo mkdir /opt/cmake$ sudo sh cmake-3.11.4-Linux-x86_64.sh --prefix=/opt/cmake --skip-license
+sudo update-alternatives --install /usr/bin/cmake cmake /opt/cmake/bin/cmake 1 --force</code></pre>
 ```
 
 ###  C and C++
@@ -47,15 +50,15 @@ The C and C++ libraries from Ubuntu's official repositories are older than the l
 
 #### Install the repository with the updated versions of C and C++
 ```
-$ sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-$ sudo apt update
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt update
 ```
 
 #### C Libraries installation
 ```
-$ sudo apt install gcc-7
-$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-7 --slave /usr/bin/gcc-nm gcc-nm /usr/bin/gcc-nm-7 --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-7
-$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-5 --slave /usr/bin/gcc-nm gcc-nm /usr/bin/gcc-nm-5 --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-5
+sudo apt install gcc-7
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-7 --slave /usr/bin/gcc-nm gcc-nm /usr/bin/gcc-nm-7 --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-7
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-5 --slave /usr/bin/gcc-nm gcc-nm /usr/bin/gcc-nm-5 --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-5
 ```
 
 #### C++ Libraries installation
@@ -68,61 +71,61 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 60
 
 #### FMPEG Main appllication
 ```
-$ sudo add-apt-repository ppa:jonathonf/ffmpeg-3
-$ sudo apt update
-$ sudo apt install ffmpeg
+sudo add-apt-repository ppa:jonathonf/ffmpeg-3
+sudo apt update
+sudo apt install ffmpeg
 ```
 
 #### FFMPEG Development libraries
 ```
-$ sudo apt install libavcodec-dev libavformat-dev libavfilter-dev 
-$ sudo apt install libx265-dev libx264-dev libvpx-dev libbz2-dev libvdpau-dev libva-dev liblzma-dev
+sudo apt install libavcodec-dev libavformat-dev libavfilter-dev
+sudo apt install libx265-dev libx264-dev libvpx-dev libbz2-dev libvdpau-dev libva-dev liblzma-dev
 ```
 
 ## Installation of Track4K
 
 #### Clone the repositories:
 ```
-$ git clone https://github.com/opencv/opencv
-$ git clone https://github.com/opencv/opencv_contrib
-$ git clone https://github.com/cilt-uct/trackhd.git
+git clone https://github.com/opencv/opencv
+git clone https://github.com/opencv/opencv_contrib
+git clone https://github.com/cilt-uct/trackhd.git
 ```
 
 #### Install OpenCV
 
 > **Note: Track 4K works with version 3.4 of OpenCV, prerelease of V4.0 makes compilation errors.**
 
-In the OpenCV directory, Change to the 3.4 branch, next, build the program 
+In the OpenCV directory, Change to the 3.4 branch, next, build the program
 ```
-$ cd opencv
-$ git checkout --track remotes/origin/3.4
-$ mkdir build
-$ cd build
-$ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
+cd opencv
+git checkout --track remotes/origin/3.4
+mkdir build
+cd build
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
 ```
 
 Once complete perform the following command to run make faster (the number after the j-flag is the number of processors the job will use). If you are not sure how many processors the machine has use the following instruction to find out:
 ```
-$ cat /proc/cpuinfo | grep processor | wc -l
+cat /proc/cpuinfo | grep processor | wc -l
 ```
 
 Use the result from this in the j-flag
 
 ```
-$ make -j`processor_count`
+make -j`processor_count`
 ```
 
 Remain in the build folder and run the following cmake command to make the extra modules. The path decribed below is an example. Fill in the directory path on your machine which points to the OpenCV Extra modules folder.
 
 ```
-$ cmake -DOPENCV_EXTRA_MODULES_PATH=<Repositories folder path>/opencv_contrib/modules ../
+cmake -DOPENCV_EXTRA_MODULES_PATH=<Repositories folder path>/opencv_contrib/modules ../
 ```
 
 After that compile and install the files:
 
 ```
-$ make -j`processor_count`
-$ sudo make install
+make -j`processor_count`
+sudo make install
 ```
 
 #### Building Track4K
@@ -174,8 +177,8 @@ Track4K runs in two parts: track4k analyzes a video file and produces a cropping
 video file according to the cropping information in the data file, using ffmpeg libraries.
 
 ```
-$ track4k <inputFileName> <outputFileName> <output-width> <output-height>
-$ cropvid <input file> <output file> <cropping file>
+track4k <inputFileName> <outputFileName> <output-width> <output-height>
+cropvid <input file> <output file> <cropping file>
 ```
 
 **Example:**

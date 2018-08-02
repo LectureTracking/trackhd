@@ -1,18 +1,21 @@
 # Track4K Utilities
 
-In this folder you can find different utilities to work with Track4K, the utilities availible at the moment are:
+In this folder you can find different utilities to work with Track4K, the utilities available at the moment are:
 
 * **Track4KPyro** : Python3 script built with Pyro4 to execute remotely Track4K by using remote objects in a Client/Server Scheme.
 * **opencast_workflows** : Samples of workflows to work with ssh_track4k.py
+*  **Ansible Playbook** : An Ansible playbook to install TrackHD automatically with the **Track4KPyro** server script included.
 * **ssh_track4k.py** (Deprecated): Python3 script built with Paramiko to execute remotely Track4K
 
 ## Track4KPyro
 
-The idea behind Track4KPyro is because Track4 and cropvid were built to work in Ubuntu systems and it was need to run this programs over other Linux machines like CentOS or Debian based systems.
+The idea behind Track4KPyro is because Track4K and cropvid were built to work in Ubuntu systems and it was need to run this programs over other Linux machines like CentOS or Debian based systems.
 
 Track4KPyro makes possible to work with any other machine without installing dependencies not supported officially for the distribution or making custom builds that might be very troublesome.
 
-One of the uses of Track4KPyro is to be part of an Opencast workflow.
+One of the uses of Track4KPyro is to be part of an Opencast workflow as an external script. Here is a diagram about how works with Opencast:
+
+![Track4K-Pyro4-Diagram](/assets/Diagram-Track4K-Pyro4.png)
 
 ### Installation
 
@@ -23,7 +26,7 @@ Simply you need to install this dependencies in each machine, for opencast users
 
 **Important:** Before the first execution, you need to check:
 
-* If you use with an NFS share, you need to use the same username, group, uid and gid of the same user that will work with the processed assets.
+* If you use with an NFS share, you need to use the same username, group, *uid* and *gid* of the same user that will work with the processed assets.
 
 #### In the machine with track4K and cropvid installed:
 
@@ -32,13 +35,19 @@ Simply you need to install this dependencies in each machine, for opencast users
 ```
 Object <class '__main__.trackhd'>:
 
-    uri = PYRO:trackhd.prototype@0.0.0.0:15236
+    uri = PYRO:trackhd.prototype@0.0.0.0:<PORT>
 Pyro daemon running.
 ```
 \* The port and the IP from what accept the clients can be changed in the code.
 
 * Allow  inbound TCP connection throught the port
 
+
+**If you installed Track HD as a Systemd service, like in the included ansible playbook, you can run it using this line:**
+
+```bash
+# systemctl start trackhd
+```
 
 #### In the client machine:
 
@@ -72,11 +81,17 @@ optional arguments:
 
 ### Future Work:
 
-* Integrate *trackhd_server.py* as a OS service.
-* Exception handling in case of problems.
+* [x] <del> Integrate *trackhd_server.py* as a OS service. </del>
+* [x] <del>Log files generated from server and the client scripts </del>
+* [ ] Exception handling in case of problems.
 
+## Ansible playbook
+
+Included in the [Utils folder](/utils), there is and Ansible Playbook that is ready to install Track HD with the Pyro4 script for the server side.
+
+**Important:** Take note this script has to be put in an *Ansible folder structure* and the variables and hosts had to be set before use.
 
 
 ## Opencast Workflows
 
-This workflows for opencast are a samples they how will work with **Track4KPyro**, you only have to remember to install and allow this script in each admin and worker. node of opencast.
+This workflows for opencast are a samples they how will work with **Track4KPyro**, you only have to remember to install and allow this script in each admin and each worker node of opencast.
