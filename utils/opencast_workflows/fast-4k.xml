@@ -52,15 +52,15 @@
             <legend>4K Video options</legend>
             <ul id="4KMode" class="workflow-configuration-subpanel">
               <li>
-                <input class="configField" type="radio" name="4KcropORtrack" onclick="check();" value="no4k" checked="checked" />
+                <input id="4KcropORtrack_no4k" class="configField" type="radio" name="4KcropORtrack" onclick="check();" value="no4k" checked="checked" />
                 <label for="4KcropORtrack">No Cropping or tracking / This is not a 4K Video</label>
               </li>
               <li>
-                <input class="configField" type="radio" name="4KcropORtrack" onclick="check();" value="crop4k"/>
+                <input id="4KcropORtrack_4kcrop" class="configField" type="radio" name="4KcropORtrack" onclick="check();" value="crop4k"/>
                 <label for="4KcropORtrack">Track with cropping</label>
               </li>
               <li>
-                <input class="configField" type="radio" name="4KcropORtrack" onclick="check();" value="track4k"/>
+                <input id="4KcropORtrack_4ktrack" class="configField" type="radio" name="4KcropORtrack" onclick="check();" value="track4k"/>
                 <label for="4KcropORtrack">Track without cropping</label>
               </li>
             </ul>
@@ -136,6 +136,24 @@
     </configuration_panel>
 
     <operations>
+
+      <!-- Apply the default workflow configuration -->
+
+      <operation
+        id="defaults"
+        exception-handler-workflow="partial-error"
+        description="Applying default configuration values">
+        <configurations>
+          <configuration key="emailAddress"></configuration>
+          <configuration key="autopublish">false</configuration>
+          <configuration key="useExternalPlayer">false</configuration>
+          <configuration key="enableDownload">false</configuration>
+          <configuration key="enableAnnotation">false</configuration>
+          <configuration key="sourceType">1</configuration>
+          <configuration key="layoutSBS">false</configuration>
+          <configuration key="uploadedSearchPreview">false</configuration>
+        </configurations>
+      </operation>
 
     <!-- Create tracking data and crop 4k Video -->
 
