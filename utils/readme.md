@@ -15,7 +15,7 @@ Track4KPyro makes possible to work with any other machine without installing dep
 
 One of the uses of Track4KPyro is to be part of an Opencast workflow as an external script. Here is a diagram about how works with Opencast:
 
-![Track4K-Pyro4-Diagram](/assets/Diagram-Track4K-Pyro4.png)
+![Track4K-Pyro4-Diagram](/utils/assets/Diagram-Track4K-Pyro4.png)
 
 ### Installation
 
