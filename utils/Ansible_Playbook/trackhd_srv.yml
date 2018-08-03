@@ -1,0 +1,6 @@
+- hosts: trackhd_server
+  become: yes
+  become_method: sudo
+  become_user: root
+  roles:
+    - track4k_server

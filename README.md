@@ -115,7 +115,7 @@ Use the result from this in the j-flag
 make -j`processor_count`
 ```
 
-Remain in the build folder and run the following cmake command to make the extra modules. The path decribed below is an example. Fill in the directory path on your machine which points to the OpenCV Extra modules folder.
+Remain in the build folder and run the following cmake command to make the extra modules. The path described below is an example. Fill in the directory path on your machine which points to the OpenCV Extra modules folder.
 
 ```
 cmake -DOPENCV_EXTRA_MODULES_PATH=<Repositories folder path>/opencv_contrib/modules ../
@@ -145,7 +145,7 @@ This will run all the steps listed in the manual method mentioned below.
 
 This method is for the case where the automatic method does not work. It does everything the shell script does manually.
 
-The trackhd directory should have 2 main folders inside it: source and build. The source folder comntains all the header and source files while the build file contains all object files and executables.
+The trackhd directory should have 2 main folders inside it: source and build. The source folder contains all the header and source files while the build file contains all object files and executables.
 The first step is to navigate into the build folder. Once inside run delete all files (if any) and then type the following command in terminal:
 
 ```
@@ -173,7 +173,7 @@ cp cropvid /usr/local/bin/
 
 #### Running Track4K
 
-Track4K runs in two parts: track4k analyzes a video file and produces a cropping data file in text format. cropvid crops the
+Track4K runs in two parts: track4k analyses a video file and produces a cropping data file in text format. cropvid crops the
 video file according to the cropping information in the data file, using ffmpeg libraries.
 
 ```

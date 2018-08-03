@@ -1,0 +1,25 @@
+# TrackHD options
+
+### Pre-production and Development environments
+# name of the NAS volume
+nfs_name: CHANGE_ME
+
+# mount point for the NAS shared file system
+## Same mount point of the opencast installation
+fstab_name: CHANGE_ME
+
+
+
+### General Options
+
+#TrackHD Parameters
+
+server_user: CHANGE_ME
+user_gid: CHANGE_ME
+user_uid: CHANGE_ME
+
+
+trackhd_repo: https://github.com/mliradelc/trackhd.git
+trackhd_installation_path: /etc
+trackhd_data_path: /etc
+trackhd_port: CHANGE_ME

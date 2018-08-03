@@ -153,6 +153,25 @@
   args:
     chdir: /home/{{ server_user }}/trackhd
 
+- name: Install pyhton 3 and PiP
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python3
+    - python3-pip
+  tags: trackhd_script_libs
+
+- name: Install Pyro4 and Argparse libraries
+  pip:
+    executable: pip3
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - Pyro4
+    - argparse
+  tags: trackhd_script_libs
+
 - name: Copy trackhd_server to desired machine
   template:
     src: "templates/trackhd_server.py.j2"
