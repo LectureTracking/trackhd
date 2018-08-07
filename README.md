@@ -28,7 +28,6 @@ These instructions are written with the assumption that the project will be inst
 * git (2.10.2 or future releases)
 
 
-<<<<<<< HEAD
 
 ## Installation of the requirements
 
