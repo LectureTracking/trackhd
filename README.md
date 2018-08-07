@@ -2,11 +2,17 @@
 Track4K is an open source C++ project that takes a High Definition video of a lecture recording and then produces a smaller cropped output video, which frames the lecturer. This is done using image processing and computer vision algorithms to track the lecturer and uses the lecturer position information to pan the virtual camera.
 
 ## Getting Started
+
+> If you want to use right away go to [this link](/utils/Ansible_Playbook) to install Track4K automatically.
+
 These instructions will help get the program and all its dependencies set up on your machine.
 
 > Please take note that this installation guide It was made for use under Ubuntu 16.04, some changes may apply for other distributions or Ubuntu variations.
 
 > All the commands are run as normal user unless if its written as super user "\#"
+
+
+
 
 
 ### Prerequisites

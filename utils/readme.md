@@ -4,7 +4,7 @@ In this folder you can find different utilities to work with Track4K, the utilit
 
 * **Track4KPyro** : Python3 script built with Pyro4 to execute remotely Track4K by using remote objects in a Client/Server Scheme.
 * **opencast_workflows** : Samples of workflows to work with the scripts.
-*  **Ansible Playbook** : An Ansible playbook to install TrackHD automatically with the **Track4KPyro** server script included.
+*  **Ansible Playbooks** : An Ansible playbook to install TrackHD automatically with the **Track4KPyro** server script included.
 * **ssh_track4k.py** (Deprecated): Python3 script built with Paramiko to execute remotely Track4K
 
 ## Track4KPyro
@@ -85,11 +85,16 @@ optional arguments:
 * [x] <del>Log files generated from server and the client scripts </del>
 * [ ] Exception handling in case of problems.
 
-## Ansible playbook
+## Ansible playbooks
 
-Included in the [Utils folder](/utils), there is and Ansible Playbook that is ready to install Track HD with the Pyro4 script for the server side.
+Included in the [Utils folder](/utils/Ansible_Playbook), there is and Ansible Playbook that is ready to install Track HD with the Pyro4 script for the server side.
 
-**Important:** Take note this script has to be put in an *Ansible folder structure* and the variables and hosts had to be set before use.
+**Important:** Take note this script is already in a *Ansible folder structure*. The variables and hosts had to be set before use.
+
+To execute, simply run, for the clients or the server:
+```
+ansible-playbook -vv -i hosts [trackhd_clnt.yml | trackhd_srv.yml] -u [user_with_sudo] --ask-sudo-pass
+```
 
 
 ## Opencast Workflows

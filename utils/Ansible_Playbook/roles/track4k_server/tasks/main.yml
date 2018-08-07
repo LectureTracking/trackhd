@@ -172,6 +172,13 @@
     - argparse
   tags: trackhd_script_libs
 
+- name: Register libraries to the system
+  command: ldconfig -v
+  tags:
+    - trackhd_install-basic_libs
+    - trackhd_install-opencv
+    - trackhd_install-ffmpeg
+
 - name: Copy trackhd_server to desired machine
   template:
     src: "templates/trackhd_server.py.j2"
