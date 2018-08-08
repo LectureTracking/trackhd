@@ -12,11 +12,9 @@ import logging
 import sys
 
 #Please Change this values before the first run
-# trackhd_ip is an ip string.
-# trackhd_port is an int.
 trackhd_ip = 'CHANGE_ME'
 trackhd_port = 'CHANGE_ME'
-log_file = '/var/log/trackhd_client.log'
+log_file = 'CHANGE_ME'
 
 # Pyro 4 Exceptbook: Sends error messages from Server to client
 sys.excepthook = Pyro4.util.excepthook
@@ -81,14 +79,14 @@ sys.stderr = sl
 
 
 # Configure IP and port of the TrackHD server.
-uri = 'PYRO:trackhd.prototype@trackhd_ip:trackhd_port'
+uri = 'PYRO:trackhd.prototype@' + trackhd_ip +':'+ trackhd_port
 trackhd = Pyro4.Proxy(uri)
 
 
 #Run the application
 print("Track HD Client Started")
-print("Server IP address: " + "trackhd_ip")
-print("Server Port address: " + "trackhd_port")
+print("Server IP address: " + trackhd_ip)
+print("Server Port address: " + trackhd_port)
 print (" ")
 print('Input details:')
 print('Input Filename: ' + args.input_file)
