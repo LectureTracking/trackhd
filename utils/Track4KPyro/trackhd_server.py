@@ -9,6 +9,12 @@ import Pyro4
 import subprocess
 import os
 
+#Please Change this value before the first run
+# trackhd_port is an int.
+trackhd_port = 'CHANGE_ME'
+
+
+
 # Expose the trackhd class throught Pyro4 interface
 @Pyro4.expose
 @Pyro4.behavior(instance_mode = 'single')
@@ -63,7 +69,7 @@ def main():
 
     # Allow connection from any IP of the server
     host = '0.0.0.0',
-    port = {{ trackhd_port }},
+    port = trackhd_port,
     ns = False)
 
 if __name__=="__main__":

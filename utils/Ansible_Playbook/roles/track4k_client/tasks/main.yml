@@ -29,3 +29,9 @@
     src: "files/opencast/org.opencastproject.execute.impl.ExecuteServiceImpl.cfg"
     dest: "/etc/opencast/org.opencastproject.execute.impl.ExecuteServiceImpl.cfg"
   tags: trackhd_client-execute
+
+- name: Create Log file folder
+  file:
+    path: "{{ Log_folder }}"
+    state: directory
+    mode: 775

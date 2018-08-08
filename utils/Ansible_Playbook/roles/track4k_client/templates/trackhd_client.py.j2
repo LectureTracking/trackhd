@@ -11,14 +11,7 @@ import argparse
 import logging
 import sys
 
-#Please Change this values before the first run
-# trackhd_ip is an ip string.
-# trackhd_port is an int.
-trackhd_ip = 'CHANGE_ME'
-trackhd_port = 'CHANGE_ME'
-log_file = '/var/log/trackhd_client.log'
 
-# Pyro 4 Exceptbook: Sends error messages from Server to client
 sys.excepthook = Pyro4.util.excepthook
 
 parser = argparse.ArgumentParser(description='Executes track4K and cropvid in a remote machine')
@@ -44,7 +37,6 @@ parser.add_argument('track_mode', type=str, choices=['txt', 'json'],
 args = parser.parse_args()
 
 
-# Class to create logfiles in the client machine
 class StreamToLogger(object):
    """
    Fake file-like stream object that redirects writes to a logger instance.
@@ -61,11 +53,10 @@ class StreamToLogger(object):
    def flush(self):
     pass
 
-# Log file store location, change it or configure linux to make it work in that location
 logging.basicConfig(
    level=logging.DEBUG,
    format='%(asctime)s:%(levelname)s:%(name)s:%(message)s',
-   filename= log_file,
+   filename="{{ Log_folder }}/{{ Log_file }}",
    filemode='a'
 )
 
@@ -80,16 +71,16 @@ sys.stderr = sl
 
 
 
-# Configure IP and port of the TrackHD server.
-uri = 'PYRO:trackhd.prototype@trackhd_ip:trackhd_port'
+# Configure IP and port of the TrackHD serverself.
+uri = 'PYRO:trackhd.prototype@{{ trackhd_ip }}:{{ trackhd_port }}'
 trackhd = Pyro4.Proxy(uri)
 
 
 #Run the application
 print("Track HD Client Started")
-print("Server IP address: " + "trackhd_ip")
-print("Server Port address: " + "trackhd_port")
-print (" ")
+print("Server IP address: " + "{{ trackhd_ip }}")
+print("Server Port address: " + "{{ trackhd_port }}")
+print ("")
 print('Input details:')
 print('Input Filename: ' + args.input_file)
 print('Output Filename: ' + args.output_file)
