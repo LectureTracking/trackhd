@@ -1,0 +1,7 @@
+{
+  "em4": { "output-size": "1080p" },
+  "m209": { "output-size": "1620p" },
+  "hoerilt1": { "output-size": "1080p", "y_top" : 650 },
+  "hoerilt2": { "output-size": "1080p", "y_top" : 750 },
+  "nlt": { "output-size": "720p" }
+}

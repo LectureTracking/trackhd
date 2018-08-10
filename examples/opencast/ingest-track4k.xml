@@ -1,0 +1,42 @@
+    <!-- Include these operations in the Opencast workflow after ingest -->
+
+    <!-- Run track4k on presenter-4k/source to presenter/source -->
+    <operation
+      id="execute-many"
+      fail-on-error="true"
+      retry-strategy="hold"
+      exception-handler-workflow="uct-error"
+      description="Track4K">
+      <configurations>
+        <configuration key="exec">/opt/opencast/wfexec/track4k.pl</configuration>
+        <configuration key="params">#{in} #{out} ${event_location}</configuration>
+        <configuration key="source-flavor">presenter4k/source</configuration>
+        <configuration key="source-video">true</configuration>
+        <configuration key="output-filename">tracked.mkv</configuration>
+        <configuration key="target-flavor">presenter/source</configuration>
+        <configuration key="target-tags">archive</configuration>
+        <configuration key="expected-type">Track</configuration>
+        <configuration key="load">2.0</configuration>
+      </configurations>
+    </operation>
+
+    <!-- Tag the sources for archival -->
+    <operation
+      id="tag"
+      description="Tagging source material for archival">
+      <configurations>
+        <configuration key="source-flavors">*/*</configuration>
+        <configuration key="target-tags">+archive</configuration>
+      </configurations>
+    </operation>
+
+    <!-- Untag track4k -->
+    <operation
+      id="tag"
+      description="Exclude 4K presenter source from archive">
+      <configurations>
+        <configuration key="source-flavors">presenter4k/source</configuration>
+        <configuration key="target-tags">-archive</configuration>
+      </configurations>
+    </operation>
+
