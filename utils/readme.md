@@ -5,7 +5,7 @@ In this folder you can find different utilities to work with Track4K, the utilit
 * **Track4KPyro** : Python3 script built with Pyro4 to execute remotely Track4K by using remote objects in a Client/Server Scheme.
 * **opencast_workflows** : Samples of workflows to work with the scripts.
 *  **Ansible Playbooks** : An Ansible playbook to install TrackHD automatically with the **Track4KPyro** server script included.
-* **ssh_track4k.py** (Deprecated): Python3 script built with Paramiko to execute remotely Track4K
+
 
 ## Track4KPyro
 
@@ -78,6 +78,11 @@ positional arguments:
 optional arguments:
   -h, --help   show this help message and exit
 ```
+
+### Known Issues:
+
+* If Opencast sends a non-video file to the execute service, the track HD server will enter to an infinite loop.
+* Track HD server Syslog is not logging everything.
 
 ### Future Work:
 
