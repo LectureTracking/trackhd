@@ -1,0 +1,198 @@
+# Insert here installation of procedures of
+# track4k and cropvid for the server.
+
+- name: mount the shared nfs filesystem
+  mount:
+    src: "{{ nfs_name }}"
+    name: "{{ fstab_name }}"
+    fstype: nfs
+    opts: "intr,acl,nosuid"
+    state: mounted
+  ignore_errors: yes
+  tags: oc_nfs
+
+- name: Create a new group user
+  group:
+    name: {{ server_user }}
+    gid: {{ user_gid }}
+  tags: oc_prepare
+
+- name: Create a new user user
+  user:
+    name: {{ server_user }}
+    uid: {{ user_uid }}
+    group: {{ server_user }}
+  tags: oc_prepare
+
+- name: Install basic libraries
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - git
+    - build-essential
+    - libgtk2.0-dev
+    - pkg-config
+  tags: trackhd_install-basic_libs
+
+- name: download and install cmake
+  block:
+    - name: Download CMAKE
+      command: wget https://cmake.org/files/v3.11/cmake-3.11.4-Linux-x86_64.sh
+      args:
+        chdir: /home/{{ server_user }}
+    - name: Create a folder to install CMAKE
+      file:
+        path: /opt/cmake
+        state: directory
+        mode: 755
+    - name: Install CMAKE
+      command: sh cmake-3.11.4-Linux-x86_64.sh --prefix=/opt/cmake --skip-license
+      args:
+        chdir: /home/{{ server_user }}
+    - name: Update ENV variables to use CMAKE
+      command: update-alternatives --install /usr/bin/cmake cmake /opt/cmake/bin/cmake 1 --force
+  tags: trackhd_install-cmake
+
+- name: download and install latest versions of C and C++
+  block:
+    - name: Adding ubuntu-toolchain-r/test repository for GCC 7 and G++ 7
+      apt_repository:
+        repo: ppa:ubuntu-toolchain-r/test
+    - name: Downloading GCC 7
+      apt:
+        name: gcc-7
+    - name: Update ENV variables to use gcc 7
+      command: update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-7 --slave /usr/bin/gcc-nm gcc-nm /usr/bin/gcc-nm-7 --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-7
+    - name: Update ENV variables of gcc 5
+      command: update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-5 --slave /usr/bin/gcc-nm gcc-nm /usr/bin/gcc-nm-5 --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-5
+    - name: Intalling G++ 7
+      apt:
+        name: g++-7
+    - name: Update ENV variables to use G++ 7
+      command: update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 60
+  tags: trackhd_install-gcc
+
+- name: Install FFMPEG 3
+  block:
+    - name: Adding jonathonf/ffmpeg-3 repository
+      apt_repository:
+        repo: ppa:jonathonf/ffmpeg-3
+    - name: Installing ffmpeg  + ffmpeg dev libraries
+      apt:
+        name: "{{ item }}"
+      with_items:
+        - ffmpeg
+        - libavcodec-dev
+        - libavformat-dev
+        - libavfilter-dev
+        - libx265-dev
+        - libx264-dev
+        - libvpx-dev
+        - libbz2-dev
+        - libvdpau-dev
+        - libva-dev
+        - liblzma-dev
+  tags: trackhd_install-ffmpeg
+
+
+- name: Clone git repositories of OpenCV and TrackHD
+  block:
+    - name: Cloning Opencv 3.4 repository
+      git:
+        repo: https://github.com/opencv/opencv.git
+        dest: /home/{{ server_user }}/opencv
+        version: 3.4
+    - name: Cloning Opencv_contrib repository
+      git:
+        repo: https://github.com/opencv/opencv_contrib.git
+        dest: /home/{{ server_user }}/opencv_contrib
+        version: 3.4
+    - name: Cloning TrackHD repository
+      git:
+        repo: "{{ trackhd_repo }}"
+        dest: /home/{{ server_user }}/trackhd
+  tags: trackhd_install-git
+
+- name: Install opencv
+  block:
+    - name: Create build folder for OpenCV
+      file:
+        path: /home/{{ server_user }}/opencv/build
+        state: directory
+    - name: Run CMAKE for OpenCV
+      command: cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
+      args:
+        chdir: /home/{{ server_user }}/opencv/build
+    - name: Get number of logic CPUs in the machine
+      shell: cat /proc/cpuinfo | grep processor | wc -l
+      register: proc_count
+    - name: Building OpenCV
+      make:
+        chdir: /home/{{ server_user }}/opencv/build
+        params:
+          NUM_THREADS: "{{ proc_count }}"
+    - name: Adding Opencv_contrib modules
+      command: cmake -DOPENCV_EXTRA_MODULES_PATH=/home/{{ server_user }}/opencv_contrib/modules ../
+      args:
+        chdir: /home/{{ server_user }}/opencv/build
+    - name: Building OpenCV with the Opencv_contrib modules
+      make:
+        chdir: /home/{{ server_user }}/opencv/build
+        params:
+          NUM_THREADS: "{{ proc_count }}"
+    - name: Installing the building of OpenCV to the system
+      command: make install
+      args:
+        chdir: /home/{{ server_user }}/opencv/build
+  tags: trackhd_install-opencv
+
+- name: Install Track4K
+  command: sh ./install_track4k.sh
+  args:
+    chdir: /home/{{ server_user }}/trackhd
+
+- name: Install pyhton 3 and PiP
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python3
+    - python3-pip
+  tags: trackhd_script_libs
+
+- name: Install Pyro4 and Argparse libraries
+  pip:
+    executable: pip3
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - Pyro4
+    - argparse
+  tags: trackhd_script_libs
+
+- name: Register libraries to the system
+  command: ldconfig -v
+  tags:
+    - trackhd_install-basic_libs
+    - trackhd_install-opencv
+    - trackhd_install-ffmpeg
+
+- name: Copy trackhd_server to desired machine
+  template:
+    src: "templates/trackhd_server.py.j2"
+    dest: /etc/trackhd_server.py
+    mode: "755"
+  tags: trackhd_install
+
+- name: TrackHD | Create Unit file
+  template:
+    src: "templates/trackhd.service.j2"
+    dest: /lib/systemd/system/trackhd.service
+    mode: "644"
+  notify:
+    - reload systemctl
+
+- name: TrackHD | Start TrackHD Server as a service
+  service: name=trackhd.service state=started enabled=yes

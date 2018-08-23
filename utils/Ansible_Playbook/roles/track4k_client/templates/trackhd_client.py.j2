@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+# Track4k Script to execute Track4K and cropvid from a
+# remote machine. For Opencast execution
+# Author: Maximiliano Lira Del Canto | RRZK University of Cologne, Germany
+
+
+import sys
+import Pyro4
+import Pyro4.util
+import argparse
+import logging
+import sys
+
+
+sys.excepthook = Pyro4.util.excepthook
+
+parser = argparse.ArgumentParser(description='Executes track4K and cropvid in a remote machine')
+
+#Argparsers arguments and description
+
+parser.add_argument('input_file', type=str,
+                    help ='Input filename')
+
+parser.add_argument('output_file', type=str,
+                    help='Name of the output file')
+
+parser.add_argument('width_out', type=str,
+                    help ='Output width of the video')
+
+parser.add_argument('height_out', type=str,
+                    help ='Output height of the video')
+
+parser.add_argument('track_mode', type=str, choices=['txt', 'json'],
+                    help='Mode of the tracking, txt mode: Track + Video Crop. json mode: Only Track in JSON format for use in applications that can use that info')
+
+
+args = parser.parse_args()
+
+
+class StreamToLogger(object):
+   """
+   Fake file-like stream object that redirects writes to a logger instance.
+   """
+   def __init__(self, logger, log_level=logging.INFO):
+      self.logger = logger
+      self.log_level = log_level
+      self.linebuf = ''
+
+   def write(self, buf):
+      for line in buf.rstrip().splitlines():
+         self.logger.log(self.log_level, line.rstrip())
+
+   def flush(self):
+    pass
+
+logging.basicConfig(
+   level=logging.DEBUG,
+   format='%(asctime)s:%(levelname)s:%(name)s:%(message)s',
+   filename="{{ Log_folder }}/{{ Log_file }}",
+   filemode='a'
+)
+
+stdout_logger = logging.getLogger('STDOUT')
+sl = StreamToLogger(stdout_logger, logging.INFO)
+sys.stdout = sl
+
+stderr_logger = logging.getLogger('STDERR')
+sl = StreamToLogger(stderr_logger, logging.ERROR)
+sys.stderr = sl
+
+
+
+
+# Configure IP and port of the TrackHD serverself.
+uri = 'PYRO:trackhd.prototype@{{ trackhd_ip }}:{{ trackhd_port }}'
+trackhd = Pyro4.Proxy(uri)
+
+
+#Run the application
+print("Track HD Client Started")
+print("Server IP address: " + "{{ trackhd_ip }}")
+print("Server Port address: " + "{{ trackhd_port }}")
+print ("")
+print('Input details:')
+print('Input Filename: ' + args.input_file)
+print('Output Filename: ' + args.output_file)
+print('Desired tracking resolution: ' + args.width_out + 'x' + args.height_out)
+print('Track output mode: ' + args.track_mode)
+
+app = trackhd
+app.track4k(args.input_file, args.output_file, args.width_out, args.height_out, args.track_mode)

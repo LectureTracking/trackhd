@@ -1,0 +1,5 @@
+#TrackHD Server parameters
+trackhd_ip: CHANGE_ME
+trackhd_port: CHANGE_ME
+Log_file: output.log
+Log_folder: /var/log/pyro4trackhd

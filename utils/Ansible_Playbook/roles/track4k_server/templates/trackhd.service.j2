@@ -1,0 +1,17 @@
+[Unit]
+Description=Track HD Server
+Requires=network.target
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User={{ server_user }}
+Group={{ server_user }}
+WorkingDirectory=/etc/
+ExecStart={{ trackhd_installation_path }}/trackhd_server.py
+StandardOutput=syslog
+StandardError=syslog
+
+
+[Install]
+WantedBy=multi-user.target

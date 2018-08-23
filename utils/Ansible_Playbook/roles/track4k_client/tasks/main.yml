@@ -1,0 +1,37 @@
+- name: Install pyhton 3 and PiP
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python34
+    - python34-pip
+  tags: trackhd_client
+
+- name: Install Pyro4 and Argparse libraries
+  pip:
+    executable: pip3.4
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - Pyro4
+    - argparse
+  tags: trackhd_client
+
+- name: Copy trackhd_client to the admin and worker nodes
+  template:
+    src: "templates/trackhd_client.py.j2"
+    dest: "/etc/opencast/trackhd_client.py"
+    mode: "755"
+  tags: trackhd_client-scripts
+
+- name: Allow trackhd_client.py to be run by opencast
+  copy:
+    src: "files/opencast/org.opencastproject.execute.impl.ExecuteServiceImpl.cfg"
+    dest: "/etc/opencast/org.opencastproject.execute.impl.ExecuteServiceImpl.cfg"
+  tags: trackhd_client-execute
+
+- name: Create Log file folder
+  file:
+    path: "{{ Log_folder }}"
+    state: directory
+    mode: 775
