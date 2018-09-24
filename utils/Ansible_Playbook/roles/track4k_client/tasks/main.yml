@@ -32,6 +32,6 @@
 
 - name: Create Log file folder
   file:
-    path: "{{ Log_folder }}"
+    path: "{{ Log_folder_client }}"
     state: directory
     mode: 775
