@@ -1,0 +1,9 @@
+# In this file add the clients and the server of TrackHD
+
+
+[trackhd_server]
+#Insert IP or URL of the server below
+
+
+[trackhd_clients]
+#Insert IPs or URLs of the clients below

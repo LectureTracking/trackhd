@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definition xmlns="http://workflow.opencastproject.org">
+
+  <id>fast4k</id>
+  <title>Fast Test 4k Tracker system</title>
+  <tags>
+    <tag>upload</tag>
+  </tags>
+  <description>Test the Track4K implementation</description>
+
+    <configuration_panel>
+      <![CDATA[
+        <div id="workflow-configuration">
+          <fieldset>
+            <legend>Hint: Media Library is the standard publication channel and automatically selected</legend>
+          </fieldset>
+
+          <fieldset>
+            <legend>Choose additional publication channels</legend>
+            <ul>
+              <li>
+                <input id="useExternalPlayer" name="useExternalPlayer" type="checkbox" class="configField" value="false" />
+                <label for="useExternalPlayer">Display media with an external player (Homepage, TYPO 3,...)</label>
+              </li>
+              <li>
+                <input id="enableDownload" name="enableDownload" type="checkbox" class="configField" value="false" />
+                <label for="enableDownload">Enable download of media</label>
+              </li>
+              <li>
+                <input id="enableAnnotation" name="enableAnnotationTool" type="checkbox" class="configField" value="false" />
+                <label for="enableAnnotation">Enable annotation tool for media (experimental)</label>
+
+            <fieldset>
+                <legend>Choose layout for above selected channels (used if two video streams exist)</legend>
+                <ul id="compositeConfigurationPanel" class="workflow-configuration-subpanel">
+                  <li>
+                    <input id="pipOrSbsToggle_pip" type="radio" name="pipOrSbsToggle" value="pip" checked="checked" />
+                    <label for="pipOrSbsToggle_pip">Picture-In-Picture</label>
+                  </li>
+                  <li>
+                    <input id="pipOrSbsToggle_sbs" type="radio" name="pipOrSbsToggle" value="sbs" />
+                    <label for="pipOrSbsToggle_sbs">Side-By-Side</label>
+                  </li>
+                </ul>
+            </fieldset>
+
+            </li>
+            </ul>
+          </fieldset>
+
+          <fieldset>
+            <legend>4K Video options</legend>
+            <ul id="4KMode" class="workflow-configuration-subpanel">
+              <li>
+                <input id="4KcropORtrack_no4k" class="configField" type="radio" name="4KcropORtrack" onclick="check();" value="no4k" checked="checked" />
+                <label for="4KcropORtrack">No Cropping or tracking / This is not a 4K Video</label>
+              </li>
+              <li>
+                <input id="4KcropORtrack_4kcrop" class="configField" type="radio" name="4KcropORtrack" onclick="check();" value="crop4k"/>
+                <label for="4KcropORtrack">Track with cropping</label>
+              </li>
+              <li>
+                <input id="4KcropORtrack_4ktrack" class="configField" type="radio" name="4KcropORtrack" onclick="check();" value="track4k"/>
+                <label for="4KcropORtrack">Track without cropping</label>
+              </li>
+            </ul>
+          </fieldset>
+
+          <fieldset>
+            <legend>Do you need to trim ? </legend>
+            <ul>
+              <li>
+                <input id="flagForCutting" name="flagForCutting" type="checkbox" checked="checked" class="configField" value="true" />
+                <label for="flagForCutting">Stop execution to trim the media</label>
+              </li>
+            </ul>
+          </fieldset>
+
+          <input type="hidden" id="autopublish" class="configField" value="false" />
+          <input type="hidden" id="layoutSBS" class="configField" value="false" />
+          <input type="hidden" id="no4k" class="configField" name="nein4k" />
+          <input type="hidden" id="crop4k" class="configField" name="cropfourk" />
+          <input type="hidden" id="track4k" class="configField" name="trackfourk" />
+        </div>
+
+        <script type="text/javascript">
+
+          $('#flagForCutting').change(function(){
+              $('#autopublish').val(!$(this).is(':checked'));
+          });
+
+          $('input[name="pipOrSbsToggle"]').change(function(){
+            var show = $(this).val() == 'sbs';
+            $('#layoutSBS').val(show);
+          });
+
+          var no4k = document.getElementById("no4k");
+          var crop4k = document.getElementById("crop4k");
+          var track4k = document.getElementById("track4k");
+
+          function check()
+            {
+            var wich4k = document.getElementsByName("4KcropORtrack");
+            var len = wich4k.length;
+
+            for(i=0;i<len;i++)
+              {
+
+              if (wich4k[i].checked && wich4k[i].value == "no4k")
+                {
+                 no4k.value = true;
+                 crop4k.value = false;
+                 track4k.value = false;
+                 break;
+                }
+              if (wich4k[i].checked && wich4k[i].value == "crop4k")
+                {
+                 no4k.value = false;
+                 crop4k.value = true;
+                 track4k.value = false;
+                 break;
+                }
+              if (wich4k[i].checked && wich4k.value == "track4k")
+                {
+                 no4k.value = false;
+                 crop4k.value = false;
+                 track4k.value = true;
+                 break;
+                }
+              }
+            }
+
+        </script>
+
+      ]]>
+    </configuration_panel>
+
+    <operations>
+
+      <!-- Apply the default workflow configuration -->
+
+      <operation
+        id="defaults"
+        exception-handler-workflow="partial-error"
+        description="Applying default configuration values">
+        <configurations>
+          <configuration key="emailAddress"></configuration>
+          <configuration key="autopublish">false</configuration>
+          <configuration key="useExternalPlayer">false</configuration>
+          <configuration key="enableDownload">false</configuration>
+          <configuration key="enableAnnotation">false</configuration>
+          <configuration key="sourceType">1</configuration>
+          <configuration key="layoutSBS">false</configuration>
+          <configuration key="uploadedSearchPreview">false</configuration>
+        </configurations>
+      </operation>
+
+    <!-- Create tracking data and crop 4k Video -->
+
+    <operation
+      id="include"
+      if="${crop4k} OR ${track4k}"
+      exception-handler-workflow="partial-error"
+      description="Track the presenter by cropping the 4K Video">
+      <configurations>
+        <configuration key="workflow-id">track4k</configuration>
+      </configurations>
+    </operation>
+
+    <!-- Encode and publish -->
+
+
+  </operations>
+
+</definition>
